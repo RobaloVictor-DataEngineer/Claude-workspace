@@ -1,0 +1,11 @@
+# Environnement Python
+venv/
+__pycache__/
+*.pyc
+.env
+.ipynb_checkpoints/
+
+# Données (on ne versionne pas les fichiers de données)
+data/raw/*
+data/processed/*
+!.gitkeep
