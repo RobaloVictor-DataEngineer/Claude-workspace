@@ -1,11 +1,11 @@
-# CLAUDE principal
+# Mon Claude.md
 
 ## Qui je suis
 - **Nom :** Victor ROBALO, basé à Rouen
 - **Formation :** Ingénieur Telecom Saint-Etienne (prépa intégrée + DUT GEII)
 - **Expérience :** 3 ans d'alternance en data engineering chez Sanofi
 - **Domaine de confort :** SQL (bon niveau, manque de pratique récente), Power BI, Tableau, manipulation/transformation/visualisation de données
-- **Python :** Intermédiaire-débutant — maîtrise les bases (fonctions, boucles, dicts, f-strings, while, input) mais pas encore pandas en pratique, pas d'OOP. try/except acquis (FileNotFoundError, ValueError, KeyError) ; lecture de CSV avec le module `csv`.
+- **Python :** Intermédiaire-débutant — maîtrise les bases (fonctions, boucles, dicts, f-strings, while, input) mais pas encore pandas en pratique, pas d'OOP, pas de gestion d'erreurs (try/except)
 - **Java :** Débutant total — notions vues en cours mais jamais pratiqué sérieusement
 - **SQL :** Bon niveau théorique, manque de pratique récente
 
@@ -29,7 +29,6 @@
 - Donner des exemples/schémas explicatifs quand c'est possible
 - Pas de bullet points sauf si c'est vraiment plus clair ainsi
 - Quand tu me proposes un exercice, explique ce que je dois retenir de lui avant que je commence
-- Pour le code d'apprentissage, je préfère travailler en notebooks `.ipynb` plutôt qu'en `.py` simple
 
 ## À éviter
 - Supposer que je connais une notion sans l'avoir expliquée au moins une fois
@@ -50,10 +49,7 @@
 - Sois chirurgical : quand tu modifies mon travail, ne touche qu'à ce que je demande.
 - Vise l'objectif : vérifie que tu as atteint le but avant de t'arrêter.
 
-## Organisation du dossier `Claude`
-- `Projets/01 Parcours Data Engineer/` : apprentissage data engineer (dépôt git). Règles détaillées dans son `CLAUDE.md` secondaire (format des cours, arborescence, fichiers de suivi).
-- `Projets/02 Recherche Emploi Data Engineer/` : CV, lettres, offres, suivi des candidatures, préparation entretiens. Règles détaillées dans son `CLAUDE.md` secondaire.
-- `Template externe YouTube/` : template externe (vidéo YouTube de Yass), non utilisé dans mes projets — référence uniquement.
-
-> Chaque projet a son propre `CLAUDE.md` secondaire qui se charge en plus de ce principal quand on y travaille.
-> Le principal = profil + pilotage général ; les secondaires = règles propres à chaque projet.
+## Mon parcours data engineer (dossier `parcours-data-eng/`)
+- **Maintiens l'arborescence du parcours au fil de l'eau, sans me le demander :** un dossier `cours/semaine-XX/` pour les fiches (numérotées `01_...`, `02_...`), `exercices/python|sql|java/` pour les exercices (un fichier par notion), un dossier par projet créé en dupliquant `_TEMPLATE_PROJET/`, et `fiches-revision/` pour les notes d'entretien. Crée d'emblée les dossiers/fichiers nécessaires à chaque nouvelle étape.
+- Format des cours : **fiche puis exercices**, les exercices dans un **contexte différent** des exemples. Alterner **Python (matin) / SQL (après-midi)**, un seul thème à la fois.
+- Suivi dans `Planning_Data_Engineer.xlsx`, vision d'ensemble dans `Programme_Data_Engineer.docx`. Base SQL réutilisable : `parcours-data-eng/cours/semaine-01/setup_boutique.sql`.
