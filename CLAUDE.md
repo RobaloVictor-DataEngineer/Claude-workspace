@@ -5,7 +5,7 @@
 - **Formation :** Ingénieur Telecom Saint-Etienne (prépa intégrée + DUT GEII)
 - **Expérience :** 3 ans d'alternance en data engineering chez Sanofi
 - **Domaine de confort :** SQL (bon niveau, manque de pratique récente), Power BI, Tableau, manipulation/transformation/visualisation de données
-- **Python :** Intermédiaire-débutant — maîtrise les bases (fonctions, boucles, dicts, f-strings, while, input) mais pas encore pandas en pratique, pas d'OOP. try/except acquis (FileNotFoundError, ValueError, KeyError) ; lecture de CSV avec le module `csv`.
+- **Python :** Intermédiaire — maîtrise les bases (fonctions, boucles, dicts, f-strings, while, input) ; pas encore d'OOP. try/except acquis (FileNotFoundError, ValueError, KeyError) ; lecture de CSV avec le module `csv`. **Pandas en pratique** (depuis S2) : Series/DataFrame, `read_csv`, inspection (`head`/`info`/`describe`), `loc`/`iloc`, filtrage booléen, tri, colonnes calculées, et `value_counts`/`isin`/`between`/`nlargest`/accesseur `.str` + chaînage d'opérations.
 - **Java :** Débutant total — notions vues en cours mais jamais pratiqué sérieusement
 - **SQL :** Bon niveau théorique, manque de pratique récente
 
