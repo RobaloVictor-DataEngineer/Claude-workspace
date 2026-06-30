@@ -9,8 +9,9 @@
 ## Point d'étape rapide
 
 - **Semaine en cours :** **Semaine 2** (Phase 1 · Pandas & SQL intermédiaire) — **démarrée le 29/06**.
-- **Statut :** Semaine 1 **terminée** (clôturée dans le planning). Semaine 2 **en cours** — contenu théorie + exercices fait et corrigé.
-- **Prochaine étape côté Victor :** le **livrable S2** (notebook d'analyse exploratoire sur un dataset Kaggle), puis passage à la S3.
+- **Statut :** Semaine 1 **terminée**. Semaine 2 **quasi bouclée** : théorie + exercices + **livrable fait et validé** ; reste à committer/pousser le livrable sur GitHub pour clôturer.
+- **Livrable S2 fait :** `exercices/python/livrable/analyse_exploratoire_pharmacie.ipynb` (dataset `data/ventes_pharmacie.csv`) — validé. À retenir des corrections : `dropna()` supprime la **ligne entière** → ne jeter que ce qui est nécessaire (`subset=`) ; les NaN n'étaient que sur `region`, donc le bon CA total = 20 588,32 €.
+- **Prochaine étape côté Victor :** pousser le livrable sur GitHub (clôture S2), puis **Semaine 3**.
 
 ---
 

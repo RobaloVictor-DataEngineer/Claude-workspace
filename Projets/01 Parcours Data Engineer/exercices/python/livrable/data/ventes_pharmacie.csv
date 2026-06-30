@@ -1,0 +1,111 @@
+date,region,medicament,classe_therapeutique,boites_vendues,prix_unitaire,remboursable
+2026-01-03,Île-de-France,Vitamine D3 Zyma,Supplément,46,6.43,Non
+2026-01-03,Occitanie,Ramipril 5mg,Antihypertenseur,41,4.97,Oui
+2026-01-03,Occitanie,Lexomil 6mg,Anxiolytique,42,2.31,Oui
+2026-01-04,Occitanie,Doliprane 1000mg,Antalgique,60,2.18,Oui
+2026-01-04,Grand Est,Gaviscon menthe,Antiacide,43,5.22,Non
+2026-01-07,,Magnésium B6,Supplément,15,7.98,Non
+2026-01-08,Île-de-France,Vitamine D3 Zyma,Supplément,53,6.13,Non
+2026-01-09,Auvergne-Rhône-Alpes,Vitamine D3 Zyma,Supplément,12,6.4,Non
+2026-01-10,Auvergne-Rhône-Alpes,Levothyrox 75µg,Hormone thyroïdienne,37,3.48,Oui
+2026-01-12,Normandie,Augmentin 1g,Antibiotique,14,8.04,Oui
+2026-01-12,Grand Est,Amoxicilline 1g,Antibiotique,35,5.12,Oui
+2026-01-13,Île-de-France,Ramipril 5mg,Antihypertenseur,56,4.82,Oui
+2026-01-13,Occitanie,Ventoline 100µg,Bronchodilatateur,58,4.52,Oui
+2026-01-15,Occitanie,Gaviscon menthe,Antiacide,27,5.41,Non
+2026-01-17,Normandie,Ramipril 5mg,Antihypertenseur,60,5.12,Oui
+2026-01-19,Bretagne,Efferalgan 500mg,Antalgique,31,1.97,Oui
+2026-01-20,Île-de-France,Magnésium B6,Supplément,6,7.93,Non
+2026-01-24,Auvergne-Rhône-Alpes,Augmentin 1g,Antibiotique,36,7.71,Oui
+2026-01-25,Occitanie,Spasfon,Antispasmodique,52,2.01,Non
+2026-01-25,Grand Est,Doliprane 1000mg,Antalgique,28,2.15,Oui
+2026-01-25,Grand Est,Ibuprofène 400mg,Anti-inflammatoire,2,2.51,Oui
+2026-01-28,Grand Est,Amlodipine 5mg,Antihypertenseur,15,4.37,Oui
+2026-02-02,Île-de-France,Gaviscon menthe,Antiacide,38,5.35,Non
+2026-02-03,Hauts-de-France,Smecta,Antidiarrhéique,22,3.98,Non
+2026-02-03,Hauts-de-France,Lexomil 6mg,Anxiolytique,38,2.36,Oui
+2026-02-05,Grand Est,Ibuprofène 400mg,Anti-inflammatoire,43,2.42,Oui
+2026-02-05,Bretagne,Amlodipine 5mg,Antihypertenseur,2,4.09,Oui
+2026-02-07,Bretagne,Lexomil 6mg,Anxiolytique,27,2.35,Oui
+2026-02-08,,Kardégic 75mg,Antiagrégant,9,3.12,Oui
+2026-02-13,Normandie,Strepsils miel-citron,ORL,8,5.75,Non
+2026-02-13,,Amlodipine 5mg,Antihypertenseur,22,4.17,Oui
+2026-02-14,Île-de-France,Kardégic 75mg,Antiagrégant,12,3.08,Oui
+2026-02-14,Grand Est,Amlodipine 5mg,Antihypertenseur,2,4.13,Oui
+2026-02-17,Hauts-de-France,Magnésium B6,Supplément,32,7.72,Non
+2026-02-18,Île-de-France,Strepsils miel-citron,ORL,50,5.74,Non
+2026-02-19,Hauts-de-France,Lantus 100UI,Antidiabétique,57,39.56,Oui
+2026-02-20,Bretagne,Lexomil 6mg,Anxiolytique,37,2.29,Oui
+2026-02-21,,Ramipril 5mg,Antihypertenseur,17,4.87,Oui
+2026-02-23,Grand Est,Strepsils miel-citron,ORL,5,5.36,Non
+2026-02-25,Auvergne-Rhône-Alpes,Ventoline 100µg,Bronchodilatateur,22,4.35,Oui
+2026-02-28,,Smecta,Antidiarrhéique,8,4.13,Non
+2026-03-01,Normandie,Xanax 0.25mg,Anxiolytique,55,2.86,Oui
+2026-03-03,Normandie,Amlodipine 5mg,Antihypertenseur,33,4.15,Oui
+2026-03-03,Auvergne-Rhône-Alpes,Smecta,Antidiarrhéique,57,4.06,Non
+2026-03-03,Bretagne,Smecta,Antidiarrhéique,53,4.29,Non
+2026-03-06,Auvergne-Rhône-Alpes,Lexomil 6mg,Anxiolytique,24,2.3,Oui
+2026-03-07,Occitanie,Magnésium B6,Supplément,43,8.12,Non
+2026-03-07,Occitanie,Metformine 1000mg,Antidiabétique,44,4.7,Oui
+2026-03-07,,Vitamine D3 Zyma,Supplément,28,6.51,Non
+2026-03-10,Hauts-de-France,Magnésium B6,Supplément,49,7.91,Non
+2026-03-11,Bretagne,Ibuprofène 400mg,Anti-inflammatoire,21,2.5,Oui
+2026-03-19,,Augmentin 1g,Antibiotique,36,7.71,Oui
+2026-03-20,Normandie,Lexomil 6mg,Anxiolytique,17,2.38,Oui
+2026-03-21,Normandie,Gaviscon menthe,Antiacide,58,5.39,Non
+2026-03-24,Bretagne,Amlodipine 5mg,Antihypertenseur,38,4.22,Oui
+2026-03-25,Grand Est,Lantus 100UI,Antidiabétique,54,38.64,Oui
+2026-03-26,Normandie,Amoxicilline 1g,Antibiotique,56,4.99,Oui
+2026-03-28,Normandie,Amlodipine 5mg,Antihypertenseur,44,4.28,Oui
+2026-04-01,Île-de-France,Gaviscon menthe,Antiacide,25,5.18,Non
+2026-04-03,Occitanie,Spasfon,Antispasmodique,36,2.04,Non
+2026-04-05,Bretagne,Lexomil 6mg,Anxiolytique,40,2.33,Oui
+2026-04-07,Île-de-France,Amlodipine 5mg,Antihypertenseur,56,4.21,Oui
+2026-04-09,Île-de-France,Efferalgan 500mg,Antalgique,60,2.01,Oui
+2026-04-11,,Spasfon,Antispasmodique,14,2.06,Non
+2026-04-12,Île-de-France,Gaviscon menthe,Antiacide,20,5.39,Non
+2026-04-12,Normandie,Ramipril 5mg,Antihypertenseur,47,5.11,Oui
+2026-04-13,Bretagne,Vitamine D3 Zyma,Supplément,18,6.61,Non
+2026-04-15,Bretagne,Strepsils miel-citron,ORL,44,5.43,Non
+2026-04-15,Île-de-France,Spasfon,Antispasmodique,17,2.11,Non
+2026-04-16,Île-de-France,Magnésium B6,Supplément,26,7.82,Non
+2026-04-20,Auvergne-Rhône-Alpes,Amoxicilline 1g,Antibiotique,48,5.01,Oui
+2026-04-21,Grand Est,Ramipril 5mg,Antihypertenseur,16,4.91,Oui
+2026-04-23,Île-de-France,Ibuprofène 400mg,Anti-inflammatoire,10,2.46,Oui
+2026-04-23,Occitanie,Amoxicilline 1g,Antibiotique,17,5.26,Oui
+2026-04-26,Grand Est,Amlodipine 5mg,Antihypertenseur,56,4.36,Oui
+2026-05-01,Occitanie,Spasfon,Antispasmodique,8,2.0,Non
+2026-05-02,,Ibuprofène 400mg,Anti-inflammatoire,23,2.37,Oui
+2026-05-03,,Metformine 1000mg,Antidiabétique,6,4.73,Oui
+2026-05-03,,Smecta,Antidiarrhéique,55,4.04,Non
+2026-05-04,Normandie,Ibuprofène 400mg,Anti-inflammatoire,5,2.43,Oui
+2026-05-10,Normandie,Smecta,Antidiarrhéique,60,4.19,Non
+2026-05-10,Bretagne,Amoxicilline 1g,Antibiotique,43,5.11,Oui
+2026-05-14,Île-de-France,Vitamine D3 Zyma,Supplément,14,6.58,Non
+2026-05-14,Occitanie,Spasfon,Antispasmodique,54,2.14,Non
+2026-05-15,Normandie,Strepsils miel-citron,ORL,34,5.45,Non
+2026-05-15,Hauts-de-France,Ibuprofène 400mg,Anti-inflammatoire,27,2.34,Oui
+2026-05-20,Bretagne,Spasfon,Antispasmodique,21,2.14,Non
+2026-05-23,Île-de-France,Metformine 1000mg,Antidiabétique,20,4.69,Oui
+2026-05-23,Hauts-de-France,Ventoline 100µg,Bronchodilatateur,2,4.62,Oui
+2026-05-26,Occitanie,Ventoline 100µg,Bronchodilatateur,39,4.64,Oui
+2026-05-27,Normandie,Amoxicilline 1g,Antibiotique,1,5.34,Oui
+2026-06-02,Hauts-de-France,Ventoline 100µg,Bronchodilatateur,44,4.55,Oui
+2026-06-03,Bretagne,Ramipril 5mg,Antihypertenseur,39,5.05,Oui
+2026-06-06,Grand Est,Efferalgan 500mg,Antalgique,51,2.0,Oui
+2026-06-06,Grand Est,Gaviscon menthe,Antiacide,43,5.08,Non
+2026-06-10,Occitanie,Levothyrox 75µg,Hormone thyroïdienne,54,3.47,Oui
+2026-06-11,Grand Est,Vitamine D3 Zyma,Supplément,8,6.26,Non
+2026-06-11,Auvergne-Rhône-Alpes,Kardégic 75mg,Antiagrégant,40,3.08,Oui
+2026-06-15,Bretagne,Kardégic 75mg,Antiagrégant,10,3.07,Oui
+2026-06-17,Grand Est,Ibuprofène 400mg,Anti-inflammatoire,26,2.46,Oui
+2026-06-19,Île-de-France,Gaviscon menthe,Antiacide,37,5.24,Non
+2026-06-21,Bretagne,Kardégic 75mg,Antiagrégant,24,3.12,Oui
+2026-06-21,Auvergne-Rhône-Alpes,Amlodipine 5mg,Antihypertenseur,20,4.23,Oui
+2026-06-23,Occitanie,Doliprane 1000mg,Antalgique,35,2.19,Oui
+2026-06-23,Occitanie,Levothyrox 75µg,Hormone thyroïdienne,8,3.51,Oui
+2026-06-24,Île-de-France,Amlodipine 5mg,Antihypertenseur,58,4.26,Oui
+2026-06-24,Grand Est,Vitamine D3 Zyma,Supplément,8,6.45,Non
+2026-06-24,,Levothyrox 75µg,Hormone thyroïdienne,17,3.56,Oui
+2026-06-26,Auvergne-Rhône-Alpes,Spasfon,Antispasmodique,36,2.1,Non
+2026-06-28,Grand Est,Lantus 100UI,Antidiabétique,48,39.84,Oui

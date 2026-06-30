@@ -12,6 +12,7 @@ réutiliser en entretien et en poste — pas seulement résoudre l'exercice.
 ## Format d'un cours (à respecter sans me le demander)
 - **Fiche d'abord, exercices ensuite.** La fiche explique le concept + un exemple concret (ni trop simple, ni trop complexe).
 - Les **exercices sont dans un contexte différent** de l'exemple de la fiche (pour vérifier que j'ai compris, pas recopié).
+- **Les exercices ne doivent pas calquer les exemples de la fiche** : énoncés formulés comme des questions métier, sans nommer la méthode à employer, avec si possible un piège ou une combinaison de notions, pour me forcer à *choisir* l'outil et pas à recopier le motif.
 - **Avant chaque exercice : dis-moi ce que je dois en retenir** (l'objectif pédagogique).
 - **Un seul thème à la fois.** Alternance **Python le matin / SQL l'après-midi**.
 - Java : bases seulement, plus tard.
