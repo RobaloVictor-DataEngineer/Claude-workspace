@@ -1,0 +1,53 @@
+essai_id,phase,aire_therapeutique,site,patients_recrutes,budget,statut
+ESS001,Phase I,Neurologie,Rouen,11,225212,Recrutement
+ESS002,Phase III,Neurologie,Paris,117,1815617,Recrutement
+ESS003,Phase I,Oncologie,Paris,35,222413,Recrutement
+ESS004,Phase III,Cardiologie,Toulouse,303,,En cours
+ESS005,Phase I,Cardiologie,Toulouse,26,298019,En cours
+ESS006,Phase II,Diabétologie,Toulouse,31,617711,Recrutement
+ESS007,Phase II,Cardiologie,Paris,99,,Recrutement
+ESS008,Phase II,Cardiologie,Toulouse,107,735922,Terminé
+ESS009,Phase II,Immunologie,Lille,109,660669,En cours
+ESS010,Phase III,Oncologie,Lille,261,3281491,Recrutement
+ESS011,Phase III,Neurologie,Paris,270,2481715,En cours
+ESS012,Phase II,Cardiologie,Rouen,93,603467,En cours
+ESS013,Phase II,Neurologie,Lille,71,884741,Recrutement
+ESS014,Phase II,Oncologie,Rouen,93,596400,Recrutement
+ESS015,Phase III,Neurologie,Toulouse,236,2248042,Recrutement
+ESS016,Phase I,Neurologie,Rouen,18,338293,Terminé
+ESS017,Phase II,Cardiologie,Lyon,39,782823,Recrutement
+ESS018,Phase I,Immunologie,Lyon,33,325382,Terminé
+ESS019,Phase III,Immunologie,Lille,220,3476317,Recrutement
+ESS020,Phase I,Immunologie,Lyon,19,241773,En cours
+ESS021,Phase II,Oncologie,Toulouse,41,717881,En cours
+ESS022,Phase II,Diabétologie,Toulouse,48,1093735,Recrutement
+ESS023,Phase III,Diabétologie,Paris,356,3146278,Terminé
+ESS024,Phase II,Immunologie,Paris,89,784248,Terminé
+ESS025,Phase II,Cardiologie,Lyon,51,896407,En cours
+ESS026,Phase I,Diabétologie,Toulouse,31,,En cours
+ESS027,Phase III,Cardiologie,Rouen,332,2191451,En cours
+ESS028,Phase II,Neurologie,Paris,116,833318,En cours
+ESS029,Phase II,Immunologie,Lille,26,617225,En cours
+ESS030,Phase II,Neurologie,Lyon,10,674920,Recrutement
+ESS031,Phase I,Neurologie,Toulouse,27,415485,En cours
+ESS032,Phase III,Neurologie,Lille,190,3100891,En cours
+ESS033,Phase II,Diabétologie,Lyon,111,1001504,Recrutement
+ESS034,Phase I,Cardiologie,Rouen,22,251983,Recrutement
+ESS035,Phase I,Oncologie,Lille,24,250665,Terminé
+ESS036,Phase II,Neurologie,Lille,18,683459,Terminé
+ESS037,Phase II,Cardiologie,Lyon,87,1111739,Terminé
+ESS038,Phase II,Oncologie,Lille,18,1027403,Recrutement
+ESS039,Phase III,Immunologie,Lyon,99,2509369,Terminé
+ESS040,Phase III,Oncologie,Rouen,213,,Terminé
+ESS041,Phase I,Cardiologie,Lyon,17,334071,En cours
+ESS042,Phase III,Cardiologie,Toulouse,344,3390568,Terminé
+ESS043,Phase I,Diabétologie,Paris,14,320582,En cours
+ESS044,Phase I,Immunologie,Lyon,24,254684,En cours
+ESS045,Phase II,Diabétologie,Lille,61,,Recrutement
+ESS046,Phase II,Neurologie,Toulouse,61,1023198,Recrutement
+ESS047,Phase III,Cardiologie,Lyon,269,1782734,Recrutement
+ESS048,Phase III,Cardiologie,Paris,96,1997728,En cours
+ESS049,Phase III,Oncologie,Paris,357,2657110,Terminé
+ESS050,Phase III,Oncologie,Paris,105,2234605,En cours
+ESS051,Phase II,Diabétologie,Toulouse,105,,En cours
+ESS052,Phase III,Neurologie,Toulouse,270,2098956,Recrutement
