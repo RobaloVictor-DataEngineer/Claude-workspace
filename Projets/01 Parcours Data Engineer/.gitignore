@@ -1,0 +1,19 @@
+# Environnement virtuel Python (ne se versionne jamais : se recrée avec requirements)
+.venv/
+venv/
+env/
+
+# Caches Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# Caches Jupyter
+.ipynb_checkpoints/
+
+# Fichiers système / éditeur
+.DS_Store
+Thumbs.db
+
+# Sessions DBeaver / SQL temporaires
+*.session.sql

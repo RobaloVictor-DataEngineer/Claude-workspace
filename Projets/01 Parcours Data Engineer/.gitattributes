@@ -1,0 +1,10 @@
+# Normalise les fins de ligne : supprime le bruit "fichier modifié" entre PC/OS.
+# Après avoir ajouté ce fichier, lance une fois :  git add --renormalize .  puis commit.
+* text=auto
+
+# Force LF (bon pour GitHub / cross-plateforme)
+*.py   text eol=lf
+*.md   text eol=lf
+*.sql  text eol=lf
+*.csv  text eol=lf
+*.ipynb text eol=lf

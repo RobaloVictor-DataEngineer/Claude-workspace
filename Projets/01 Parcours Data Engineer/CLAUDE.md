@@ -12,19 +12,26 @@ réutiliser en entretien et en poste — pas seulement résoudre l'exercice.
 ## Format d'un cours (à respecter sans me le demander)
 - **Fiche d'abord, exercices ensuite.** La fiche explique le concept + un exemple concret (ni trop simple, ni trop complexe).
 - Les **exercices sont dans un contexte différent** de l'exemple de la fiche (pour vérifier que j'ai compris, pas recopié).
-- **Les exercices ne doivent pas calquer les exemples de la fiche** : énoncés formulés comme des questions métier, sans nommer la méthode à employer, avec si possible un piège ou une combinaison de notions, pour me forcer à *choisir* l'outil et pas à recopier le motif.
+- **Les exercices ne doivent JAMAIS être une redite des exemples de la fiche.** (Règle stricte, déjà demandée plusieurs fois.)
+  - INTERDIT : reprendre les mêmes colonnes / le même calcul que dans un exemple ; mapper « 1 exercice = 1 exemple » dans le même ordre.
+  - OBLIGATOIRE : (a) des **données ou colonnes différentes** de celles des exemples ; (b) des énoncés « **question métier** » sans nommer la méthode ; (c) chaque exercice **combine au moins deux notions**, OU demande de **choisir** entre plusieurs outils, OU contient un **piège**.
+  - Test avant de me l'envoyer : « est-ce que ça se résout en recopiant un exemple de la fiche en changeant juste un nom ? » Si oui → à refaire.
 - **Avant chaque exercice : dis-moi ce que je dois en retenir** (l'objectif pédagogique).
 - **Un seul thème à la fois.** Alternance **Python le matin / SQL l'après-midi**.
 - Java : bases seulement, plus tard.
 
-## Mini-projet de fin de semaine (systématique)
+## Mini-projet de fin de semaine (systématique et CUMULATIF)
 Avant de clôturer chaque semaine, propose-moi un **mini-projet de synthèse** — un énoncé unique, façon
-petit cas concret, qui me fait **réutiliser l'ensemble des notions de la semaine** (et idéalement en
-rebrasser des précédentes). Sur le modèle du livrable S2 (notebook d'analyse exploratoire).
-- **Léger**, pas un vrai projet : reste bien en-dessous des vrais projets (S5, S8). Un seul notebook/script
-  guidé, avec une **consigne métier** (sans nommer les méthodes) et une **petite synthèse écrite** à la fin.
-- Le ranger dans `exercices/python/livrable/` (ou `exercices/sql/` si le thème de la semaine est SQL),
-  avec son `data/` si besoin.
+petit cas concret. **Point clé : il est CUMULATIF, il rebrasse TOUTES les semaines depuis le début, pas
+seulement la semaine en cours.**
+- Portée = **semaines 1 → N** (N = semaine que je termine). Ex. : fin S3 → mini-projet qui mobilise S1+S2+S3 ;
+  fin S4 → S1→S4 ; etc. Il grossit et se densifie à mesure que les semaines s'accumulent, jusqu'à faire le
+  pont avec les vrais gros projets (S5, S8).
+- **Reste plus léger que les vrais projets** : un seul notebook/script guidé, avec une **consigne métier**
+  (sans nommer les méthodes) et une **petite synthèse écrite** à la fin. La montée en charge se fait par
+  l'étendue des notions combinées, pas par une complexité artificielle.
+- Combine explicitement Python **et** SQL quand les deux ont été vus, pour que ce soit une vraie synthèse.
+- Le ranger dans `exercices/python/livrable/` (ou `exercices/sql/` si dominante SQL), avec son `data/` si besoin.
 - C'est ce mini-projet qui, **une fois poussé sur GitHub**, valide la semaine (avant de passer à la suivante).
 - Fournis-moi d'abord ce que je dois en retenir (l'objectif), comme pour un exercice.
 

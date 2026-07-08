@@ -1,0 +1,121 @@
+vente_id,date,pharmacie,medicament,classe_therapeutique,prix_unitaire,remboursable,quantite
+V0047,2026-01-01,Grande Pharmacie,Amlodipine 5mg,Antihypertenseur,4.3,Oui,27
+V0069,2026-01-01,Grande Pharmacie,Levothyrox 75µg,Hormone thyroïdienne,3.37,Oui,35
+V0048,2026-01-02,Pharmacie de la Gare,Vitamine D3,Supplément,6.25,Non,7
+V0117,2026-01-02,,Amoxicilline 1g,Antibiotique,5.09,Oui,7
+V0071,2026-01-03,Grande Pharmacie,Ventoline 100µg,Bronchodilatateur,4.52,Oui,10
+V0076,2026-01-04,Pharmacie Saint-Marc,Amlodipine 5mg,Antihypertenseur,4.26,Oui,33
+V0118,2026-01-06,Pharmacie de la Gare,Strepsils,ORL,5.44,Non,33
+V0033,2026-01-07,Pharmacie du Centre,Magnésium B6,Supplément,7.76,Non,12
+V0068,2026-01-10,Pharmacie du Centre,Vitamine D3,Supplément,6.35,Non,24
+V0115,2026-01-10,Pharmacie des Halles,Spasfon,Antispasmodique,2.06,Non,15
+V0067,2026-01-12,Pharmacie des Halles,Amoxicilline 1g,Antibiotique,5.18,Oui,34
+V0077,2026-01-12,Pharmacie du Centre,Magnésium B6,Supplément,7.83,Non,20
+V0070,2026-01-13,Pharmacie Saint-Marc,Strepsils,ORL,5.54,Non,25
+V0019,2026-01-15,Pharmacie des Halles,Amlodipine 5mg,Antihypertenseur,4.17,Oui,33
+V0006,2026-01-18,Pharmacie du Centre,Ventoline 100µg,Bronchodilatateur,4.43,Oui,35
+V0063,2026-01-21,Pharmacie du Centre,Amlodipine 5mg,Antihypertenseur,4.21,Oui,16
+V0055,2026-01-24,Pharmacie de la Gare,Ventoline 100µg,Bronchodilatateur,4.4,Oui,8
+V0072,2026-01-24,Pharmacie Saint-Marc,Amlodipine 5mg,Antihypertenseur,4.26,Oui,38
+V0023,2026-01-25,Grande Pharmacie,Augmentin 1g,Antibiotique,8.07,Oui,35
+V0081,2026-01-25,Pharmacie Saint-Marc,Lantus 100UI,Antidiabétique,39.29,Oui,6
+V0042,2026-02-04,Pharmacie Saint-Marc,Gaviscon menthe,Antiacide,5.28,Non,40
+V0078,2026-02-04,Pharmacie Saint-Marc,Amoxicilline 1g,Antibiotique,5.12,Oui,21
+V0108,2026-02-07,,Spasfon,Antispasmodique,2.06,Non,28
+V0038,2026-02-11,Pharmacie des Halles,Lantus 100UI,Antidiabétique,38.66,Oui,34
+V0037,2026-02-12,Pharmacie du Centre,Metformine 1000mg,Antidiabétique,4.57,Oui,12
+V0028,2026-02-13,Grande Pharmacie,Vitamine D3,Supplément,6.48,Non,1
+V0036,2026-02-13,Grande Pharmacie,Amoxicilline 1g,Antibiotique,5.11,Oui,18
+V0086,2026-02-14,Pharmacie Saint-Marc,Magnésium B6,Supplément,7.87,Non,18
+V0025,2026-02-18,Pharmacie des Halles,Strepsils,ORL,5.52,Non,15
+V0061,2026-02-18,Pharmacie Saint-Marc,Gaviscon menthe,Antiacide,5.27,Non,3
+V0088,2026-02-18,Grande Pharmacie,Levothyrox 75µg,Hormone thyroïdienne,3.38,Oui,8
+V0120,2026-02-18,Pharmacie des Halles,Gaviscon menthe,Antiacide,5.28,Non,28
+V0114,2026-02-22,Grande Pharmacie,Amoxicilline 1g,Antibiotique,5.1,Oui,10
+V0035,2026-02-26,Grande Pharmacie,Doliprane 1000mg,Antalgique,2.23,Oui,34
+V0011,2026-02-27,Pharmacie du Centre,Vitamine D3,Supplément,6.48,Non,4
+V0080,2026-02-27,Pharmacie du Centre,Lantus 100UI,Antidiabétique,39.05,Oui,23
+V0084,2026-02-28,Grande Pharmacie,Amoxicilline 1g,Antibiotique,5.19,Oui,23
+V0044,2026-03-04,Grande Pharmacie,Ventoline 100µg,Bronchodilatateur,4.4,Oui,28
+V0102,2026-03-09,,Lantus 100UI,Antidiabétique,38.11,Oui,30
+V0065,2026-03-11,Grande Pharmacie,Amlodipine 5mg,Antihypertenseur,4.19,Oui,13
+V0052,2026-03-13,Pharmacie Saint-Marc,Strepsils,ORL,5.65,Non,19
+V0099,2026-03-14,Grande Pharmacie,Ventoline 100µg,Bronchodilatateur,4.4,Oui,3
+V0032,2026-03-15,Grande Pharmacie,Ventoline 100µg,Bronchodilatateur,4.41,Oui,39
+V0073,2026-03-18,Grande Pharmacie,Augmentin 1g,Antibiotique,7.83,Oui,19
+V0029,2026-03-21,Pharmacie du Centre,Metformine 1000mg,Antidiabétique,4.72,Oui,23
+V0062,2026-03-21,Pharmacie Saint-Marc,Strepsils,ORL,5.6,Non,34
+V0024,2026-03-22,Pharmacie de la Gare,Gaviscon menthe,Antiacide,5.25,Non,38
+V0030,2026-03-22,Pharmacie du Centre,Doliprane 1000mg,Antalgique,2.19,Oui,20
+V0017,2026-03-23,Pharmacie de la Gare,Lantus 100UI,Antidiabétique,38.63,Oui,32
+V0109,2026-03-25,Grande Pharmacie,Ventoline 100µg,Bronchodilatateur,4.39,Oui,32
+V0005,2026-03-26,Pharmacie de la Gare,Levothyrox 75µg,Hormone thyroïdienne,3.5,Oui,25
+V0039,2026-03-27,Pharmacie Saint-Marc,Ibuprofène 400mg,Anti-inflammatoire,2.45,Oui,7
+V0041,2026-03-28,Grande Pharmacie,Vitamine D3,Supplément,6.28,Non,11
+V0053,2026-04-01,Pharmacie du Centre,Amlodipine 5mg,Antihypertenseur,4.26,Oui,19
+V0089,2026-04-01,Pharmacie des Halles,Spasfon,Antispasmodique,2.08,Non,36
+V0008,2026-04-03,Pharmacie de la Gare,Strepsils,ORL,5.64,Non,26
+V0020,2026-04-03,Pharmacie des Halles,Amoxicilline 1g,Antibiotique,5.23,Oui,18
+V0021,2026-04-05,Pharmacie du Centre,Amlodipine 5mg,Antihypertenseur,4.31,Oui,29
+V0097,2026-04-07,Pharmacie de la Gare,Amoxicilline 1g,Antibiotique,5.17,Oui,39
+V0119,2026-04-07,Pharmacie du Centre,Strepsils,ORL,5.46,Non,11
+V0059,2026-04-09,Pharmacie Saint-Marc,Doliprane 1000mg,Antalgique,2.16,Oui,10
+V0060,2026-04-09,Pharmacie de la Gare,Doliprane 1000mg,Antalgique,2.15,Oui,21
+V0087,2026-04-09,Pharmacie de la Gare,Ibuprofène 400mg,Anti-inflammatoire,2.42,Oui,10
+V0103,2026-04-10,Pharmacie Saint-Marc,Levothyrox 75µg,Hormone thyroïdienne,3.43,Oui,14
+V0054,2026-04-11,Pharmacie du Centre,Levothyrox 75µg,Hormone thyroïdienne,3.49,Oui,38
+V0101,2026-04-11,Pharmacie Saint-Marc,Amlodipine 5mg,Antihypertenseur,4.12,Oui,17
+V0091,2026-04-12,Pharmacie Saint-Marc,Strepsils,ORL,5.41,Non,22
+V0015,2026-04-14,Pharmacie des Halles,Ventoline 100µg,Bronchodilatateur,4.43,Oui,13
+V0051,2026-04-14,Pharmacie Saint-Marc,Amlodipine 5mg,Antihypertenseur,4.26,Oui,8
+V0012,2026-04-16,Pharmacie du Centre,Ventoline 100µg,Bronchodilatateur,4.47,Oui,10
+V0009,2026-04-17,Pharmacie des Halles,Ventoline 100µg,Bronchodilatateur,4.56,Oui,39
+V0010,2026-04-19,Pharmacie Saint-Marc,Metformine 1000mg,Antidiabétique,4.63,Oui,31
+V0040,2026-04-21,Pharmacie du Centre,Augmentin 1g,Antibiotique,7.85,Oui,22
+V0013,2026-04-22,Pharmacie du Centre,Augmentin 1g,Antibiotique,7.97,Oui,31
+V0100,2026-04-22,Pharmacie Saint-Marc,Magnésium B6,Supplément,7.88,Non,22
+V0098,2026-04-23,Pharmacie de la Gare,Magnésium B6,Supplément,8.01,Non,34
+V0066,2026-04-26,Pharmacie des Halles,Lantus 100UI,Antidiabétique,38.33,Oui,38
+V0093,2026-04-28,Pharmacie Saint-Marc,Spasfon,Antispasmodique,2.04,Non,31
+V0003,2026-05-03,Pharmacie des Halles,Spasfon,Antispasmodique,2.04,Non,8
+V0105,2026-05-03,Pharmacie de la Gare,Vitamine D3,Supplément,6.48,Non,33
+V0057,2026-05-05,,Gaviscon menthe,Antiacide,5.2,Non,23
+V0075,2026-05-06,Pharmacie de la Gare,Metformine 1000mg,Antidiabétique,4.51,Oui,34
+V0095,2026-05-09,Grande Pharmacie,Vitamine D3,Supplément,6.37,Non,40
+V0026,2026-05-10,Pharmacie Saint-Marc,Amoxicilline 1g,Antibiotique,5.1,Oui,6
+V0027,2026-05-10,Grande Pharmacie,Amoxicilline 1g,Antibiotique,5.1,Oui,33
+V0043,2026-05-10,Pharmacie Saint-Marc,Ventoline 100µg,Bronchodilatateur,4.42,Oui,37
+V0079,2026-05-10,Pharmacie du Centre,Strepsils,ORL,5.49,Non,8
+V0056,2026-05-12,,Ibuprofène 400mg,Anti-inflammatoire,2.43,Oui,39
+V0085,2026-05-13,Pharmacie des Halles,Amlodipine 5mg,Antihypertenseur,4.15,Oui,14
+V0107,2026-05-17,Grande Pharmacie,Ventoline 100µg,Bronchodilatateur,4.5,Oui,25
+V0002,2026-05-18,Pharmacie Saint-Marc,Spasfon,Antispasmodique,2.09,Non,32
+V0049,2026-05-19,Pharmacie du Centre,Levothyrox 75µg,Hormone thyroïdienne,3.39,Oui,23
+V0031,2026-05-20,Pharmacie des Halles,Ibuprofène 400mg,Anti-inflammatoire,2.37,Oui,11
+V0001,2026-05-21,Pharmacie de la Gare,Ibuprofène 400mg,Anti-inflammatoire,2.46,Oui,7
+V0018,2026-05-22,Pharmacie des Halles,Vitamine D3,Supplément,6.44,Non,3
+V0092,2026-05-23,,Metformine 1000mg,Antidiabétique,4.54,Oui,17
+V0111,2026-05-23,Grande Pharmacie,Ventoline 100µg,Bronchodilatateur,4.52,Oui,10
+V0113,2026-05-23,Grande Pharmacie,Levothyrox 75µg,Hormone thyroïdienne,3.35,Oui,23
+V0096,2026-05-25,Pharmacie Saint-Marc,Ibuprofène 400mg,Anti-inflammatoire,2.47,Oui,1
+V0022,2026-05-27,Pharmacie du Centre,Ibuprofène 400mg,Anti-inflammatoire,2.43,Oui,6
+V0046,2026-05-27,Pharmacie Saint-Marc,Ibuprofène 400mg,Anti-inflammatoire,2.39,Oui,5
+V0074,2026-06-01,Grande Pharmacie,Metformine 1000mg,Antidiabétique,4.66,Oui,39
+V0034,2026-06-07,Pharmacie du Centre,Ventoline 100µg,Bronchodilatateur,4.52,Oui,31
+V0058,2026-06-08,Grande Pharmacie,Metformine 1000mg,Antidiabétique,4.55,Oui,9
+V0082,2026-06-08,Pharmacie de la Gare,Vitamine D3,Supplément,6.28,Non,11
+V0014,2026-06-10,Pharmacie de la Gare,Ventoline 100µg,Bronchodilatateur,4.54,Oui,36
+V0106,2026-06-11,Pharmacie de la Gare,Spasfon,Antispasmodique,2.03,Non,24
+V0110,2026-06-13,Pharmacie de la Gare,Gaviscon menthe,Antiacide,5.26,Non,35
+V0116,2026-06-14,Pharmacie du Centre,Ventoline 100µg,Bronchodilatateur,4.56,Oui,10
+V0004,2026-06-16,,Ibuprofène 400mg,Anti-inflammatoire,2.38,Oui,21
+V0016,2026-06-20,,Levothyrox 75µg,Hormone thyroïdienne,3.47,Oui,30
+V0050,2026-06-20,Pharmacie Saint-Marc,Lantus 100UI,Antidiabétique,39.51,Oui,3
+V0083,2026-06-22,Pharmacie Saint-Marc,Ventoline 100µg,Bronchodilatateur,4.45,Oui,32
+V0007,2026-06-23,Grande Pharmacie,Lantus 100UI,Antidiabétique,38.32,Oui,37
+V0104,2026-06-24,Pharmacie des Halles,Strepsils,ORL,5.58,Non,33
+V0090,2026-06-25,Pharmacie des Halles,Gaviscon menthe,Antiacide,5.33,Non,32
+V0045,2026-06-26,Pharmacie du Centre,Gaviscon menthe,Antiacide,5.26,Non,12
+V0064,2026-06-28,Pharmacie Saint-Marc,Augmentin 1g,Antibiotique,7.97,Oui,26
+V0094,2026-06-28,Grande Pharmacie,Doliprane 1000mg,Antalgique,2.17,Oui,18
+V0112,2026-06-28,Pharmacie Saint-Marc,Amoxicilline 1g,Antibiotique,5.07,Oui,3

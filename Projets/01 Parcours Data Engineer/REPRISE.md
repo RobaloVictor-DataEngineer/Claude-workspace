@@ -1,17 +1,39 @@
 # REPRISE — Où j'en suis dans mon parcours Data Engineer
 
 > Fichier à relire pour reprendre le fil depuis n'importe quel PC (même sans historique Cowork).
-> **Dernière mise à jour : 29/06/2026.**
+> **Dernière mise à jour : 07/07/2026.**
 > Au démarrage d'une nouvelle session : faire lire au modèle ce fichier + `CLAUDE.md` (racine) + `CLAUDE.md` (ce projet).
 
 ---
 
 ## Point d'étape rapide
 
-- **Semaine en cours :** **Semaine 2** (Phase 1 · Pandas & SQL intermédiaire) — **démarrée le 29/06**.
-- **Statut :** Semaine 1 **terminée**. Semaine 2 **quasi bouclée** : théorie + exercices + **livrable fait et validé** ; reste à committer/pousser le livrable sur GitHub pour clôturer.
-- **Livrable S2 fait :** `exercices/python/livrable/analyse_exploratoire_pharmacie.ipynb` (dataset `data/ventes_pharmacie.csv`) — validé. À retenir des corrections : `dropna()` supprime la **ligne entière** → ne jeter que ce qui est nécessaire (`subset=`) ; les NaN n'étaient que sur `region`, donc le bon CA total = 20 588,32 €.
-- **Prochaine étape côté Victor :** pousser le livrable sur GitHub (clôture S2), puis **Semaine 3**.
+- **Semaines 1, 2 et 3 : terminées** (Phase 0 + Phase 1). Contenu, exercices corrigés et livrables/mini-projet faits et validés.
+- **Statut planning :** S1, S2, S3 = « Terminé ». S4 = « À faire ».
+- **Mini-projet S3 (cumulatif S1→S3) fait et validé :** `exercices/python/livrable/mini_projet_s1_s3.ipynb` (dataset `data/ventes_pharmacies.csv`) — pandas + une classe OOP qui `return` + SQL (jointure/sous-requête/window via SQLite). Bien géré : NaN pharmacie remplacés par un **label** (`fillna("Pharmacie inconnue")`), pas par 0.
+- **Prochaine étape côté Victor :** committer/pousser le contenu S2 **et** S3 sur GitHub (avec `git add --renormalize .`), puis démarrer la **Semaine 4**.
+
+---
+
+## Ce qui est fait (Semaine 3)
+
+**Cours** (`cours/semaine-03/`)
+- 01 Python — pandas `groupby`/agg (split-apply-combine, `.agg()`, named aggregation, multi-clés) + gestion des NaN.
+- 02 SQL — window functions (`OVER`, `PARTITION BY` vs `GROUP BY`, ROW_NUMBER/RANK/DENSE_RANK, agrégat fenêtré, cumul, LAG/LEAD).
+- 03 Python — première classe OOP (classe/instance/attribut/méthode, `__init__`, `self`) + 4 pièges détaillés (self vs local, `__init__` porte l'état, indépendance des instances, `return` vs `print`).
+
+**Exercices** (corrigés)
+- `exercices/python/s3_1_pandas_groupby.ipynb` (dataset `data/essais_cliniques.csv`) — validé.
+- `exercices/sql/s3_2_window_functions.sql` (base boutique) — validé.
+- `exercices/python/s3_3_oop_premiere_classe.ipynb` (classe Panier) — validé.
+
+**Mini-projet cumulatif S1→S3 :** `exercices/python/livrable/mini_projet_s1_s3.ipynb` — complet et validé.
+
+**Notions acquises :** pandas `groupby`/agg + NaN (`dropna(subset=)`, `fillna(label)`), SQL window functions, OOP (première classe, `self`, `return` vs `print`).
+
+**À consolider :** `PARTITION BY` = « recommence le calcul par groupe » (à ne PAS mettre pour un cumul global) ; dans une classe, toujours `self.` (pas la variable globale) ; méthodes en `snake_case` ; une méthode qui calcule doit `return`.
+
+**Rangement du dossier (07/07) :** ajout d'un `.gitignore` (`.venv/`, caches) et d'un `.gitattributes` (fin du bruit CRLF) ; suppression de 3 fichiers parasites (`Postgres local.session.sql` vide, `projet-01-etl/test.py` égaré, doublon `analyse_exploratoire_pharmacie_avec_test.ipynb`).
 
 ---
 
@@ -69,25 +91,26 @@ lecture CSV avec le module `csv` (`DictReader`), fonctions, comprehensions.
 
 ## À vérifier avant de continuer
 
-- [x] Le `lire_csv.ipynb` final est bien **commité + poussé** sur GitHub (commit `77494c1` « S1 : livrable script CSV », branche à jour avec origin/main).
-- [x] Onglet **Planning** de `Planning_Data_Engineer.xlsx` : **S1 passé en « Terminé »**, S2 en « En cours ».
-- [ ] **À committer vendredi** (convention hebdo) — tout le contenu S2 : `cours/semaine-02/01..03`, `exercices/python/data/villes.csv` + `commandes.csv`, `exercices/python/s2_1..s2_2`, `exercices/sql/s2_3_sousrequetes_jointures.sql`, le planning et le `CLAUDE.md` racine à jour.
-- [ ] Reprendre les corrections SQL de `s2_3` (exercices 5, 6, 7, 8 — voir « À consolider » ci-dessus).
-- [ ] Note : ~44 fichiers apparaissent « modifiés » dans git mais c'est uniquement un changement de fins de ligne (CRLF) après checkout sur un autre PC — pas de contenu modifié. Ne pas committer ce bruit (envisager un `.gitattributes`).
+- [x] Planning à jour : **S1, S2, S3 = « Terminé »**, S4 = « À faire ».
+- [x] Bruit CRLF réglé par un `.gitattributes` ; dossier rangé (`.gitignore` + parasites supprimés).
+- [ ] **À committer/pousser sur GitHub** (clôture officielle S2+S3) : tout `cours/semaine-02` et `cours/semaine-03`, les exercices S2+S3, le mini-projet `mini_projet_s1_s3.ipynb`, les datasets, le planning, `.gitignore`, `.gitattributes`, les deux `CLAUDE.md`. Lancer d'abord `git add --renormalize .` pour absorber le CRLF.
 
 ---
 
-## Prochaine étape — finir la Semaine 2 (29/06 -> 05/07)
+## Prochaine étape — Semaine 4 (Phase 2 · Approfondissement)
 
-Théorie + exercices S2 = **faits**. Il reste :
+**Focus : pandas avancé + SQL analytique.**
 
-- **Livrable Semaine 2 :** un **notebook d'analyse exploratoire** sur un dataset Kaggle
-  (à télécharger ; le déposer dans `exercices/python/livrable/data/` ou un nouveau projet selon l'ampleur).
-- Reprendre les corrections SQL de `s2_3` (5, 6, 7, 8).
-- Puis bascule **Semaine 3** : pandas groupby/agg + merge + NaN ; SQL window functions ; Python OOP.
+- **Théorie à apprendre**
+  - Pandas : `pivot_table`, `apply`/`lambda`, `concat`, `merge` complexe, lecture JSON/Excel/API (`requests`).
+  - SQL : CTE (Common Table Expression = `WITH ... AS (...)`), index, notion de performance.
+- **Pratique à faire**
+  - Un appel **API** + transformation en pandas ; des requêtes **CTE**.
+- **Livrable / mini-projet S4 :** cumulatif **S1 → S4** (règle du CLAUDE.md projet), un cran au-dessus,
+  intégrant un flux API→pandas et du SQL avec CTE.
 
-> Rappel méthode : un seul thème à la fois, théorie le matin / pratique l'après-midi,
-> on n'avance à la semaine suivante que quand le livrable est sur GitHub.
+> Rappels méthode : un seul thème à la fois, Python le matin / SQL l'après-midi ; on ne valide la semaine
+> qu'une fois le livrable sur GitHub. Exercices = **questions métier**, jamais un calque des exemples.
 
 ---
 
@@ -99,8 +122,9 @@ Théorie + exercices S2 = **faits**. Il reste :
 - **Ma façon de travailler :** je code en **notebooks `.ipynb`**, pas en `.py` simple.
   Je veux comprendre, pas qu'on code à ma place. Sur un simple exercice, j'ai le droit d'innover
   (faire ce qui est demandé et/ou mieux).
-- **Mon niveau :** SQL bon (théorie + alias/JOINs multiples/sous-requêtes en pratique), Python intermédiaire
-  (bases + try/except + CSV + **pandas en pratique** acquis, pas encore d'OOP), Java débutant total.
+- **Mon niveau :** SQL bon (alias, JOINs multiples, sous-requêtes **et window functions** en pratique),
+  Python intermédiaire (bases + try/except + CSV + **pandas** — dont `groupby`/agg et gestion des NaN —
+  + **première classe OOP** acquis), Java débutant total.
 - **Objectif :** poste data engineer avant septembre 2026 (Rouen / Île-de-France, 40-50k EUR, pharma de préférence).
 
 ---
