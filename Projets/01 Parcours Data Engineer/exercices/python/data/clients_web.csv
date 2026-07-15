@@ -1,0 +1,16 @@
+client_id,nom,segment,ville
+1,Client01,Pro,Nantes
+2,Client02,Premium,Rouen
+3,Client03,Particulier,Lille
+4,Client04,Particulier,Lyon
+5,Client05,Particulier,Paris
+6,Client06,Particulier,Nantes
+7,Client07,Particulier,Rouen
+8,Client08,Particulier,Nantes
+9,Client09,Premium,Lyon
+10,Client10,Premium,Lille
+11,Client11,Premium,Lille
+12,Client12,Premium,Lyon
+13,Client13,Pro,Rouen
+14,Client14,Pro,Lyon
+15,Client15,Premium,Paris

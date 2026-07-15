@@ -11,11 +11,16 @@ réutiliser en entretien et en poste — pas seulement résoudre l'exercice.
 
 ## Format d'un cours (à respecter sans me le demander)
 - **Fiche d'abord, exercices ensuite.** La fiche explique le concept + un exemple concret (ni trop simple, ni trop complexe).
+- **Explications visuelles obligatoires pour toute mécanique nouvelle ou « bête ».** D'abord une phrase en **langage simple** (ex. « `axis=1` = ta fonction reçoit une ligne entière, donc elle peut lire plusieurs colonnes »), PUIS un support visuel : mini **tableau avant/après**, comparaison **avec/sans** (ex. `axis=0` vs `axis=1`), ou petit schéma. Ne jamais se contenter de la définition technique seule. **Toujours empiler les blocs AVANT puis APRÈS l'un au-dessus de l'autre (jamais côte à côte, c'est illisible).**
 - Les **exercices sont dans un contexte différent** de l'exemple de la fiche (pour vérifier que j'ai compris, pas recopié).
 - **Les exercices ne doivent JAMAIS être une redite des exemples de la fiche.** (Règle stricte, déjà demandée plusieurs fois.)
   - INTERDIT : reprendre les mêmes colonnes / le même calcul que dans un exemple ; mapper « 1 exercice = 1 exemple » dans le même ordre.
   - OBLIGATOIRE : (a) des **données ou colonnes différentes** de celles des exemples ; (b) des énoncés « **question métier** » sans nommer la méthode ; (c) chaque exercice **combine au moins deux notions**, OU demande de **choisir** entre plusieurs outils, OU contient un **piège**.
   - Test avant de me l'envoyer : « est-ce que ça se résout en recopiant un exemple de la fiche en changeant juste un nom ? » Si oui → à refaire.
+  - Test opérationnel (à faire pour CHAQUE exercice) : « quelle étape/notion l'exemple de la fiche n'a PAS montrée et que cet exercice EXIGE ? » Si la réponse est « aucune » → c'est un calque, à refaire. Refaire un exercice qui applique la MÊME opération que l'exemple (ex. l'exemple catégorise avec `def+apply` → l'exercice catégorise avec `def+apply`), même sur d'autres données, est INTERDIT. Ajouter une **combinaison** avec une notion des semaines précédentes (ex. `apply` **puis** `groupby`), un **choix d'outil**, ou un **enchaînement multi-étapes**.
+- **Énoncés précis et non ambigus, vocabulaire technique exact.** Une seule interprétation possible par question (préciser le niveau d'agrégation, l'opération attendue). Ne jamais employer un mot vague pour une opération technique. En particulier :
+  - **trier / ranger** = mettre les lignes dans un ordre → `ORDER BY` (SQL), `sort_values` (pandas). Ne crée aucun numéro.
+  - **classer / attribuer un rang** = donner un numéro de rang → `RANK`/`DENSE_RANK`/`ROW_NUMBER` (SQL). Le mot « classé » ne doit JAMAIS désigner un simple tri.
 - **Avant chaque exercice : dis-moi ce que je dois en retenir** (l'objectif pédagogique).
 - **Un seul thème à la fois.** Alternance **Python le matin / SQL l'après-midi**.
 - Java : bases seulement, plus tard.
@@ -34,6 +39,12 @@ seulement la semaine en cours.**
 - Le ranger dans `exercices/python/livrable/` (ou `exercices/sql/` si dominante SQL), avec son `data/` si besoin.
 - C'est ce mini-projet qui, **une fois poussé sur GitHub**, valide la semaine (avant de passer à la suivante).
 - Fournis-moi d'abord ce que je dois en retenir (l'objectif), comme pour un exercice.
+
+## RÈGLE DE SÉCURITÉ — ne jamais écraser mon travail
+- **Ne JAMAIS régénérer/réécrire from scratch un fichier qui contient mon travail** (notebooks d'exercice, `.sql`, livrables…). Régénérer un notebook écrase mes réponses : interdit.
+- Avant toute modification d'un de mes fichiers : le **lire** d'abord, puis n'appliquer que des **retouches ciblées** (edits précis), jamais une réécriture complète.
+- Un notebook n'est régénéré entièrement **que** si je le demande explicitement, ou s'il est vide/tout neuf.
+- En cas de doute sur « corrige l'exercice X » : ça veut dire **corriger MA copie** (la lire et la commenter), pas réécrire l'énoncé — demander si ambigu.
 
 ## Où ranger quoi (maintiens l'arborescence au fil de l'eau)
 - Fiches de cours → `cours/semaine-XX/`, numérotées `01_...`, `02_...` (ex : `03_python_fonctions.md`).

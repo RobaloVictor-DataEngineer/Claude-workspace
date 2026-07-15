@@ -1,0 +1,222 @@
+[
+  {
+    "commande_id": "CMD001",
+    "montant": 77.18,
+    "statut": "annulée",
+    "client": {
+      "nom": "Roux",
+      "ville": "Rouen",
+      "segment": "Particulier"
+    }
+  },
+  {
+    "commande_id": "CMD002",
+    "montant": 449.51,
+    "statut": "annulée",
+    "client": {
+      "nom": "Roux",
+      "ville": "Lille",
+      "segment": "Premium"
+    }
+  },
+  {
+    "commande_id": "CMD003",
+    "montant": 282.95,
+    "statut": "en attente",
+    "client": {
+      "nom": "Faure",
+      "ville": "Lille",
+      "segment": "Particulier"
+    }
+  },
+  {
+    "commande_id": "CMD004",
+    "montant": 21.22,
+    "statut": "payée",
+    "client": {
+      "nom": "Martin",
+      "ville": "Lyon",
+      "segment": "Particulier"
+    }
+  },
+  {
+    "commande_id": "CMD005",
+    "montant": 235.83,
+    "statut": "en attente",
+    "client": {
+      "nom": "Diaz",
+      "ville": "Paris",
+      "segment": "Pro"
+    }
+  },
+  {
+    "commande_id": "CMD006",
+    "montant": 140.73,
+    "statut": "payée",
+    "client": {
+      "nom": "Moreau",
+      "ville": "Nantes",
+      "segment": "Premium"
+    }
+  },
+  {
+    "commande_id": "CMD007",
+    "montant": 56.63,
+    "statut": "payée",
+    "client": {
+      "nom": "Martin",
+      "ville": "Nantes",
+      "segment": "Premium"
+    }
+  },
+  {
+    "commande_id": "CMD008",
+    "montant": 160.22,
+    "statut": "en attente",
+    "client": {
+      "nom": "Benali",
+      "ville": "Nantes",
+      "segment": "Pro"
+    }
+  },
+  {
+    "commande_id": "CMD009",
+    "montant": 31.87,
+    "statut": "payée",
+    "client": {
+      "nom": "Diaz",
+      "ville": "Lille",
+      "segment": "Pro"
+    }
+  },
+  {
+    "commande_id": "CMD010",
+    "montant": 63.53,
+    "statut": "annulée",
+    "client": {
+      "nom": "Roux",
+      "ville": "Lille",
+      "segment": "Particulier"
+    }
+  },
+  {
+    "commande_id": "CMD011",
+    "montant": 224.21,
+    "statut": "annulée",
+    "client": {
+      "nom": "Petit",
+      "ville": "Lille",
+      "segment": "Premium"
+    }
+  },
+  {
+    "commande_id": "CMD012",
+    "montant": 144.15,
+    "statut": "en attente",
+    "client": {
+      "nom": "Faure",
+      "ville": "Lille",
+      "segment": "Premium"
+    }
+  },
+  {
+    "commande_id": "CMD013",
+    "montant": 268.63,
+    "statut": "payée",
+    "client": {
+      "nom": "Faure",
+      "ville": "Paris",
+      "segment": "Particulier"
+    }
+  },
+  {
+    "commande_id": "CMD014",
+    "montant": 412.7,
+    "statut": "annulée",
+    "client": {
+      "nom": "Martin",
+      "ville": "Nantes",
+      "segment": "Pro"
+    }
+  },
+  {
+    "commande_id": "CMD015",
+    "montant": 245.62,
+    "statut": "en attente",
+    "client": {
+      "nom": "Costa",
+      "ville": "Rouen",
+      "segment": "Premium"
+    }
+  },
+  {
+    "commande_id": "CMD016",
+    "montant": 356.34,
+    "statut": "en attente",
+    "client": {
+      "nom": "Roux",
+      "ville": "Lyon",
+      "segment": "Premium"
+    }
+  },
+  {
+    "commande_id": "CMD017",
+    "montant": 213.0,
+    "statut": "payée",
+    "client": {
+      "nom": "Roux",
+      "ville": "Nantes",
+      "segment": "Premium"
+    }
+  },
+  {
+    "commande_id": "CMD018",
+    "montant": 249.87,
+    "statut": "en attente",
+    "client": {
+      "nom": "Moreau",
+      "ville": "Paris",
+      "segment": "Pro"
+    }
+  },
+  {
+    "commande_id": "CMD019",
+    "montant": 419.28,
+    "statut": "payée",
+    "client": {
+      "nom": "Durand",
+      "ville": "Paris",
+      "segment": "Premium"
+    }
+  },
+  {
+    "commande_id": "CMD020",
+    "montant": 443.38,
+    "statut": "en attente",
+    "client": {
+      "nom": "Roux",
+      "ville": "Lille",
+      "segment": "Pro"
+    }
+  },
+  {
+    "commande_id": "CMD021",
+    "montant": 462.32,
+    "statut": "payée",
+    "client": {
+      "nom": "Petit",
+      "ville": "Lille",
+      "segment": "Premium"
+    }
+  },
+  {
+    "commande_id": "CMD022",
+    "montant": 388.02,
+    "statut": "en attente",
+    "client": {
+      "nom": "Moreau",
+      "ville": "Nantes",
+      "segment": "Premium"
+    }
+  }
+]

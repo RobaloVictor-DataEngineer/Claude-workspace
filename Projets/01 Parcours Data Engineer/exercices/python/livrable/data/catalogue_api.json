@@ -1,0 +1,122 @@
+[
+  {
+    "produit_id": "P01",
+    "nom": "Produit 1",
+    "categorie": "Mobilier",
+    "prix": 331.53,
+    "fournisseur": {
+      "nom": "AccessOne",
+      "pays": "Espagne"
+    }
+  },
+  {
+    "produit_id": "P02",
+    "nom": "Produit 2",
+    "categorie": "Mobilier",
+    "prix": 120.93,
+    "fournisseur": {
+      "nom": "BureauPlus",
+      "pays": "Allemagne"
+    }
+  },
+  {
+    "produit_id": "P03",
+    "nom": "Produit 3",
+    "categorie": "Bureautique",
+    "prix": 270.67,
+    "fournisseur": {
+      "nom": "MobiPro",
+      "pays": "Italie"
+    }
+  },
+  {
+    "produit_id": "P04",
+    "nom": "Produit 4",
+    "categorie": "Bureautique",
+    "prix": 104.67,
+    "fournisseur": {
+      "nom": "AccessOne",
+      "pays": "Espagne"
+    }
+  },
+  {
+    "produit_id": "P05",
+    "nom": "Produit 5",
+    "categorie": "Informatique",
+    "prix": 243.73,
+    "fournisseur": {
+      "nom": "BureauPlus",
+      "pays": "Allemagne"
+    }
+  },
+  {
+    "produit_id": "P06",
+    "nom": "Produit 6",
+    "categorie": "Informatique",
+    "prix": 127.2,
+    "fournisseur": {
+      "nom": "MobiPro",
+      "pays": "Italie"
+    }
+  },
+  {
+    "produit_id": "P07",
+    "nom": "Produit 7",
+    "categorie": "Bureautique",
+    "prix": 351.73,
+    "fournisseur": {
+      "nom": "AccessOne",
+      "pays": "Espagne"
+    }
+  },
+  {
+    "produit_id": "P08",
+    "nom": "Produit 8",
+    "categorie": "Mobilier",
+    "prix": 75.45,
+    "fournisseur": {
+      "nom": "TechDis",
+      "pays": "France"
+    }
+  },
+  {
+    "produit_id": "P09",
+    "nom": "Produit 9",
+    "categorie": "Accessoires",
+    "prix": 178.02,
+    "fournisseur": {
+      "nom": "AccessOne",
+      "pays": "Espagne"
+    }
+  },
+  {
+    "produit_id": "P10",
+    "nom": "Produit 10",
+    "categorie": "Bureautique",
+    "prix": 386.4,
+    "fournisseur": {
+      "nom": "MobiPro",
+      "pays": "Italie"
+    }
+  },
+  {
+    "produit_id": "P11",
+    "nom": "Produit 11",
+    "categorie": "Bureautique",
+    "prix": 321.86,
+    "fournisseur": {
+      "nom": "MobiPro",
+      "pays": "Italie"
+    }
+  },
+  {
+    "produit_id": "P12",
+    "nom": "Produit 12",
+    "categorie": "Informatique",
+    "prix": 188.54,
+    "fournisseur": {
+      "nom": "TechDis",
+      "pays": "France"
+    }
+  }
+]
