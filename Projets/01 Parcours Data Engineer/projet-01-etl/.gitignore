@@ -9,3 +9,7 @@ __pycache__/
 data/raw/*
 data/processed/*
 !.gitkeep
+
+# exception : petit jeu d'exemple, utile au lecteur du repo
+!data/raw/ventes_brutes.csv      
+!data/raw/catalogue.json         

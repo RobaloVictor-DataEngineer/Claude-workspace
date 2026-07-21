@@ -1,17 +1,19 @@
-"""Phase LOAD — écrire le résultat propre dans PostgreSQL.
+import os
+import logging
+from dotenv import load_dotenv
+from sqlalchemy import create_engine, URL
 
-À toi d'écrire la logique. Les TODO décrivent ce que chaque étape doit faire.
-"""
-from sqlalchemy import create_engine
+load_dotenv()   # charge le .env dans les variables d'environnement
 
-
-def load(df, table="ventes_propres"):
-    """Écrit le DataFrame propre dans PostgreSQL (table `ventes_propres`).
-
-    Rappel de la chaîne de connexion :
-        postgresql+psycopg2://UTILISATEUR:MOT_DE_PASSE@HÔTE:PORT/BASE
-    (les mêmes identifiants que dans DBeaver : postgres / ton mdp / localhost / 5432 / postgres)
-    """
-    # TODO 1 : engine = create_engine("postgresql+psycopg2://postgres:TON_MDP@localhost:5432/postgres")
-    # TODO 2 : df.to_sql(table, engine, if_exists="replace", index=False)
-    raise NotImplementedError("Écris la phase Load")
+def load(df, table="ventes_catalogues_propres"):
+    url = URL.create(
+        "postgresql+psycopg2",
+        username=os.getenv("DB_USER"),
+        password=os.getenv("DB_PASSWORD"),   # plus jamais en dur
+        host=os.getenv("DB_HOST"),
+        port=os.getenv("DB_PORT"),
+        database=os.getenv("DB_NAME"),
+    )
+    engine = create_engine(url)
+    df.to_sql(table, engine, if_exists="replace", index=False)
+    logging.info("Chargement terminé : %d lignes dans %s", len(df), table)
