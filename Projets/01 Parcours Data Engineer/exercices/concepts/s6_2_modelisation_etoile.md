@@ -28,7 +28,7 @@ c) `quantite_vendue` : faits,
 
 d) `categorie_produit` : dimension,
 
-e) `ville_magasin` : faits,
+e) `ville_magasin` : dimension,
 
 f) `nombre_articles` : faits
 
@@ -69,8 +69,8 @@ chacune indique les colonnes que tu y mets. (Écris-le en liste, pas besoin de d
 faits et une dimension produit. Écris, en liste, les colonnes de chacune :
 
 **Réponse** : 
-- `faits_ventes` : `ventes_id`, `produit_id`, `quantite`, `montant`, `date`
-- `dim_produit` : `produit_id`, `ville`, `nom`, `categorie`, `prix`, `fournisseur_nom`, `fournisseur_pays`
+- `faits_ventes` : `ventes_id`, `produit_id`, `quantite`, `montant`, `date`, `ville`
+- `dim_produit` : `produit_id`, `nom`, `categorie`, `prix`, `fournisseur_nom`, `fournisseur_pays`
 
 ---
 

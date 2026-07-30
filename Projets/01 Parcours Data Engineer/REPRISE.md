@@ -1,17 +1,57 @@
 # REPRISE — Où j'en suis dans mon parcours Data Engineer
 
 > Fichier à relire pour reprendre le fil depuis n'importe quel PC (même sans historique Cowork).
-> **Dernière mise à jour : 07/07/2026.**
+> **Dernière mise à jour : 22/07/2026.**
 > Au démarrage d'une nouvelle session : faire lire au modèle ce fichier + `CLAUDE.md` (racine) + `CLAUDE.md` (ce projet).
 
 ---
 
 ## Point d'étape rapide
 
-- **Semaines 1, 2 et 3 : terminées** (Phase 0 + Phase 1). Contenu, exercices corrigés et livrables/mini-projet faits et validés.
-- **Statut planning :** S1, S2, S3 = « Terminé ». S4 = « À faire ».
-- **Mini-projet S3 (cumulatif S1→S3) fait et validé :** `exercices/python/livrable/mini_projet_s1_s3.ipynb` (dataset `data/ventes_pharmacies.csv`) — pandas + une classe OOP qui `return` + SQL (jointure/sous-requête/window via SQLite). Bien géré : NaN pharmacie remplacés par un **label** (`fillna("Pharmacie inconnue")`), pas par 0.
-- **Prochaine étape côté Victor :** committer/pousser le contenu S2 **et** S3 sur GitHub (avec `git add --renormalize .`), puis démarrer la **Semaine 4**.
+- **Semaines 1 à 6 : terminées** (Phases 0, 1, 2, 3). Tout est commité et **poussé sur GitHub**.
+- **Statut planning :** S1 → S6 = « Terminé ». S7 = « À faire ».
+- **1er vrai projet fait (S5) :** `projet-01-etl/` — pipeline ETL complet (extract CSV+JSON → transform pandas → load PostgreSQL via SQLAlchemy), en fonctions, avec logging, gestion d'erreurs et secrets dans un `.env`. **C'est le projet phare du portfolio.**
+- **Prochaine étape :** démarrer la **Semaine 7** (Phase 3) : Java en survol + intro Spark.
+
+---
+
+## Ce qui est fait (Semaine 6) — Concepts DE + Airflow
+
+**Cours** (`cours/semaine-06/`)
+- 01 — Concepts : ETL vs ELT, data warehouse vs data lake, batch vs streaming, **idempotence**.
+- 02 — Modélisation en **étoile** (faits vs dimensions, grain, dénormalisation).
+- 03 — **Airflow** (DAG, tâches/opérateurs, dépendances `>>`, `schedule` cron, retries + lien idempotence).
+
+**Exercices** (`exercices/concepts/`, questionnaires écrits — corrigés) : `s6_1_concepts_de.md`, `s6_2_modelisation_etoile.md`, `s6_3_airflow.md`.
+
+**À consolider :** en modélisation, rattacher chaque attribut au bon objet (`ville` décrit la **vente/le lieu**, pas le produit → côté faits, pas dans `dim_produit`) ; `if_exists="replace"` **écrase et recrée toute la table** (ce n'est pas un upsert ligne à ligne, même si le résultat est idempotent).
+
+---
+
+## Ce qui est fait (Semaine 5) — Projet ETL 1
+
+**Cours** (`cours/semaine-05/01_etl_concept_et_projet.md`) : concept ETL, code en fonctions, structure de projet, Load PostgreSQL avec SQLAlchemy, logging + gestion d'erreurs, secrets via `.env`.
+
+**Projet** (`projet-01-etl/`, sur GitHub) : `src/extract.py` (CSV + JSON `json_normalize`), `src/transform.py` (dédoublonnage, NaN, types, nettoyage `ville`, jointure `left`, colonne `montant`), `src/load.py` (`URL.create` + `to_sql(if_exists="replace")`), `src/main.py` (orchestration + logging). Table produite : `ventes_catalogues_propres` (21 lignes). `.env` ignoré par git, `.env.example` versionné, README rempli.
+
+**À consolider (vu à la correction) :** une méthode pandas **renvoie** un résultat (l'affecter : `ventes = ventes.drop_duplicates()`) ; travailler sur une **copie** pour ne pas modifier ses entrées (effet de bord) ni déclencher `SettingWithCopyWarning`.
+
+---
+
+## Ce qui est fait (Semaine 4) — Pandas avancé + SQL analytique
+
+**Cours** (`cours/semaine-04/`)
+- 01 Python — `merge` (jointure pandas, les `how`, piège de l'`inner` qui perd des lignes) + `concat`.
+- 02 SQL — **CTE** (`WITH ... AS`), enchaînées, CTE + window function.
+- 03 Python — `pivot_table` (tableau croisé, `fill_value`, `margins`).
+- 04 Python — `apply`/`lambda` (dont `axis=1`) + piège « préférer le vectorisé ».
+- 05 Python — **API → pandas** (`requests`, JSON, `pd.json_normalize`).
+
+**Exercices** (`exercices/python/s4_1..s4_4`, `exercices/sql/s4_2`) — tous corrigés et validés.
+
+**Mini-projet cumulatif S1→S4 :** `exercices/python/livrable/mini_projet_s1_s4.ipynb` — extract JSON+CSV, `concat`, `merge` (avec piège), `apply`, `groupby`+`pivot_table`, une classe, SQL (CTE + window via SQLite). Validé.
+
+**Note méthode (demandes de Victor) :** vocabulaire technique exact (*trier* = `ORDER BY`/`sort_values` ≠ *classer/attribuer un rang* = `RANK`) ; explications avec **visuel avant/après empilé** ; **jamais** d'exercice « à toi d'inventer la question » (consignes fermées) ; **ne jamais régénérer/écraser un fichier de travail** (le lire, retouches ciblées).
 
 ---
 
@@ -91,26 +131,26 @@ lecture CSV avec le module `csv` (`DictReader`), fonctions, comprehensions.
 
 ## À vérifier avant de continuer
 
-- [x] Planning à jour : **S1, S2, S3 = « Terminé »**, S4 = « À faire ».
-- [x] Bruit CRLF réglé par un `.gitattributes` ; dossier rangé (`.gitignore` + parasites supprimés).
-- [ ] **À committer/pousser sur GitHub** (clôture officielle S2+S3) : tout `cours/semaine-02` et `cours/semaine-03`, les exercices S2+S3, le mini-projet `mini_projet_s1_s3.ipynb`, les datasets, le planning, `.gitignore`, `.gitattributes`, les deux `CLAUDE.md`. Lancer d'abord `git add --renormalize .` pour absorber le CRLF.
+- [x] Planning à jour : **S1 → S6 = « Terminé »**, S7 = « À faire ».
+- [x] Tout le contenu S1→S6 **commité et poussé sur GitHub** (cours, exercices, mini-projets, projet ETL).
+- [x] Bruit CRLF réglé (`.gitattributes`) ; dossier rangé (`.gitignore` + parasites supprimés).
 
 ---
 
-## Prochaine étape — Semaine 4 (Phase 2 · Approfondissement)
+## Prochaine étape — Semaine 7 (Phase 3 · Concepts Data Eng, suite)
 
-**Focus : pandas avancé + SQL analytique.**
+**Focus : Java (survol) + intro Spark.**
 
 - **Théorie à apprendre**
-  - Pandas : `pivot_table`, `apply`/`lambda`, `concat`, `merge` complexe, lecture JSON/Excel/API (`requests`).
-  - SQL : CTE (Common Table Expression = `WITH ... AS (...)`), index, notion de performance.
+  - Java : syntaxe, types, conditions/boucles, classes/objets, collections (List, Map) — juste de quoi **lire** du code.
+  - Spark : DataFrame distribué, *lazy evaluation*, différence avec pandas (+ PySpark si le temps).
 - **Pratique à faire**
-  - Un appel **API** + transformation en pandas ; des requêtes **CTE**.
-- **Livrable / mini-projet S4 :** cumulatif **S1 → S4** (règle du CLAUDE.md projet), un cran au-dessus,
-  intégrant un flux API→pandas et du SQL avec CTE.
+  - Un petit programme Java ; une fiche concepts Spark. **Lancer les 1res candidatures** (objectif planning S7).
+- **Livrable / mini-projet S7 :** programme Java + fiche Spark (voir planning). Rappel : le mini-projet reste **cumulatif** (règle CLAUDE.md projet).
 
-> Rappels méthode : un seul thème à la fois, Python le matin / SQL l'après-midi ; on ne valide la semaine
-> qu'une fois le livrable sur GitHub. Exercices = **questions métier**, jamais un calque des exemples.
+> Rappels méthode (tenus à jour dans le `CLAUDE.md` projet) : un seul thème à la fois ; consignes fermées et
+> précises (jamais « invente la question ») ; exercices ≠ calque des exemples ; vocabulaire technique exact
+> (*trier* ≠ *classer*) ; visuels avant/après empilés ; **ne jamais écraser un fichier de travail**.
 
 ---
 
@@ -122,9 +162,11 @@ lecture CSV avec le module `csv` (`DictReader`), fonctions, comprehensions.
 - **Ma façon de travailler :** je code en **notebooks `.ipynb`**, pas en `.py` simple.
   Je veux comprendre, pas qu'on code à ma place. Sur un simple exercice, j'ai le droit d'innover
   (faire ce qui est demandé et/ou mieux).
-- **Mon niveau :** SQL bon (alias, JOINs multiples, sous-requêtes **et window functions** en pratique),
-  Python intermédiaire (bases + try/except + CSV + **pandas** — dont `groupby`/agg et gestion des NaN —
-  + **première classe OOP** acquis), Java débutant total.
+- **Mon niveau :** SQL solide (alias, JOINs multiples, sous-requêtes, window functions, **CTE** en pratique),
+  Python intermédiaire (bases + try/except + **pandas complet** : sélection/filtrage, `groupby`/agg, NaN,
+  `merge`/`concat`, `pivot_table`, `apply`, API/JSON + **OOP** de base), **1 pipeline ETL** construit
+  (extract/transform/load, SQLAlchemy, logging, `.env`), **concepts DE** (ETL/ELT, batch/streaming,
+  warehouse/lake, idempotence, modélisation en étoile, Airflow). Java : débutant total (démarre en S7).
 - **Objectif :** poste data engineer avant septembre 2026 (Rouen / Île-de-France, 40-50k EUR, pharma de préférence).
 
 ---
@@ -135,5 +177,6 @@ lecture CSV avec le module `csv` (`DictReader`), fonctions, comprehensions.
 - `Planning_Data_Engineer.xlsx` — tableau de bord à cocher (statut par semaine).
 - `cours/semaine-XX/` — fiches numérotées.
 - `exercices/python|sql|java/` — exercices (1 fichier par notion) ; `exercices/python/livrable/` pour les livrables.
-- `projet-01-etl/` — **réservé à la Semaine 5** (1er vrai pipeline ETL), ne pas y toucher avant.
+- `projet-01-etl/` — **1er pipeline ETL (fait, S5)** : projet phare du portfolio, sur GitHub.
+- `exercices/concepts/` — questionnaires écrits des concepts DE (S6).
 - `CLAUDE.md` (racine) + `CLAUDE.md` (projet) — mon profil, mes préférences, les règles d'apprentissage.
