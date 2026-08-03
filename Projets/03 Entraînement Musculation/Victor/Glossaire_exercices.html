@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Glossaire des exercices — Victor</title>
+<style>
+  :root{
+    --blue:#1F4E79; --blue2:#2E75B6; --bg:#f4f7fa; --card:#ffffff;
+    --ink:#1c2733; --muted:#5b6b7a; --line:#dde5ec; --hi:#e8533a; --base:#c9d2db; --mfill:#dfe6ee;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:-apple-system,Segoe UI,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.45}
+  .wrap{max-width:1100px;margin:0 auto;padding:24px 18px 60px}
+  h1{color:var(--blue);font-size:26px;margin:0 0 4px}
+  .sub{color:var(--muted);margin:0 0 20px;font-size:14px}
+  .box{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-bottom:22px;box-shadow:0 1px 3px rgba(20,40,60,.05)}
+  .box h2{color:var(--blue);font-size:18px;margin:0 0 8px}
+  table.lourd{width:100%;border-collapse:collapse;margin:10px 0;font-size:14px}
+  table.lourd th,table.lourd td{border:1px solid var(--line);padding:6px 10px;text-align:left}
+  table.lourd th{background:var(--blue);color:#fff}
+  table.lourd tr:nth-child(even) td{background:#f2f7fb}
+  .controls{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:16px;position:sticky;top:0;background:var(--bg);padding:10px 0;z-index:5}
+  .filters{display:flex;flex-wrap:wrap;gap:6px}
+  .filters button{border:1px solid var(--blue2);background:#fff;color:var(--blue2);padding:6px 12px;border-radius:20px;cursor:pointer;font-size:13px;font-weight:600}
+  .filters button.active{background:var(--blue2);color:#fff}
+  #search{margin-left:auto;padding:7px 12px;border:1px solid var(--line);border-radius:20px;font-size:13px;min-width:180px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:14px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;display:flex;gap:12px;box-shadow:0 1px 3px rgba(20,40,60,.05)}
+  .card .fig{flex:0 0 96px}
+  .card .fig svg{width:96px;height:auto;display:block}
+  .card .fig img.gif{width:96px;border-radius:8px;display:block}
+  .figlabels{display:flex;justify-content:space-around;font-size:9px;color:var(--muted);margin-top:2px}
+  .demo{display:block;font-size:11px;margin-top:5px;text-align:center;color:var(--blue2);text-decoration:none;font-weight:600}
+  .demo:hover{text-decoration:underline}
+  .body-svg .m{fill:var(--mfill);stroke:#b7c2cd;stroke-width:.5}
+  .body-svg .base{fill:var(--base)}
+  .body-svg .hi{fill:var(--hi);stroke:#c0392b}
+  .card .info{flex:1;min-width:0}
+  .card h3{margin:0 0 4px;font-size:15px;color:var(--ink)}
+  .badge{display:inline-block;font-size:10px;font-weight:700;padding:2px 7px;border-radius:10px;margin-left:6px;vertical-align:middle;color:#fff}
+  .b-Explosif{background:#e67e22}.b-Force{background:#c0392b}.b-Assistance{background:#2e75b6}
+  .b-Grip{background:#16a085}.b-Abdos{background:#8e44ad}.b-Gainage{background:#8e44ad}.b-Échauffement{background:#7f8c8d}
+  .chips{margin:5px 0}
+  .chip{display:inline-block;background:#eef3f8;color:var(--blue);font-size:11px;padding:2px 8px;border-radius:10px;margin:2px 4px 2px 0}
+  .row{font-size:13px;margin:4px 0}
+  .row b{color:var(--blue)}
+  .legend{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:6px;margin-top:8px}
+  code{background:#eef3f8;padding:1px 5px;border-radius:4px;font-size:12px}
+  .swatch{display:inline-block;width:12px;height:12px;border-radius:3px;background:var(--hi);border:1px solid #c0392b}
+  .count{font-size:12px;color:var(--muted);margin:0 0 8px}
+  footer{margin-top:30px;font-size:12px;color:var(--muted);text-align:center}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Glossaire des exercices</h1>
+  <p class="sub">Tous les exercices de tes programmes (Upper/Lower 4 j + PPL 6 j) — muscle ciblé surligné, consignes, repère de charge et lien démo. Filtre par groupe ou cherche un exercice.</p>
+
+  <div class="box" id="lourd">
+    <h2>C'est quoi « lourd » ? (à lire une fois)</h2>
+    <p style="font-size:14px;margin:.3em 0">« Lourd » dépend de toi, pas d'un chiffre fixe. Le repère fiable = les <b>reps en réserve (RIR)</b> : combien de répétitions il te reste « dans le moteur » quand tu reposes la charge.</p>
+    <p style="font-size:14px;margin:.3em 0">Pour un « 4×5 lourd » : prends une charge où, après tes 5 reps propres, tu <b>aurais pu en faire 1 à 2 de plus, pas davantage</b> (RIR 1–2). Tu aurais pu en faire 5 de plus → trop léger, tu montes. Tu cales à la 4ᵉ → trop lourd, tu baisses. Pas besoin de tester ton 1RM (= charge max pour 1 seule rép), risqué et inutile.</p>
+    <table class="lourd">
+      <tr><th>Reps visées</th><th>≈ % du 1RM</th><th>Sensation</th></tr>
+      <tr><td>3 reps</td><td>~90 %</td><td>Très lourd (force pure)</td></tr>
+      <tr><td>5 reps</td><td>~85 %</td><td>Lourd (la zone des gros exos)</td></tr>
+      <tr><td>8 reps</td><td>~80 %</td><td>Lourd modéré</td></tr>
+      <tr><td>10–12 reps</td><td>~70–75 %</td><td>Modéré (isolation, assistance)</td></tr>
+    </table>
+    <p style="font-size:13px;color:var(--muted);margin:.3em 0">Explosif (sauts, lancers) = <b>léger et rapide</b> (~30–50 %), jamais à l'échec : on cherche la vitesse. Grip = lourd mais tenable, on augmente le temps/charge petit à petit (les tendons sont lents).</p>
+  </div>
+
+  <div class="controls">
+    <div class="filters" id="filters"></div>
+    <input id="search" type="text" placeholder="Chercher un exercice…">
+  </div>
+  <p class="count" id="count"></p>
+  <div class="grid" id="grid"></div>
+
+  <div class="legend"><span class="swatch"></span> = muscle principalement ciblé par l'exercice (silhouette : face à gauche, dos à droite).</div>
+  <div class="legend" style="margin-top:6px">▶ Chaque carte a un lien <b style="color:var(--blue2)">démo vidéo</b> (recherche YouTube). Pour afficher un GIF à la place du schéma : dépose un fichier <code>nom.gif</code> dans le dossier <code>img/</code> (noms exacts dans <code>img/noms-de-fichiers.txt</code>).</div>
+  <footer>Repère, pas une bible. Technique propre &gt; charge lourde. Mis à jour le 30/06/2026.</footer>
+</div>
+
+<script>
+// ---- silhouette face + dos avec zones musculaires (data-mk = clé muscle) ----
+const BODY = `<svg class="body-svg" viewBox="0 0 200 122" xmlns="http://www.w3.org/2000/svg">
+<circle class="base" cx="55" cy="13" r="8"/>
+<ellipse class="m" data-mk="epaules" cx="41" cy="29" rx="6.5" ry="6"/>
+<ellipse class="m" data-mk="epaules" cx="69" cy="29" rx="6.5" ry="6"/>
+<rect class="m" data-mk="pecs" x="45" y="25" width="9" height="9" rx="2"/>
+<rect class="m" data-mk="pecs" x="56" y="25" width="9" height="9" rx="2"/>
+<rect class="m" data-mk="biceps" x="36" y="33" width="6" height="15" rx="3"/>
+<rect class="m" data-mk="biceps" x="68" y="33" width="6" height="15" rx="3"/>
+<rect class="m" data-mk="avant_bras" x="34" y="49" width="6" height="15" rx="3"/>
+<rect class="m" data-mk="avant_bras" x="70" y="49" width="6" height="15" rx="3"/>
+<rect class="m" data-mk="obliques" x="44" y="37" width="4" height="19" rx="2"/>
+<rect class="m" data-mk="obliques" x="62" y="37" width="4" height="19" rx="2"/>
+<rect class="m" data-mk="abdos" x="48" y="36" width="14" height="21" rx="2"/>
+<rect class="m" data-mk="quadriceps" x="46" y="59" width="8" height="25" rx="3"/>
+<rect class="m" data-mk="quadriceps" x="56" y="59" width="8" height="25" rx="3"/>
+<rect class="m" data-mk="mollets" x="47" y="86" width="7" height="20" rx="3"/>
+<rect class="m" data-mk="mollets" x="56" y="86" width="7" height="20" rx="3"/>
+<rect class="base" x="46" y="108" width="9" height="5" rx="2"/>
+<rect class="base" x="55" y="108" width="9" height="5" rx="2"/>
+<circle class="base" cx="145" cy="13" r="8"/>
+<rect class="m" data-mk="trapezes" x="136" y="22" width="18" height="8" rx="2"/>
+<ellipse class="m" data-mk="epaules epaules_arriere" cx="131" cy="30" rx="6.5" ry="6"/>
+<ellipse class="m" data-mk="epaules epaules_arriere" cx="159" cy="30" rx="6.5" ry="6"/>
+<rect class="m" data-mk="triceps" x="126" y="33" width="6" height="15" rx="3"/>
+<rect class="m" data-mk="triceps" x="158" y="33" width="6" height="15" rx="3"/>
+<rect class="m" data-mk="avant_bras" x="124" y="49" width="6" height="15" rx="3"/>
+<rect class="m" data-mk="avant_bras" x="160" y="49" width="6" height="15" rx="3"/>
+<rect class="m" data-mk="dorsaux" x="135" y="31" width="8" height="17" rx="2"/>
+<rect class="m" data-mk="dorsaux" x="147" y="31" width="8" height="17" rx="2"/>
+<rect class="m" data-mk="lombaires" x="138" y="48" width="14" height="10" rx="2"/>
+<rect class="m" data-mk="fessiers" x="136" y="58" width="18" height="11" rx="3"/>
+<rect class="m" data-mk="ischios" x="137" y="69" width="8" height="22" rx="3"/>
+<rect class="m" data-mk="ischios" x="146" y="69" width="8" height="22" rx="3"/>
+<rect class="m" data-mk="mollets" x="138" y="92" width="7" height="18" rx="3"/>
+<rect class="m" data-mk="mollets" x="147" y="92" width="7" height="18" rx="3"/>
+<rect class="base" x="137" y="110" width="8" height="5" rx="2"/>
+<rect class="base" x="146" y="110" width="8" height="5" rx="2"/>
+</svg>`;
+
+const LABELS = {pecs:"Pectoraux",epaules:"Épaules",epaules_arriere:"Épaules (arrière)",biceps:"Biceps",triceps:"Triceps",avant_bras:"Avant-bras",abdos:"Abdos",obliques:"Obliques",quadriceps:"Quadriceps",ischios:"Ischios",fessiers:"Fessiers",mollets:"Mollets",dorsaux:"Dorsaux",trapezes:"Trapèzes",lombaires:"Lombaires"};
+
+const EX = [
+ {n:"Corde à sauter",g:["echauffement"],m:["mollets"],t:"Échauffement",c:"Échauffement 8–10 min. Petits sauts sur l'avant du pied, gainage léger.",ch:"Aisé, monte le rythme progressivement."},
+ {n:"Box jumps (sauts sur boîte)",g:["jambes","explosif"],m:["quadriceps","fessiers","mollets"],t:"Explosif",c:"Saute haut, réception souple genoux fléchis. Qualité, pas fatigue.",ch:"Poids du corps, vitesse max. 5×3, repos complet."},
+ {n:"Saut en longueur (broad jump)",g:["jambes","explosif"],m:["quadriceps","fessiers"],t:"Explosif",c:"Pousse loin devant, les bras lancent, réception stable.",ch:"Poids du corps, explosif. 5×3."},
+ {n:"Kettlebell swing",g:["jambes","explosif"],m:["fessiers","ischios","lombaires","dorsaux"],t:"Explosif",c:"Mouvement de hanche (pas un squat), dos plat, la KB monte par l'élan.",ch:"Léger→moyen, vitesse. 5×5."},
+ {n:"Squat barre (ou hack squat)",g:["jambes"],m:["quadriceps","fessiers"],t:"Force",c:"Descends hanches sous les genoux, dos gainé, pousse dans les talons.",ch:"Lourd : 4×5, RIR 1–2 (~85 %)."},
+ {n:"Presse à cuisses / hack squat",g:["jambes"],m:["quadriceps","fessiers"],t:"Assistance",c:"Amplitude complète, genoux dans l'axe des pieds.",ch:"Lourd modéré : 3×8."},
+ {n:"Soulevé de terre (conventionnel / trap-bar)",g:["jambes","dos","grip"],m:["ischios","fessiers","lombaires","trapezes","avant_bras"],t:"Force",c:"Barre près du corps, dos plat, pousse le sol. Mouvement roi : charge-le.",ch:"Lourd : 4×4, RIR 1–2."},
+ {n:"Soulevé de terre roumain (RDL)",g:["jambes"],m:["ischios","fessiers","lombaires"],t:"Force",c:"Jambes quasi tendues, pousse les fesses en arrière, étire les ischios.",ch:"Lourd modéré : 3–4×6."},
+ {n:"Hip thrust (poussée de hanche)",g:["jambes"],m:["fessiers","ischios"],t:"Assistance",c:"Dos sur le banc, monte les hanches, serre les fessiers en haut.",ch:"Lourd : 3×8."},
+ {n:"Fentes marchées",g:["jambes"],m:["quadriceps","fessiers"],t:"Assistance",c:"Grand pas, genou arrière vers le sol, buste droit. Par jambe.",ch:"Modéré : 3×8–10 / jambe."},
+ {n:"Squat bulgare (split squat)",g:["jambes"],m:["quadriceps","fessiers"],t:"Assistance",c:"Pied arrière sur un banc, descends droit, poids sur la jambe avant.",ch:"Modéré : 3×8 / jambe."},
+ {n:"Leg curl (ischios)",g:["jambes"],m:["ischios"],t:"Assistance",c:"Fléchis le genou, contrôle la descente, pas d'à-coups.",ch:"Modéré : 3×10–12."},
+ {n:"Leg extension (quadriceps)",g:["jambes"],m:["quadriceps"],t:"Assistance",c:"Tends les genoux, pause en haut, descente lente.",ch:"Modéré : 3×12."},
+ {n:"Mollets debout",g:["jambes"],m:["mollets"],t:"Assistance",c:"Monte sur la pointe, amplitude max, pause en haut.",ch:"Modéré : 4×12."},
+ {n:"Mollets assis",g:["jambes"],m:["mollets"],t:"Assistance",c:"Genou plié = cible le soléaire. Amplitude complète.",ch:"Léger-modéré : 4×15."},
+ {n:"Pompes explosives / med-ball chest pass",g:["pecs","explosif"],m:["pecs","triceps","epaules"],t:"Explosif",c:"Pousse assez vite pour décoller les mains (ou projette le ballon).",ch:"Poids du corps / léger, vitesse. 5×3."},
+ {n:"Développé couché haltères (ou barre)",g:["pecs"],m:["pecs","triceps","epaules"],t:"Force",c:"Coudes ~45°, descends à la poitrine, pousse en gardant les omoplates serrées.",ch:"Lourd : 4×5."},
+ {n:"Développé incliné haltères",g:["pecs"],m:["pecs","epaules","triceps"],t:"Force",c:"Banc à 30°, cible le haut des pecs, amplitude contrôlée.",ch:"Lourd modéré : 4×6."},
+ {n:"Développé militaire (overhead press)",g:["epaules"],m:["epaules","triceps"],t:"Force",c:"Debout gainé, pousse au-dessus de la tête, ne cambre pas le bas du dos.",ch:"Lourd : 3×6."},
+ {n:"Développé épaules haltères assis (ou Arnold)",g:["epaules"],m:["epaules"],t:"Assistance",c:"Assis dossier droit, pousse sans verrouiller brutalement.",ch:"Modéré : 3×8."},
+ {n:"Dips lestés",g:["pecs","bras"],m:["triceps","pecs"],t:"Force",c:"Buste droit (triceps) ou penché (pecs bas), descente contrôlée.",ch:"Lourd : 3×6–8 avec lest."},
+ {n:"Écartés poulie / pec deck",g:["pecs"],m:["pecs"],t:"Assistance",c:"Bras légèrement fléchis, serre les pecs (pas les épaules).",ch:"Modéré : 3×12."},
+ {n:"Élévations latérales",g:["epaules"],m:["epaules"],t:"Assistance",c:"Monte les bras sur les côtés à l'horizontale, coudes hauts.",ch:"Léger-modéré : 3×12."},
+ {n:"Élévations latérales penché (rear delt)",g:["epaules"],m:["epaules_arriere"],t:"Assistance",c:"Buste penché, écarte les bras, vise l'arrière de l'épaule.",ch:"Léger : 3×12."},
+ {n:"Face pull",g:["epaules","dos"],m:["epaules_arriere","trapezes"],t:"Assistance",c:"Tire la corde vers le front, coudes hauts, écarte en fin de course.",ch:"Léger-modéré : 3×15."},
+ {n:"Extension triceps poulie corde",g:["bras"],m:["triceps"],t:"Assistance",c:"Coudes fixes le long du corps, tends et écarte la corde en bas.",ch:"Modéré : 3×10."},
+ {n:"Extension triceps au-dessus de la tête",g:["bras"],m:["triceps"],t:"Assistance",c:"Coudes serrés, étire la longue portion du triceps derrière la tête.",ch:"Modéré : 3×10."},
+ {n:"Traction lestée (pronation)",g:["dos","grip"],m:["dorsaux","biceps","avant_bras"],t:"Force",c:"Paumes vers l'avant, tire la poitrine vers la barre, descente complète.",ch:"Lourd : 4×5. Ajoute du lest dès que 5 reps faciles."},
+ {n:"Tirage vertical poulie (lat pulldown)",g:["dos"],m:["dorsaux","biceps"],t:"Assistance",c:"Tire la barre vers le haut de la poitrine, coudes vers le bas.",ch:"Modéré : 3×10."},
+ {n:"Tirage horizontal (rowing)",g:["dos"],m:["dorsaux","trapezes","biceps"],t:"Force",c:"Tire vers le nombril, serre les omoplates, dos gainé.",ch:"Modéré-lourd : 3×8."},
+ {n:"Rowing haltère unilatéral",g:["dos"],m:["dorsaux","trapezes","biceps"],t:"Assistance",c:"Un genou sur le banc, tire le coude haut, dos plat. Par bras.",ch:"Modéré : 3×8 / bras."},
+ {n:"High pull / med-ball slam",g:["dos","explosif"],m:["trapezes","epaules","dorsaux"],t:"Explosif",c:"Explosif : tire vite vers le menton, ou claque le ballon au sol.",ch:"Léger-moyen, vitesse. 4–5×3–4."},
+ {n:"Lancer med-ball rotationnel",g:["abdos","explosif"],m:["obliques","abdos","epaules"],t:"Explosif",c:"Pivote des hanches et projette le ballon sur le mur. Par côté.",ch:"Léger, vitesse max. 4×4 / côté."},
+ {n:"Curl barre prise pronation",g:["bras"],m:["biceps","avant_bras"],t:"Assistance",c:"Coudes fixes, monte sans balancer, descente contrôlée.",ch:"Modéré : 3×8–10."},
+ {n:"Curl marteau",g:["bras","grip"],m:["biceps","avant_bras"],t:"Assistance",c:"Prise neutre (marteau), cible le brachial et l'avant-bras.",ch:"Modéré : 3×10."},
+ {n:"Superset curl + extension triceps",g:["bras"],m:["biceps","triceps"],t:"Assistance",c:"Enchaîne curl puis triceps sans repos. Peu de volume (pas de masse).",ch:"Modéré : 3×10."},
+ {n:"Farmer carry (marche lestée)",g:["grip"],m:["avant_bras","trapezes","abdos"],t:"Grip",c:"Marche debout gainé avec des charges lourdes, épaules basses.",ch:"Lourd : 3×30–40 m."},
+ {n:"Suspension à la barre (dead hang)",g:["grip"],m:["avant_bras","dorsaux"],t:"Grip",c:"Pends-toi bras tendus, épaules actives. Vise +5 s / semaine.",ch:"Poids du corps (puis lest), max temps."},
+ {n:"Pince à disques (pinch)",g:["grip"],m:["avant_bras"],t:"Grip",c:"Tiens 2 disques lisses entre le pouce et les doigts.",ch:"Lourd mais tenable, max temps."},
+ {n:"Crunch poulie LESTÉ",g:["abdos"],m:["abdos"],t:"Abdos",c:"Enroule le buste (ne tire pas avec les bras), expire en bas.",ch:"Lesté : 4×12 (reste dans 8–15 reps)."},
+ {n:"Sit-up décliné lesté",g:["abdos"],m:["abdos"],t:"Abdos",c:"Banc décliné, monte en enroulant, contrôle la descente.",ch:"Lesté : 3×12."},
+ {n:"Relevés de jambes suspendu",g:["abdos","grip"],m:["abdos","avant_bras"],t:"Abdos",c:"Suspendu, monte les jambes/genoux sans balancer.",ch:"Poids du corps → lesté : 4×12."},
+ {n:"Pallof press (anti-rotation)",g:["abdos"],m:["abdos","obliques"],t:"Gainage",c:"De profil à la poulie, tends les bras devant et résiste à la rotation.",ch:"Modéré : 3×12 / côté."},
+ {n:"Planche latérale",g:["abdos"],m:["obliques"],t:"Gainage",c:"Sur l'avant-bras, corps aligné, hanches hautes. Par côté.",ch:"Poids du corps, max temps."}
+];
+
+const GROUPS = [["tout","Tout"],["jambes","Jambes"],["pecs","Pecs"],["dos","Dos"],["epaules","Épaules"],["bras","Bras"],["abdos","Abdos / Gainage"],["grip","Grip"],["explosif","Explosif"],["echauffement","Échauffement"]];
+
+let activeG="tout", q="";
+
+function slugify(s){return s.normalize("NFD").replace(/[̀-ͯ]/g,"").toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-+|-+$/g,"");}
+
+function bodyFor(muscles){
+  const tmp=document.createElement("div");
+  tmp.innerHTML=BODY;
+  tmp.querySelectorAll("[data-mk]").forEach(el=>{
+    const keys=el.getAttribute("data-mk").split(" ");
+    if(keys.some(k=>muscles.includes(k))) el.classList.add("hi");
+  });
+  return tmp.innerHTML;
+}
+
+function render(){
+  const grid=document.getElementById("grid");
+  grid.innerHTML="";
+  const ql=q.trim().toLowerCase();
+  const list=EX.filter(e=>(activeG==="tout"||e.g.includes(activeG)) && (!ql||e.n.toLowerCase().includes(ql)));
+  document.getElementById("count").textContent=list.length+" exercice"+(list.length>1?"s":"");
+  list.forEach(e=>{
+    const chips=e.m.map(k=>'<span class="chip">'+(LABELS[k]||k)+'</span>').join("");
+    const tcls=e.t==="Abdos"?"b-Abdos":"b-"+e.t;
+    const slug=slugify(e.n);
+    const yt="https://www.youtube.com/results?search_query="+encodeURIComponent(e.n+" musculation technique");
+    const card=document.createElement("div");
+    card.className="card";
+    card.innerHTML=
+      '<div class="fig">'+
+        '<img class="gif" alt="" style="display:none">'+
+        '<div class="svgwrap">'+bodyFor(e.m)+'<div class="figlabels"><span>face</span><span>dos</span></div></div>'+
+        '<a class="demo" href="'+yt+'" target="_blank" rel="noopener">▶ Voir une démo</a>'+
+      '</div>'+
+      '<div class="info">'+
+        '<h3>'+e.n+'<span class="badge '+tcls+'">'+e.t+'</span></h3>'+
+        '<div class="chips">'+chips+'</div>'+
+        '<div class="row"><b>Exécution :</b> '+e.c+'</div>'+
+        '<div class="row"><b>Charge :</b> '+e.ch+'</div>'+
+      '</div>';
+    const img=card.querySelector("img.gif");
+    const sw=card.querySelector(".svgwrap");
+    img.onload=function(){img.style.display="block";sw.style.display="none";};
+    img.onerror=function(){img.remove();};
+    img.src="img/"+slug+".gif";
+    grid.appendChild(card);
+  });
+}
+
+const fc=document.getElementById("filters");
+GROUPS.forEach(function(gp){
+  const b=document.createElement("button");
+  b.textContent=gp[1]; if(gp[0]==="tout")b.classList.add("active");
+  b.onclick=function(){activeG=gp[0];Array.prototype.forEach.call(fc.children,function(x){x.classList.remove("active");});b.classList.add("active");render();};
+  fc.appendChild(b);
+});
+document.getElementById("search").addEventListener("input",function(e){q=e.target.value;render();});
+render();
+</script>
+</body>
+</html>

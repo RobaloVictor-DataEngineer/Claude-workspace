@@ -1,0 +1,1260 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Suivi nutrition</title>
+<style>
+  :root{
+    --bg1:#fdf2f8; --bg2:#eef2ff;
+    --pink:#ec4899; --pink-dark:#be185d;
+    --indigo:#6366f1; --amber:#f59e0b; --emerald:#10b981;
+    --card:#ffffff; --text:#312e40; --muted:#6b7280;
+    --radius:18px;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; font-family:'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: linear-gradient(135deg, var(--bg1), var(--bg2));
+    min-height:100vh; padding:24px; color:var(--text);
+  }
+  .wrap{max-width:1080px; margin:0 auto;}
+  h1{
+    text-align:center; font-size:28px; margin-bottom:4px;
+    background: linear-gradient(90deg, var(--pink-dark), var(--indigo));
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .subtitle{text-align:center; color:var(--muted); margin-bottom:20px; font-size:14px;}
+  button{font-family:inherit;border:1.5px solid #e5e7eb;background:#fafafa;border-radius:8px;padding:7px 12px;cursor:pointer;font-size:13px;}
+
+  /* Stepper de navigation */
+  .stepper{display:flex; gap:10px; justify-content:center; margin-bottom:28px; flex-wrap:wrap;}
+  .step{
+    padding:10px 18px; border-radius:999px; background:#f3f4f6; color:var(--muted);
+    font-weight:700; font-size:14px; cursor:pointer; display:flex; align-items:center; gap:8px;
+    transition:.2s; border:none;
+  }
+  .step .num{width:22px;height:22px;border-radius:50%;background:#e5e7eb;color:#9ca3af;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;}
+  .step.active{background:linear-gradient(90deg,var(--pink-dark),var(--indigo)); color:#fff;}
+  .step.active .num{background:rgba(255,255,255,0.25); color:#fff;}
+
+  .page{display:none;}
+  .page.active{display:block;}
+
+  .grid{display:grid; grid-template-columns: 380px 1fr; gap:24px;}
+  @media (max-width:800px){ .grid{grid-template-columns:1fr;} }
+  .card{
+    background:var(--card); border-radius:var(--radius); padding:22px 24px;
+    box-shadow: 0 10px 30px rgba(99,102,241,0.08), 0 2px 8px rgba(0,0,0,0.04);
+    margin-bottom:20px;
+  }
+  .card h2{font-size:16px; margin:0 0 16px 0; color:var(--pink-dark);}
+  label{display:block; font-size:13px; font-weight:600; margin:14px 0 6px; color:var(--muted);}
+  label:first-of-type{margin-top:0;}
+  input[type=number], input[type=text], input[type=date], select{
+    width:100%; padding:10px 12px; border-radius:10px; border:1.5px solid #e5e7eb;
+    font-size:15px; background:#fafafa; transition:border-color .15s;
+  }
+  input:focus, select:focus{outline:none; border-color:var(--pink);}
+  .sex-toggle{display:flex; gap:8px;}
+  .sex-toggle button{flex:1; padding:10px; font-size:14px; font-weight:600;}
+  .sex-toggle button.active{background:var(--pink); border-color:var(--pink); color:white;}
+  .goal-toggle{display:flex; gap:8px; flex-wrap:wrap;}
+  .goal-toggle button{flex:1; min-width:90px; padding:9px 6px; font-size:13px; font-weight:600;}
+  .goal-toggle button.active{background:var(--indigo); border-color:var(--indigo); color:white;}
+  .slider-row{display:flex; align-items:center; gap:10px;}
+  input[type=range]{flex:1; accent-color:var(--pink);}
+  .results{display:flex; flex-direction:column;}
+  .kpi-row{display:grid; grid-template-columns:repeat(3,1fr); gap:12px;}
+  .kpi{background:#faf9ff; border-radius:14px; padding:14px; text-align:center; border:1px solid #f0eefc;}
+  .kpi .val{font-size:22px; font-weight:800; color:var(--indigo);}
+  .kpi .lbl{font-size:12px; color:var(--muted); margin-top:2px;}
+  canvas{max-width:100%; height:auto; display:block;}
+  .chart-card{display:flex; gap:20px; flex-wrap:wrap; align-items:center;}
+  .legend{display:flex; flex-direction:column; gap:8px; font-size:13px;}
+  .legend-item{display:flex; align-items:center; gap:8px;}
+  .dot{width:12px; height:12px; border-radius:50%; display:inline-block;}
+  .note{font-size:12.5px; color:var(--muted); line-height:1.5; margin-top:6px;}
+  .imc-badge{display:inline-block; padding:3px 10px; border-radius:999px; font-size:12px; font-weight:700; margin-left:8px;}
+
+  /* Rings (page suivi du jour) */
+  .rings{display:flex; gap:22px; flex-wrap:wrap; justify-content:center; margin-top:6px;}
+  .ring-block{text-align:center;}
+
+  /* Tables */
+  .table-wrap{overflow-x:auto;}
+  table{width:100%; border-collapse:collapse; font-size:13.5px;}
+  th{cursor:pointer; text-align:left; padding:10px 8px; color:var(--muted); border-bottom:2px solid #f0eefc; user-select:none; white-space:nowrap;}
+  th:hover{color:var(--pink-dark);}
+  td{padding:8px; border-bottom:1px solid #f5f5f7;}
+  .cat-pill{padding:2px 10px; border-radius:999px; font-size:11px; font-weight:700; white-space:nowrap;}
+  .cat-plat{background:#e0e7ff; color:#4338ca;}
+  .cat-dessert{background:#fce7f3; color:#be185d;}
+  .cat-encas{background:#d1fae5; color:#047857;}
+  .remove-btn{background:#fee2e2 !important; color:#dc2626 !important; font-weight:700;}
+
+  .btn-primary{
+    background:linear-gradient(90deg,var(--pink-dark),var(--indigo)); color:#fff; border:none;
+    padding:11px 20px; border-radius:10px; font-weight:700; cursor:pointer; font-size:14px;
+  }
+
+  .ing-row{display:grid; grid-template-columns: 2fr 100px 90px 32px; gap:8px; align-items:center; margin-bottom:8px;}
+  .ing-row input{padding:8px 10px; font-size:14px;}
+  .ing-kcal{font-size:12px; color:#6b7280; text-align:right;}
+  .cust-ing-row{display:grid; grid-template-columns: 2fr 90px 90px 90px 90px; gap:8px; align-items:center; margin-bottom:10px;}
+
+  /* ==================== RESPONSIVE MOBILE (iPhone et autres écrans étroits) ==================== */
+  @media (max-width:600px){
+    body{padding:12px;}
+    h1{font-size:22px;}
+    .subtitle{font-size:12.5px; margin-bottom:14px;}
+    .stepper{gap:6px; margin-bottom:18px;}
+    .step{padding:8px 12px; font-size:12.5px;}
+    .step .num{width:18px; height:18px; font-size:11px;}
+    .card{padding:16px 14px; border-radius:14px;}
+    .card h2{font-size:15px;}
+    .kpi-row{grid-template-columns:1fr 1fr; gap:8px;}
+    .kpi .val{font-size:18px;}
+    .ing-row{grid-template-columns: 1fr 62px 52px 26px; gap:5px;}
+    .ing-row input{font-size:13px; padding:7px 8px;}
+    .ing-kcal{font-size:11px;}
+    .cust-ing-row{grid-template-columns: 1fr; gap:6px;}
+    .rings{gap:10px;}
+    .ring-block canvas{width:100px; height:100px;}
+    table{font-size:12px;}
+    th, td{padding:6px 5px;}
+    .goal-toggle button, .sex-toggle button{font-size:12px; padding:8px 4px;}
+    .btn-primary{width:100%; padding:12px;}
+  }
+  @media (max-width:380px){
+    .kpi-row{grid-template-columns:1fr;}
+    .ing-row{grid-template-columns: 1fr 54px 46px 24px;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Suivi nutrition</h1>
+  <p class="subtitle">Ses besoins, ce qu'elle mange, et l'historique de ses plats — tout au même endroit.</p>
+
+  <div class="stepper">
+    <button class="step active" data-page="1" onclick="showPage(1)"><span class="num">1</span> Mes besoins</button>
+    <button class="step" data-page="2" onclick="showPage(2)"><span class="num">2</span> Suivi du jour</button>
+    <button class="step" data-page="3" onclick="showPage(3)"><span class="num">3</span> Historique des plats</button>
+  </div>
+
+  <!-- ==================== PAGE 1 : CALCULATEUR DE BESOINS ==================== -->
+  <div id="page-1" class="page active">
+    <div class="grid">
+      <div class="card">
+        <h2>Tes infos</h2>
+
+        <label>Sexe</label>
+        <div class="sex-toggle">
+          <button id="btnF" class="active" onclick="setSex('F')">Femme</button>
+          <button id="btnH" onclick="setSex('H')">Homme</button>
+        </div>
+
+        <label for="age">Âge (années)</label>
+        <input type="number" id="age" value="25" min="10" max="100">
+
+        <label for="poids">Poids actuel (kg)</label>
+        <input type="number" id="poids" value="32" min="20" max="250" step="0.1">
+
+        <label for="taille">Taille (cm)</label>
+        <input type="number" id="taille" value="154" min="100" max="230">
+
+        <label for="activite">Niveau d'activité physique</label>
+        <select id="activite">
+          <option value="1.2" selected>Sédentaire (peu ou pas de sport, pas de marche)</option>
+          <option value="1.375">Légèrement actif (marche régulière, 1-3 sport/sem)</option>
+          <option value="1.55">Modérément actif (sport 3-5x/sem)</option>
+          <option value="1.725">Très actif (sport intense 6-7x/sem)</option>
+          <option value="1.9">Extrêmement actif (sport + travail physique)</option>
+        </select>
+
+        <label>Objectif</label>
+        <div class="goal-toggle">
+          <button id="goalPerte" onclick="setGoal('perte')">Perte de poids</button>
+          <button id="goalMaintien" onclick="setGoal('maintien')">Maintien</button>
+          <button id="goalPrise" class="active" onclick="setGoal('prise')">Prise de poids</button>
+        </div>
+
+        <label>Ajustement calorique : <span id="surplusLabel">+300 kcal/jour</span></label>
+        <div class="slider-row">
+          <input type="range" id="surplus" min="-500" max="500" step="50" value="300" oninput="onSurplusChange()">
+        </div>
+        <p class="note">Positif = surplus (prise de poids), négatif = déficit (perte de poids).</p>
+      </div>
+
+      <div class="results">
+        <div class="card">
+          <h2>Résumé <span id="imcBadge" class="imc-badge"></span></h2>
+          <div class="kpi-row">
+            <div class="kpi"><div class="val" id="bmrVal">-</div><div class="lbl">Métabolisme de base (BMR)</div></div>
+            <div class="kpi"><div class="val" id="tdeeVal">-</div><div class="lbl">Dépense totale (TDEE)</div></div>
+            <div class="kpi"><div class="val" id="targetVal">-</div><div class="lbl">Objectif calorique / jour</div></div>
+          </div>
+          <p class="note" id="imcNote"></p>
+        </div>
+
+        <div class="card">
+          <h2>Comparatif calorique</h2>
+          <canvas id="barChart" width="600" height="140"></canvas>
+        </div>
+
+        <div class="card chart-card">
+          <canvas id="donutChart" width="220" height="220"></canvas>
+          <div class="legend" id="legend"></div>
+        </div>
+
+        <div class="card">
+          <h2>Suivi du poids</h2>
+          <label>Poids visé (kg) — optionnel</label>
+          <input type="number" id="poidsVise" step="0.1" placeholder="ex : 40">
+          <div style="margin-top:12px;">
+            <button class="btn-primary" onclick="saveWeightEntry()">Enregistrer la pesée d'aujourd'hui (<span id="weightTodayPreview">-</span> kg)</button>
+          </div>
+          <canvas id="weightChart" width="600" height="180" style="margin-top:16px;"></canvas>
+          <p class="note" id="weightSummary"></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Sauvegarde de tes données</h2>
+      <p class="note">Toutes les données (plats, historique, poids...) sont stockées uniquement sur cet appareil et ce
+      navigateur. Exporte-les régulièrement pour ne rien perdre, ou pour les transférer vers un autre appareil.</p>
+      <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+        <button class="btn-primary" onclick="exportData()">⬇️ Exporter mes données</button>
+        <button class="btn-primary" onclick="document.getElementById('importFile').click()">⬆️ Importer des données</button>
+        <input type="file" id="importFile" accept="application/json" style="display:none;" onchange="importData(event)">
+      </div>
+      <p class="note" id="importStatus"></p>
+    </div>
+  </div>
+
+  <!-- ==================== PAGE 2 : SUIVI DU JOUR ==================== -->
+  <div id="page-2" class="page">
+    <div class="card">
+      <h2>Suivi du <input type="date" id="logDate" style="display:inline-block;width:auto;" onchange="renderPage2()"></h2>
+      <div class="rings" id="ringsContainer"></div>
+    </div>
+
+    <div class="card">
+      <h2>Moyenne des 7 derniers jours</h2>
+      <p class="note" id="weeklyAvgNote"></p>
+      <canvas id="weeklyAvgChart" width="600" height="90" style="margin-top:8px;"></canvas>
+    </div>
+
+    <div class="card">
+      <h2>Plats mangés ce jour</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Plat</th><th>Catégorie</th><th>Poids</th><th>kcal</th><th>P (g)</th><th>L (g)</th><th>G (g)</th><th></th></tr></thead>
+          <tbody id="logTableBody"></tbody>
+        </table>
+      </div>
+      <div style="margin-top:14px;">
+        <button class="btn-primary" onclick="toggleAddForm()">+ Ajouter un plat mangé</button>
+      </div>
+    </div>
+
+    <div class="card" id="addFoodForm" style="display:none;">
+      <h2>Ajouter un plat</h2>
+      <div class="goal-toggle" style="margin-bottom:16px;">
+        <button id="modeExisting" class="active" onclick="setAddMode('existing')">Plat déjà connu</button>
+        <button id="modeNew" onclick="setAddMode('new')">Nouveau plat (ingrédients)</button>
+        <button id="modeQuick" onclick="setAddMode('quick')">Saisie rapide</button>
+      </div>
+
+      <div id="blockExisting">
+        <label>Choisir un plat déjà enregistré</label>
+        <input list="dishNames" id="existingDishInput" placeholder="Tape le nom du plat...">
+        <datalist id="dishNames"></datalist>
+        <label>Poids mangé (g)</label>
+        <input type="number" id="existingGrams" min="1">
+        <div style="margin-top:14px;"><button class="btn-primary" onclick="addExistingToLog()">Ajouter au suivi</button></div>
+      </div>
+
+      <div id="blockNew" style="display:none;">
+        <label>Nom du plat</label>
+        <input type="text" id="newDishName" placeholder="ex : Pâtes carbonara">
+        <label>Catégorie</label>
+        <div class="goal-toggle" id="newCatToggle">
+          <button data-cat="plat" class="active" onclick="setNewCat('plat')">Plat</button>
+          <button data-cat="dessert" onclick="setNewCat('dessert')">Dessert</button>
+          <button data-cat="encas" onclick="setNewCat('encas')">Encas</button>
+        </div>
+        <label>Ingrédients (nom + poids en grammes)</label>
+        <p class="note">⚠️ Vérifie l'état dans lequel tu pèses l'ingrédient : cru/sec ou cuit (les valeurs sont très
+        différentes, ex : pâtes sèches ≈ 361 kcal/100g contre ≈ 158 kcal/100g une fois cuites).</p>
+        <div id="ingredientRows"></div>
+        <button onclick="addIngredientRow()" style="margin-bottom:12px;">+ Ajouter un ingrédient</button>
+        <datalist id="ingredientNames"></datalist>
+        <p class="note">Total : <b id="builderTotalKcal">0 kcal</b> — P <span id="builderTotalP">0</span> g /
+        L <span id="builderTotalL">0</span> g / G <span id="builderTotalG">0</span> g
+        (poids total <span id="builderTotalGrams">0</span> g)</p>
+        <label>Poids mangé aujourd'hui (g) — laisse vide si tout est mangé</label>
+        <input type="number" id="newDishEaten" placeholder="par défaut = poids total">
+        <div style="margin-top:14px;"><button class="btn-primary" onclick="saveNewDish()">Enregistrer et ajouter au suivi</button></div>
+      </div>
+
+      <div id="blockQuick" style="display:none;">
+        <label>Nom du plat</label>
+        <input type="text" id="quickName">
+        <label>Catégorie</label>
+        <div class="goal-toggle" id="quickCatToggle">
+          <button data-cat="plat" class="active" onclick="setQuickCat('plat')">Plat</button>
+          <button data-cat="dessert" onclick="setQuickCat('dessert')">Dessert</button>
+          <button data-cat="encas" onclick="setQuickCat('encas')">Encas</button>
+        </div>
+        <label>Poids (g, optionnel)</label>
+        <input type="number" id="quickGrams">
+        <label>Calories (kcal)</label>
+        <input type="number" id="quickKcal">
+        <label>Protéines (g)</label>
+        <input type="number" id="quickProt">
+        <label>Lipides (g)</label>
+        <input type="number" id="quickFat">
+        <label>Glucides (g)</label>
+        <input type="number" id="quickCarbs">
+        <p class="note">En mode modification (depuis l'historique) : ça corrige le plat pour ses futures utilisations,
+        sans changer les jours déjà enregistrés dans le suivi.</p>
+        <div style="margin-top:14px;"><button class="btn-primary" id="quickSaveBtn" onclick="saveQuickDish()">Enregistrer et ajouter au suivi</button></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Chercher un produit précis (par marque)</h2>
+      <p class="note">Les valeurs "génériques" (riz, pâtes...) sont des moyennes — un produit précis peut être différent
+      (ex : les pâtes sèches Panzani sont à 361 kcal/100g, pas 158). Cherche ici le nom exact du produit pour récupérer
+      ses vraies valeurs depuis Open Food Facts. Nécessite une connexion internet.</p>
+      <div style="display:flex; gap:8px; flex-wrap:wrap;">
+        <input type="text" id="offQuery" placeholder="ex : Panzani spaghetti" style="flex:1; min-width:200px;">
+        <button class="btn-primary" onclick="searchOFF()" style="white-space:nowrap;">Rechercher</button>
+      </div>
+      <div id="offResults" style="margin-top:14px;"></div>
+    </div>
+
+    <div class="card">
+      <h2>Mes ingrédients personnalisés</h2>
+      <p class="note">Pour un ingrédient absent de la liste de base (ou si tu préfères entrer les valeurs à la main
+      depuis un emballage), ajoute-le une fois ici : il sera ensuite proposé partout.</p>
+
+      <label>📷 Prendre en photo l'étiquette (valeurs pour 100g)</label>
+      <input type="file" accept="image/*" capture="environment" id="photoInput" onchange="handlePhotoOCR(event)">
+      <p class="note" id="ocrStatus"></p>
+      <div id="ocrRawText"></div>
+
+      <label style="margin-top:18px;">Ou entre les valeurs à la main</label>
+      <div class="cust-ing-row">
+        <input type="text" id="custIngName" placeholder="Nom de l'ingrédient">
+        <input type="number" id="custIngKcal" placeholder="kcal/100g">
+        <input type="number" id="custIngProt" placeholder="Prot/100g">
+        <input type="number" id="custIngFat" placeholder="Lip/100g">
+        <input type="number" id="custIngCarbs" placeholder="Gluc/100g">
+      </div>
+      <button onclick="addCustomIngredient()">+ Ajouter cet ingrédient</button>
+    </div>
+  </div>
+
+  <!-- ==================== PAGE 3 : HISTORIQUE DES PLATS ==================== -->
+  <div id="page-3" class="page">
+    <div class="card">
+      <h2>Historique des plats</h2>
+      <div class="goal-toggle" id="dishFilterToggle" style="margin-bottom:16px;">
+        <button class="active" data-filter="tous" onclick="setDishFilter('tous')">Tous</button>
+        <button data-filter="plat" onclick="setDishFilter('plat')">Plats</button>
+        <button data-filter="dessert" onclick="setDishFilter('dessert')">Desserts</button>
+        <button data-filter="encas" onclick="setDishFilter('encas')">Encas</button>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr>
+            <th onclick="sortDishes('name')">Plat</th>
+            <th onclick="sortDishes('category')">Catégorie</th>
+            <th onclick="sortDishes('totalGrams')">Poids (g)</th>
+            <th onclick="sortDishes('kcal')">Calories</th>
+            <th onclick="sortDishes('protein')">Protéines (g)</th>
+            <th onclick="sortDishes('fat')">Lipides (g)</th>
+            <th onclick="sortDishes('carbs')">Glucides (g)</th>
+            <th></th>
+          </tr></thead>
+          <tbody id="dishTableBody"></tbody>
+        </table>
+      </div>
+      <p class="note">Clique sur un en-tête de colonne pour trier (glucides, lipides, protéines, calories...).</p>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ==================== BASE D'INGRÉDIENTS (valeurs pour 100 g) ==================== */
+const BUILTIN_INGREDIENTS = [
+  // ATTENTION : les valeurs changent beaucoup entre cru/sec et cuit (l'eau absorbée dilue les calories).
+  // Choisis l'entrée qui correspond à l'état dans lequel tu pèses l'aliment.
+  {name:"Riz blanc sec (non cuit)", kcal:349, prot:7.1, fat:0.6, carbs:77.2},
+  {name:"Riz blanc cuit", kcal:130, prot:2.7, fat:0.3, carbs:28.2},
+  {name:"Pâtes blanches sèches (non cuites)", kcal:361, prot:12, fat:1.5, carbs:72},
+  {name:"Pâtes blanches cuites", kcal:158, prot:5.8, fat:0.9, carbs:30.9},
+  {name:"Pain blanc", kcal:265, prot:9, fat:3.2, carbs:49},
+  {name:"Pomme de terre cuite", kcal:87, prot:1.9, fat:0.1, carbs:20},
+  {name:"Frites au four", kcal:260, prot:3.4, fat:10, carbs:38},
+  {name:"Boeuf haché 15% cru", kcal:254, prot:17.2, fat:20, carbs:0},
+  {name:"Boeuf haché 5% cru", kcal:137, prot:21, fat:5, carbs:0},
+  {name:"Porc échine cru", kcal:250, prot:17, fat:20, carbs:0},
+  {name:"Escalope de porc crue", kcal:143, prot:21, fat:6, carbs:0},
+  {name:"Poulet blanc cru", kcal:110, prot:23, fat:1.5, carbs:0},
+  {name:"Lardons fumés", kcal:350, prot:15, fat:32, carbs:0},
+  {name:"Bacon", kcal:350, prot:25, fat:28, carbs:1},
+  {name:"Jambon blanc", kcal:145, prot:20, fat:6.5, carbs:1},
+  {name:"Saucisse", kcal:300, prot:12, fat:27, carbs:2},
+  {name:"Oeuf entier", kcal:155, prot:13, fat:11, carbs:1},
+  {name:"Fromage râpé (emmental)", kcal:380, prot:28, fat:30, carbs:0},
+  {name:"Cheddar", kcal:400, prot:25, fat:33, carbs:1},
+  {name:"Crème fraîche entière", kcal:300, prot:2.5, fat:30, carbs:3},
+  {name:"Beurre", kcal:745, prot:0.7, fat:82, carbs:0.5},
+  {name:"Huile", kcal:900, prot:0, fat:100, carbs:0},
+  {name:"Lait entier", kcal:64, prot:3.2, fat:3.6, carbs:4.8},
+  {name:"Yaourt lait entier sucré", kcal:95, prot:4, fat:5, carbs:8},
+  {name:"Chocolat noir", kcal:545, prot:6, fat:31, carbs:55},
+  {name:"Nutella", kcal:539, prot:6, fat:31, carbs:57},
+  {name:"Confiture", kcal:250, prot:0.3, fat:0, carbs:62},
+  {name:"Sucre", kcal:400, prot:0, fat:0, carbs:100},
+  {name:"Miel", kcal:304, prot:0.3, fat:0, carbs:82},
+  {name:"Carottes cuites", kcal:35, prot:0.8, fat:0.2, carbs:7},
+  {name:"Haricots verts cuits", kcal:30, prot:1.8, fat:0.2, carbs:5},
+  {name:"Salade verte", kcal:15, prot:1.4, fat:0.2, carbs:1.5},
+  {name:"Coca-Cola", kcal:42, prot:0, fat:0, carbs:10.6},
+  {name:"Ice tea", kcal:35, prot:0, fat:0, carbs:8.5},
+  {name:"Compote sans sucre ajouté", kcal:55, prot:0.3, fat:0.1, carbs:13},
+  {name:"Céréales sucrées", kcal:380, prot:6, fat:3, carbs:82},
+  {name:"Pancake / crêpe nature", kcal:230, prot:6, fat:7, carbs:35},
+  {name:"Glace vanille / chocolat", kcal:210, prot:3.5, fat:11, carbs:24},
+  {name:"Banane", kcal:90, prot:1.1, fat:0.3, carbs:21}
+];
+
+/* ==================== STOCKAGE (localStorage) ==================== */
+function loadJSON(key, def){ try{ const v = localStorage.getItem(key); return v ? JSON.parse(v) : def; }catch(e){ return def; } }
+function saveJSON(key, val){ localStorage.setItem(key, JSON.stringify(val)); }
+
+let dishes = loadJSON('nutri_dishes', []);
+let logs = loadJSON('nutri_log', {});
+let customIngredients = loadJSON('nutri_custom_ingredients', []);
+
+function getAllIngredients(){ return BUILTIN_INGREDIENTS.concat(customIngredients); }
+function findIngredient(name){
+  const n = (name||'').trim().toLowerCase();
+  return getAllIngredients().find(i => i.name.toLowerCase() === n);
+}
+function todayStr(){ return new Date().toISOString().slice(0,10); }
+function catLabel(c){ return c==='plat' ? 'Plat' : c==='dessert' ? 'Dessert' : 'Encas'; }
+
+/* ==================== NAVIGATION ==================== */
+function showPage(n){
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-'+n).classList.add('active');
+  document.querySelectorAll('.step').forEach(s => s.classList.toggle('active', s.dataset.page === String(n)));
+  if(n===2) renderPage2();
+  if(n===3) renderPage3();
+}
+
+/* ==================== PAGE 1 : CALCULATEUR ==================== */
+let sex = 'F';
+let goal = 'prise';
+
+function setSex(s){
+  sex = s;
+  document.getElementById('btnF').classList.toggle('active', s==='F');
+  document.getElementById('btnH').classList.toggle('active', s==='H');
+  compute();
+}
+function setGoal(g){
+  goal = g;
+  document.getElementById('goalPerte').classList.toggle('active', g==='perte');
+  document.getElementById('goalMaintien').classList.toggle('active', g==='maintien');
+  document.getElementById('goalPrise').classList.toggle('active', g==='prise');
+  const slider = document.getElementById('surplus');
+  if(g==='perte') slider.value = -300;
+  if(g==='maintien') slider.value = 0;
+  if(g==='prise') slider.value = 300;
+  onSurplusChange();
+}
+function onSurplusChange(){
+  const s = parseInt(document.getElementById('surplus').value);
+  document.getElementById('surplusLabel').textContent = s > 0 ? `+${s} kcal/jour` : `${s} kcal/jour`;
+  compute();
+}
+function computeBMR(sexe, poids, taille, age){
+  const base = 10*poids + 6.25*taille - 5*age;
+  return sexe === 'F' ? base - 161 : base + 5;
+}
+function imcCategorie(imc){
+  if(imc < 16) return {label:'Dénutrition sévère', color:'#dc2626', bg:'#fee2e2'};
+  if(imc < 17) return {label:'Dénutrition modérée', color:'#ea580c', bg:'#ffedd5'};
+  if(imc < 18.5) return {label:'Insuffisance pondérale', color:'#d97706', bg:'#fef3c7'};
+  if(imc < 25) return {label:'Corpulence normale', color:'#059669', bg:'#d1fae5'};
+  if(imc < 30) return {label:'Surpoids', color:'#d97706', bg:'#fef3c7'};
+  return {label:'Obésité', color:'#dc2626', bg:'#fee2e2'};
+}
+function compute(){
+  const age = parseFloat(document.getElementById('age').value) || 0;
+  const poids = parseFloat(document.getElementById('poids').value) || 0;
+  const taille = parseFloat(document.getElementById('taille').value) || 0;
+  const activite = parseFloat(document.getElementById('activite').value);
+  const surplus = parseInt(document.getElementById('surplus').value);
+  if(poids<=0 || taille<=0 || age<=0) return;
+
+  const bmr = computeBMR(sex, poids, taille, age);
+  const tdee = bmr * activite;
+  const target = tdee + surplus;
+
+  document.getElementById('bmrVal').textContent = Math.round(bmr) + ' kcal';
+  document.getElementById('tdeeVal').textContent = Math.round(tdee) + ' kcal';
+  document.getElementById('targetVal').textContent = Math.round(target) + ' kcal';
+
+  const tailleM = taille/100;
+  const imc = poids / (tailleM*tailleM);
+  const cat = imcCategorie(imc);
+  const badge = document.getElementById('imcBadge');
+  badge.textContent = `IMC ${imc.toFixed(1)} — ${cat.label}`;
+  badge.style.color = cat.color;
+  badge.style.background = cat.bg;
+  document.getElementById('imcNote').textContent = imc < 18.5
+    ? "IMC en dessous des repères de poids santé (norme OMS : 18,5 à 25). Un avis médical est recommandé en complément de ce calculateur."
+    : '';
+
+  const proteinG = Math.round(poids * 1.7);
+  const proteinKcal = proteinG * 4;
+  const fatKcal = target * 0.30;
+  const fatG = Math.round(fatKcal / 9);
+  const carbsKcal = Math.max(target - proteinKcal - fatKcal, 0);
+  const carbsG = Math.round(carbsKcal / 4);
+
+  drawBarChart(bmr, tdee, target);
+  drawDonutChart(proteinKcal, fatKcal, carbsKcal, proteinG, fatG, carbsG);
+
+  const poidsVise = parseFloat(document.getElementById('poidsVise').value) || null;
+  document.getElementById('weightTodayPreview').textContent = poids;
+
+  // Sauvegarde pour les autres pages
+  saveJSON('nutri_profile', {sex, age, poids, taille, activite, surplus, poidsVise});
+  saveJSON('nutri_target', {kcal: Math.round(target), proteinG, fatG, carbsG});
+}
+function drawBarChart(bmr, tdee, target){
+  const canvas = document.getElementById('barChart');
+  const ctx = canvas.getContext('2d');
+  const w = canvas.width, h = canvas.height;
+  ctx.clearRect(0,0,w,h);
+  const data = [
+    {label:'BMR', value:bmr, color:'#a5b4fc'},
+    {label:'TDEE', value:tdee, color:'#6366f1'},
+    {label:'Objectif', value:target, color:'#ec4899'}
+  ];
+  const maxVal = Math.max(...data.map(d=>d.value)) * 1.15;
+  const barH = 30, gap = 18, startY = 12, leftPad = 90, rightPad = 70;
+  const chartW = w - leftPad - rightPad;
+  ctx.font = '13px Segoe UI, sans-serif';
+  data.forEach((d, i) => {
+    const y = startY + i*(barH+gap);
+    const barW = (d.value/maxVal) * chartW;
+    ctx.fillStyle = '#312e40'; ctx.textAlign = 'right';
+    ctx.fillText(d.label, leftPad - 12, y + barH/2 + 4);
+    ctx.fillStyle = '#f3f4f6'; roundRect(ctx, leftPad, y, chartW, barH, 8); ctx.fill();
+    ctx.fillStyle = d.color; roundRect(ctx, leftPad, y, Math.max(barW,4), barH, 8); ctx.fill();
+    ctx.fillStyle = '#312e40'; ctx.textAlign = 'left'; ctx.font = 'bold 13px Segoe UI, sans-serif';
+    ctx.fillText(Math.round(d.value) + ' kcal', leftPad + barW + 10, y + barH/2 + 4);
+    ctx.font = '13px Segoe UI, sans-serif';
+  });
+}
+function roundRect(ctx, x, y, w, h, r){
+  ctx.beginPath();
+  ctx.moveTo(x+r, y);
+  ctx.arcTo(x+w, y, x+w, y+h, r);
+  ctx.arcTo(x+w, y+h, x, y+h, r);
+  ctx.arcTo(x, y+h, x, y, r);
+  ctx.arcTo(x, y, x+w, y, r);
+  ctx.closePath();
+}
+function drawDonutChart(proteinKcal, fatKcal, carbsKcal, proteinG, fatG, carbsG){
+  const canvas = document.getElementById('donutChart');
+  const ctx = canvas.getContext('2d');
+  const w = canvas.width, h = canvas.height;
+  ctx.clearRect(0,0,w,h);
+  const total = proteinKcal + fatKcal + carbsKcal;
+  const cx = w/2, cy = h/2, radius = 90, thickness = 32;
+  const slices = [
+    {label:'Protéines', value:proteinKcal, g:proteinG, color:'#ec4899'},
+    {label:'Lipides', value:fatKcal, g:fatG, color:'#f59e0b'},
+    {label:'Glucides', value:carbsKcal, g:carbsG, color:'#6366f1'}
+  ];
+  let startAngle = -Math.PI/2;
+  slices.forEach(s => {
+    const angle = (s.value/total) * Math.PI * 2;
+    ctx.beginPath();
+    ctx.arc(cx, cy, radius, startAngle, startAngle+angle);
+    ctx.strokeStyle = s.color; ctx.lineWidth = thickness; ctx.stroke();
+    startAngle += angle;
+  });
+  ctx.fillStyle = '#312e40'; ctx.textAlign = 'center'; ctx.font = 'bold 16px Segoe UI, sans-serif';
+  ctx.fillText(Math.round(total) + ' kcal', cx, cy - 4);
+  ctx.font = '11px Segoe UI, sans-serif'; ctx.fillStyle = '#6b7280';
+  ctx.fillText('répartition macros', cx, cy + 14);
+  document.getElementById('legend').innerHTML = slices.map(s => `
+    <div class="legend-item">
+      <span class="dot" style="background:${s.color}"></span>
+      <span><b>${s.label}</b> — ${s.g} g (${Math.round(s.value)} kcal, ${Math.round(s.value/total*100)}%)</span>
+    </div>
+  `).join('');
+}
+function loadProfileInputs(){
+  const p = loadJSON('nutri_profile', null);
+  if(!p) return;
+  sex = p.sex;
+  document.getElementById('btnF').classList.toggle('active', sex==='F');
+  document.getElementById('btnH').classList.toggle('active', sex==='H');
+  document.getElementById('age').value = p.age;
+  document.getElementById('poids').value = p.poids;
+  document.getElementById('taille').value = p.taille;
+  document.getElementById('activite').value = p.activite;
+  document.getElementById('surplus').value = p.surplus;
+  if(p.poidsVise) document.getElementById('poidsVise').value = p.poidsVise;
+  const s = p.surplus;
+  goal = s>0 ? 'prise' : (s<0 ? 'perte' : 'maintien');
+  document.getElementById('goalPerte').classList.toggle('active', goal==='perte');
+  document.getElementById('goalMaintien').classList.toggle('active', goal==='maintien');
+  document.getElementById('goalPrise').classList.toggle('active', goal==='prise');
+  document.getElementById('surplusLabel').textContent = s > 0 ? `+${s} kcal/jour` : `${s} kcal/jour`;
+}
+
+/* ==================== EXPORT / IMPORT DES DONNÉES ==================== */
+const DATA_KEYS = ['nutri_profile','nutri_target','nutri_dishes','nutri_log','nutri_custom_ingredients','nutri_weight_log'];
+function exportData(){
+  const data = { exportedAt: new Date().toISOString() };
+  DATA_KEYS.forEach(key => { data[key] = loadJSON(key, null); });
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:'application/json'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `suivi-nutrition-sauvegarde-${todayStr()}.json`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+function importData(event){
+  const file = event.target.files[0];
+  const status = document.getElementById('importStatus');
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    try{
+      const data = JSON.parse(e.target.result);
+      const hasKnownKey = DATA_KEYS.some(k => data[k] !== undefined);
+      if(!hasKnownKey){ status.textContent = "Ce fichier ne ressemble pas à une sauvegarde valide."; return; }
+      if(!confirm("Importer ce fichier remplacera toutes tes données actuelles (plats, historique, poids...). Continuer ?")){
+        status.textContent = '';
+        event.target.value = '';
+        return;
+      }
+      DATA_KEYS.forEach(key => {
+        if(data[key] !== undefined) saveJSON(key, data[key]);
+      });
+      status.textContent = 'Import réussi ! Rechargement de la page...';
+      setTimeout(() => window.location.reload(), 800);
+    } catch(err){
+      status.textContent = "Fichier invalide, impossible de l'importer.";
+    }
+  };
+  reader.readAsText(file);
+}
+
+/* ==================== SUIVI DU POIDS ==================== */
+function formatDateShort(d){
+  const [y,m,day] = d.split('-');
+  return `${day}/${m}`;
+}
+function saveWeightEntry(){
+  const poids = parseFloat(document.getElementById('poids').value);
+  if(!poids || poids<=0){ alert('Renseigne ton poids dans le champ "Poids actuel" avant d\'enregistrer.'); return; }
+  const date = todayStr();
+  const weightLog = loadJSON('nutri_weight_log', {});
+  weightLog[date] = poids;
+  saveJSON('nutri_weight_log', weightLog);
+  renderWeightChart();
+}
+function renderWeightChart(){
+  const weightLog = loadJSON('nutri_weight_log', {});
+  const profile = loadJSON('nutri_profile', {});
+  const dates = Object.keys(weightLog).sort();
+  const canvas = document.getElementById('weightChart');
+  const ctx = canvas.getContext('2d');
+  const w = canvas.width, h = canvas.height;
+  ctx.clearRect(0,0,w,h);
+  const summary = document.getElementById('weightSummary');
+
+  if(dates.length === 0){
+    ctx.fillStyle = '#9ca3af'; ctx.font = '13px Segoe UI, sans-serif'; ctx.textAlign = 'center';
+    ctx.fillText("Aucune pesée enregistrée pour l'instant", w/2, h/2);
+    summary.textContent = '';
+    return;
+  }
+
+  const values = dates.map(d => weightLog[d]);
+  const target = profile.poidsVise;
+  let minV = Math.min(...values), maxV = Math.max(...values);
+  if(target){ minV = Math.min(minV, target); maxV = Math.max(maxV, target); }
+  minV -= 1; maxV += 1;
+  if(maxV === minV) maxV += 1;
+
+  const padL = 42, padR = 20, padT = 16, padB = 26;
+  const chartW = w - padL - padR, chartH = h - padT - padB;
+  const xFor = i => padL + (dates.length===1 ? chartW/2 : (i/(dates.length-1))*chartW);
+  const yFor = v => padT + chartH - ((v - minV)/(maxV - minV))*chartH;
+
+  if(target){
+    ctx.setLineDash([5,4]);
+    ctx.strokeStyle = '#10b981'; ctx.lineWidth = 1.5;
+    ctx.beginPath(); ctx.moveTo(padL, yFor(target)); ctx.lineTo(w-padR, yFor(target)); ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.fillStyle = '#10b981'; ctx.font = '11px Segoe UI, sans-serif'; ctx.textAlign = 'left';
+    ctx.fillText(`Objectif ${target}kg`, padL+4, yFor(target)-4);
+  }
+
+  ctx.strokeStyle = '#ec4899'; ctx.lineWidth = 2.5;
+  ctx.beginPath();
+  dates.forEach((d,i) => {
+    const x = xFor(i), y = yFor(weightLog[d]);
+    if(i===0) ctx.moveTo(x,y); else ctx.lineTo(x,y);
+  });
+  ctx.stroke();
+
+  dates.forEach((d,i) => {
+    const x = xFor(i), y = yFor(weightLog[d]);
+    ctx.beginPath(); ctx.arc(x,y,4,0,Math.PI*2);
+    ctx.fillStyle = '#be185d'; ctx.fill();
+  });
+
+  ctx.fillStyle = '#6b7280'; ctx.font = '11px Segoe UI, sans-serif';
+  ctx.textAlign = 'left'; ctx.fillText(formatDateShort(dates[0]), padL, h-6);
+  ctx.textAlign = 'right'; ctx.fillText(formatDateShort(dates[dates.length-1]), w-padR, h-6);
+  ctx.fillText(maxV.toFixed(1)+' kg', padL-6, padT+8);
+  ctx.fillText(minV.toFixed(1)+' kg', padL-6, h-padB+4);
+
+  const first = values[0], last = values[values.length-1];
+  const delta = last - first;
+  summary.textContent = `${dates.length} pesée(s) — dernière : ${last} kg le ${formatDateShort(dates[dates.length-1])}` +
+    (dates.length>1 ? ` (${delta>=0?'+':''}${delta.toFixed(1)} kg depuis la première pesée)` : '');
+}
+
+/* ==================== PAGE 2 : SUIVI DU JOUR ==================== */
+let addMode = 'existing';
+let editingDishId = null;
+function toggleAddForm(){
+  const f = document.getElementById('addFoodForm');
+  f.style.display = f.style.display === 'none' ? 'block' : 'none';
+}
+function setAddMode(mode){
+  addMode = mode;
+  editingDishId = null;
+  document.getElementById('quickSaveBtn').textContent = 'Enregistrer et ajouter au suivi';
+  document.getElementById('modeExisting').classList.toggle('active', mode==='existing');
+  document.getElementById('modeNew').classList.toggle('active', mode==='new');
+  document.getElementById('modeQuick').classList.toggle('active', mode==='quick');
+  document.getElementById('blockExisting').style.display = mode==='existing' ? 'block' : 'none';
+  document.getElementById('blockNew').style.display = mode==='new' ? 'block' : 'none';
+  document.getElementById('blockQuick').style.display = mode==='quick' ? 'block' : 'none';
+}
+let newCat = 'plat', quickCat = 'plat';
+function setNewCat(c){
+  newCat = c;
+  document.querySelectorAll('#newCatToggle button').forEach(b => b.classList.toggle('active', b.dataset.cat===c));
+}
+function setQuickCat(c){
+  quickCat = c;
+  document.querySelectorAll('#quickCatToggle button').forEach(b => b.classList.toggle('active', b.dataset.cat===c));
+}
+
+let builderRows = [];
+let builderRowSeq = 0;
+function addIngredientRow(){
+  const id = builderRowSeq++;
+  builderRows.push({id, name:'', grams:0});
+  const container = document.getElementById('ingredientRows');
+  const row = document.createElement('div');
+  row.className = 'ing-row';
+  row.id = 'ing-row-'+id;
+  row.innerHTML = `
+    <input list="ingredientNames" placeholder="Ingrédient" oninput="updateBuilderRow(${id},'name',this.value)">
+    <input type="number" placeholder="grammes" oninput="updateBuilderRow(${id},'grams',this.value)">
+    <span class="ing-kcal" id="ing-kcal-${id}">–</span>
+    <button class="remove-btn" onclick="removeIngredientRow(${id})">×</button>
+  `;
+  container.appendChild(row);
+}
+function removeIngredientRow(id){
+  builderRows = builderRows.filter(r => r.id !== id);
+  const el = document.getElementById('ing-row-'+id);
+  if(el) el.remove();
+  recalcBuilderTotals();
+}
+function updateBuilderRow(id, field, value){
+  const row = builderRows.find(r => r.id === id);
+  if(!row) return;
+  row[field] = field==='grams' ? (parseFloat(value)||0) : value;
+  const ing = findIngredient(row.name);
+  const kcalSpan = document.getElementById('ing-kcal-'+id);
+  if(ing){
+    kcalSpan.textContent = Math.round(ing.kcal * row.grams/100) + ' kcal';
+    kcalSpan.style.color = '#6b7280';
+  } else if(row.name){
+    kcalSpan.textContent = 'inconnu';
+    kcalSpan.style.color = '#dc2626';
+  } else {
+    kcalSpan.textContent = '–';
+  }
+  recalcBuilderTotals();
+}
+function recalcBuilderTotals(){
+  let kcal=0, prot=0, fat=0, carbs=0, grams=0;
+  builderRows.forEach(r => {
+    const ing = findIngredient(r.name);
+    if(ing && r.grams>0){
+      kcal += ing.kcal*r.grams/100;
+      prot += ing.prot*r.grams/100;
+      fat  += ing.fat*r.grams/100;
+      carbs+= ing.carbs*r.grams/100;
+      grams+= r.grams;
+    }
+  });
+  document.getElementById('builderTotalKcal').textContent = Math.round(kcal)+' kcal';
+  document.getElementById('builderTotalP').textContent = Math.round(prot);
+  document.getElementById('builderTotalL').textContent = Math.round(fat);
+  document.getElementById('builderTotalG').textContent = Math.round(carbs);
+  document.getElementById('builderTotalGrams').textContent = Math.round(grams);
+  return {kcal,prot,fat,carbs,grams};
+}
+function saveNewDish(){
+  const name = document.getElementById('newDishName').value.trim();
+  if(!name){ alert('Donne un nom au plat.'); return; }
+  const totals = recalcBuilderTotals();
+  if(totals.grams<=0){ alert('Ajoute au moins un ingrédient reconnu avec un poids.'); return; }
+  const eatenInput = parseFloat(document.getElementById('newDishEaten').value);
+  const eaten = eatenInput>0 ? eatenInput : totals.grams;
+
+  const dish = {
+    id: 'd'+Date.now().toString(36)+Math.random().toString(36).slice(2,6),
+    name, category:newCat,
+    totalGrams: Math.round(totals.grams),
+    kcal: Math.round(totals.kcal), protein: Math.round(totals.prot),
+    fat: Math.round(totals.fat), carbs: Math.round(totals.carbs),
+    createdAt: Date.now()
+  };
+  dishes.push(dish);
+  saveJSON('nutri_dishes', dishes);
+  addLogEntry(dish, eaten);
+
+  builderRows = [];
+  document.getElementById('ingredientRows').innerHTML = '';
+  document.getElementById('newDishName').value = '';
+  document.getElementById('newDishEaten').value = '';
+  recalcBuilderTotals();
+  toggleAddForm();
+  renderPage2();
+}
+function saveQuickDish(){
+  const name = document.getElementById('quickName').value.trim();
+  const kcal = parseFloat(document.getElementById('quickKcal').value)||0;
+  if(!name || kcal<=0){ alert('Donne un nom et au moins les calories.'); return; }
+  const grams = parseFloat(document.getElementById('quickGrams').value)||0;
+  const protein = Math.round(parseFloat(document.getElementById('quickProt').value)||0);
+  const fat = Math.round(parseFloat(document.getElementById('quickFat').value)||0);
+  const carbs = Math.round(parseFloat(document.getElementById('quickCarbs').value)||0);
+
+  if(editingDishId){
+    const dish = dishes.find(d => d.id === editingDishId);
+    if(dish){
+      dish.name = name; dish.category = quickCat; dish.totalGrams = grams;
+      dish.kcal = Math.round(kcal); dish.protein = protein; dish.fat = fat; dish.carbs = carbs;
+      saveJSON('nutri_dishes', dishes);
+    }
+    editingDishId = null;
+    document.getElementById('quickSaveBtn').textContent = 'Enregistrer et ajouter au suivi';
+    resetQuickForm();
+    toggleAddForm();
+    renderPage3();
+    renderPage2();
+    return;
+  }
+
+  const dish = {
+    id: 'd'+Date.now().toString(36)+Math.random().toString(36).slice(2,6),
+    name, category:quickCat,
+    totalGrams: grams,
+    kcal: Math.round(kcal), protein, fat, carbs,
+    createdAt: Date.now()
+  };
+  dishes.push(dish);
+  saveJSON('nutri_dishes', dishes);
+  addLogEntry(dish, dish.totalGrams || 0, true);
+  resetQuickForm();
+  toggleAddForm();
+  renderPage2();
+}
+function resetQuickForm(){
+  ['quickName','quickGrams','quickKcal','quickProt','quickFat','quickCarbs'].forEach(id => document.getElementById(id).value='');
+}
+function editDish(id){
+  const dish = dishes.find(d => d.id === id);
+  if(!dish) return;
+  showPage(2);
+  document.getElementById('addFoodForm').style.display = 'block';
+  setAddMode('quick');
+  editingDishId = id;
+  document.getElementById('quickName').value = dish.name;
+  document.getElementById('quickGrams').value = dish.totalGrams || '';
+  document.getElementById('quickKcal').value = dish.kcal;
+  document.getElementById('quickProt').value = dish.protein;
+  document.getElementById('quickFat').value = dish.fat;
+  document.getElementById('quickCarbs').value = dish.carbs;
+  setQuickCat(dish.category);
+  document.getElementById('quickSaveBtn').textContent = "Enregistrer les modifications";
+}
+function addExistingToLog(){
+  const name = document.getElementById('existingDishInput').value.trim();
+  const dish = dishes.find(d => d.name.toLowerCase() === name.toLowerCase());
+  if(!dish){ alert("Ce plat n'existe pas encore — utilise 'Nouveau plat' ou 'Saisie rapide'."); return; }
+  const grams = parseFloat(document.getElementById('existingGrams').value) || dish.totalGrams || 0;
+  if(grams<=0){ alert('Indique un poids mangé.'); return; }
+  addLogEntry(dish, grams);
+  document.getElementById('existingDishInput').value = '';
+  document.getElementById('existingGrams').value = '';
+  toggleAddForm();
+  renderPage2();
+}
+function addLogEntry(dish, gramsEaten, exact){
+  const ratio = (exact || !dish.totalGrams) ? 1 : gramsEaten/dish.totalGrams;
+  const date = document.getElementById('logDate').value || todayStr();
+  const entry = {
+    id: 'e'+Date.now().toString(36)+Math.random().toString(36).slice(2,6),
+    dishId: dish.id, dishName: dish.name, category: dish.category,
+    grams: Math.round(gramsEaten),
+    kcal: Math.round(dish.kcal*ratio),
+    protein: Math.round(dish.protein*ratio),
+    fat: Math.round(dish.fat*ratio),
+    carbs: Math.round(dish.carbs*ratio)
+  };
+  if(!logs[date]) logs[date] = [];
+  logs[date].push(entry);
+  saveJSON('nutri_log', logs);
+}
+function deleteLogEntry(date, entryId){
+  logs[date] = (logs[date]||[]).filter(e => e.id !== entryId);
+  saveJSON('nutri_log', logs);
+  renderPage2();
+}
+function addCustomIngredient(){
+  const name = document.getElementById('custIngName').value.trim();
+  const kcal = parseFloat(document.getElementById('custIngKcal').value);
+  if(!name || isNaN(kcal)){ alert('Donne au moins un nom et les calories/100g.'); return; }
+  customIngredients.push({
+    name, kcal,
+    prot: parseFloat(document.getElementById('custIngProt').value)||0,
+    fat: parseFloat(document.getElementById('custIngFat').value)||0,
+    carbs: parseFloat(document.getElementById('custIngCarbs').value)||0
+  });
+  saveJSON('nutri_custom_ingredients', customIngredients);
+  ['custIngName','custIngKcal','custIngProt','custIngFat','custIngCarbs'].forEach(id => document.getElementById(id).value='');
+  refreshDatalists();
+  alert('Ingrédient ajouté ! Il est maintenant disponible partout.');
+}
+function escapeHtml(s){
+  return (s||'').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+let lastOFFResults = [];
+async function searchOFF(){
+  const q = document.getElementById('offQuery').value.trim();
+  const resultsDiv = document.getElementById('offResults');
+  if(!q){ resultsDiv.innerHTML = '<p class="note">Tape un nom de produit.</p>'; return; }
+  resultsDiv.innerHTML = '<p class="note">Recherche en cours...</p>';
+  try{
+    const url = `https://world.openfoodfacts.org/cgi/search.pl?search_terms=${encodeURIComponent(q)}&search_simple=1&action=process&json=1&page_size=8&fields=product_name,brands,nutriments`;
+    const res = await fetch(url);
+    if(!res.ok) throw new Error('http '+res.status);
+    const data = await res.json();
+    const products = (data.products||[]).filter(p => p.product_name && p.nutriments && p.nutriments['energy-kcal_100g'] != null);
+    if(products.length === 0){
+      resultsDiv.innerHTML = '<p class="note">Aucun résultat trouvé pour cette recherche. Ajoute les valeurs manuellement ci-dessous, depuis l\'emballage.</p>';
+      lastOFFResults = [];
+      return;
+    }
+    lastOFFResults = products.slice(0,8).map(p => {
+      const n = p.nutriments;
+      return {
+        name: p.product_name,
+        brands: p.brands || '',
+        kcal: Math.round(n['energy-kcal_100g'] || 0),
+        prot: Math.round((n['proteins_100g'] || 0)*10)/10,
+        fat: Math.round((n['fat_100g'] || 0)*10)/10,
+        carbs: Math.round((n['carbohydrates_100g'] || 0)*10)/10
+      };
+    });
+    resultsDiv.innerHTML = lastOFFResults.map((p,i) => `
+      <div style="border:1px solid #f0eefc;border-radius:12px;padding:10px 14px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;">
+        <div>
+          <b>${escapeHtml(p.name)}</b>${p.brands ? ' — '+escapeHtml(p.brands) : ''}<br>
+          <span class="note">${p.kcal} kcal · P ${p.prot} g · L ${p.fat} g · G ${p.carbs} g (pour 100 g)</span>
+        </div>
+        <button onclick="useOFFProduct(${i})">Utiliser</button>
+      </div>
+    `).join('');
+  } catch(e){
+    resultsDiv.innerHTML = '<p class="note">Recherche impossible (pas de connexion internet, ou le service ne répond pas). Ajoute les valeurs manuellement ci-dessous, depuis l\'emballage.</p>';
+    lastOFFResults = [];
+  }
+}
+function useOFFProduct(i){
+  const p = lastOFFResults[i];
+  if(!p) return;
+  const name = p.brands ? `${p.name} (${p.brands})` : p.name;
+  customIngredients.push({name, kcal:p.kcal, prot:p.prot, fat:p.fat, carbs:p.carbs});
+  saveJSON('nutri_custom_ingredients', customIngredients);
+  refreshDatalists();
+  document.getElementById('offResults').innerHTML = `<p class="note">"${escapeHtml(name)}" ajouté ! Il est maintenant disponible dans la liste d'ingrédients ci-dessus.</p>`;
+}
+/* ==================== PHOTO + LECTURE D'ÉTIQUETTE (OCR) ==================== */
+let tesseractPromise = null;
+function loadTesseract(){
+  if(window.Tesseract) return Promise.resolve();
+  if(tesseractPromise) return tesseractPromise;
+  tesseractPromise = new Promise((resolve, reject) => {
+    const s = document.createElement('script');
+    s.src = 'https://cdn.jsdelivr.net/npm/tesseract.js@5.0.4/dist/tesseract.min.js';
+    s.onload = () => resolve();
+    s.onerror = () => reject(new Error('Impossible de charger l\'outil de lecture (pas de connexion internet ?).'));
+    document.head.appendChild(s);
+  });
+  return tesseractPromise;
+}
+async function handlePhotoOCR(event){
+  const file = event.target.files[0];
+  const status = document.getElementById('ocrStatus');
+  const rawDiv = document.getElementById('ocrRawText');
+  if(!file){ return; }
+  rawDiv.innerHTML = '';
+  status.textContent = 'Chargement de l\'outil de lecture...';
+  try{
+    await loadTesseract();
+    status.textContent = 'Lecture de la photo en cours (10-20 secondes)...';
+    const { data: { text } } = await Tesseract.recognize(file, 'fra');
+    status.textContent = 'Lecture terminée — vérifie les valeurs remplies ci-dessous avant d\'enregistrer.';
+    parseNutritionText(text);
+  } catch(err){
+    status.textContent = "Impossible de lire cette photo (pas de connexion internet, texte flou, ou format non reconnu). Entre les valeurs manuellement ci-dessous.";
+  }
+}
+function parseNutritionValue(text, regex){
+  const m = text.match(regex);
+  if(!m) return null;
+  const v = parseFloat(m[1].replace(',', '.'));
+  return isNaN(v) ? null : v;
+}
+function parseNutritionText(text){
+  const kcal  = parseNutritionValue(text, /(\d+[.,]?\d*)\s*k\s*cal/i);
+  const prot  = parseNutritionValue(text, /prot[ée]ines?[^\d]{0,15}(\d+[.,]?\d*)/i);
+  const fat   = parseNutritionValue(text, /(?:mati[èe]res?\s*grasses|lipides)[^\d]{0,15}(\d+[.,]?\d*)/i);
+  const carbs = parseNutritionValue(text, /glucides[^\d]{0,15}(\d+[.,]?\d*)/i);
+
+  if(kcal  != null) document.getElementById('custIngKcal').value  = kcal;
+  if(prot  != null) document.getElementById('custIngProt').value  = prot;
+  if(fat   != null) document.getElementById('custIngFat').value   = fat;
+  if(carbs != null) document.getElementById('custIngCarbs').value = carbs;
+
+  const foundCount = [kcal,prot,fat,carbs].filter(v => v != null).length;
+  const rawDiv = document.getElementById('ocrRawText');
+  rawDiv.innerHTML = `<p class="note">${foundCount===0 ? "Aucune valeur reconnue automatiquement — " : ''}Texte détecté sur la photo (vérifie que les chiffres remplis ci-dessus sont corrects) :<br><em>${escapeHtml(text.trim().slice(0,400))}</em></p>`;
+}
+function refreshDatalists(){
+  document.getElementById('ingredientNames').innerHTML = getAllIngredients().map(i => `<option value="${i.name}">`).join('');
+  document.getElementById('dishNames').innerHTML = dishes.map(d => `<option value="${d.name}">`).join('');
+}
+function renderPage2(){
+  const dateInput = document.getElementById('logDate');
+  if(!dateInput.value) dateInput.value = todayStr();
+  refreshDatalists();
+  const date = dateInput.value;
+  const entries = logs[date] || [];
+
+  document.getElementById('logTableBody').innerHTML = entries.map(e => `
+    <tr>
+      <td>${e.dishName}</td>
+      <td><span class="cat-pill cat-${e.category}">${catLabel(e.category)}</span></td>
+      <td>${e.grams} g</td>
+      <td>${e.kcal}</td><td>${e.protein}</td><td>${e.fat}</td><td>${e.carbs}</td>
+      <td><button class="remove-btn" onclick="deleteLogEntry('${date}','${e.id}')">×</button></td>
+    </tr>
+  `).join('') || '<tr><td colspan="8" style="text-align:center;color:#9ca3af;">Rien enregistré pour ce jour</td></tr>';
+
+  const totals = entries.reduce((acc,e) => ({
+    kcal: acc.kcal+e.kcal, protein: acc.protein+e.protein, fat: acc.fat+e.fat, carbs: acc.carbs+e.carbs
+  }), {kcal:0, protein:0, fat:0, carbs:0});
+
+  const target = loadJSON('nutri_target', {kcal:2000, proteinG:60, fatG:65, carbsG:250});
+  drawRings(totals, target);
+  renderWeeklyAverage(date, target);
+}
+function computeWeeklyAverage(refDateStr){
+  const end = new Date(refDateStr);
+  const sum = {kcal:0, protein:0, fat:0, carbs:0};
+  let daysWithData = 0;
+  for(let i=0;i<7;i++){
+    const d = new Date(end);
+    d.setDate(d.getDate()-i);
+    const key = d.toISOString().slice(0,10);
+    const entries = logs[key];
+    if(entries && entries.length>0){
+      daysWithData++;
+      entries.forEach(e => { sum.kcal+=e.kcal; sum.protein+=e.protein; sum.fat+=e.fat; sum.carbs+=e.carbs; });
+    }
+  }
+  if(daysWithData===0) return null;
+  return {
+    kcal: sum.kcal/daysWithData, protein: sum.protein/daysWithData,
+    fat: sum.fat/daysWithData, carbs: sum.carbs/daysWithData,
+    daysWithData
+  };
+}
+function renderWeeklyAverage(refDateStr, target){
+  const avg = computeWeeklyAverage(refDateStr);
+  const note = document.getElementById('weeklyAvgNote');
+  const canvas = document.getElementById('weeklyAvgChart');
+  const ctx = canvas.getContext('2d');
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  if(!avg){
+    note.textContent = "Pas encore assez de données sur les 7 derniers jours (en comptant à partir de la date affichée ci-dessus).";
+    return;
+  }
+  note.textContent = `Moyenne calculée sur ${avg.daysWithData} jour(s) renseigné(s) sur les 7 derniers : ${Math.round(avg.kcal)} kcal/jour (objectif ${target.kcal}) — P ${Math.round(avg.protein)} g · L ${Math.round(avg.fat)} g · G ${Math.round(avg.carbs)} g`;
+
+  const data = [
+    {label:'Moyenne 7j', value:avg.kcal, color:'#6366f1'},
+    {label:'Objectif', value:target.kcal, color:'#ec4899'}
+  ];
+  const maxVal = Math.max(...data.map(d=>d.value)) * 1.15;
+  const barH = 26, gap = 14, startY = 8, leftPad = 90, rightPad = 70;
+  const chartW = canvas.width - leftPad - rightPad;
+  ctx.font = '12px Segoe UI, sans-serif';
+  data.forEach((d,i) => {
+    const y = startY + i*(barH+gap);
+    const barW = (d.value/maxVal)*chartW;
+    ctx.fillStyle = '#312e40'; ctx.textAlign = 'right';
+    ctx.fillText(d.label, leftPad-10, y+barH/2+4);
+    ctx.fillStyle = '#f3f4f6'; roundRect(ctx, leftPad, y, chartW, barH, 6); ctx.fill();
+    ctx.fillStyle = d.color; roundRect(ctx, leftPad, y, Math.max(barW,4), barH, 6); ctx.fill();
+    ctx.fillStyle = '#312e40'; ctx.textAlign = 'left'; ctx.font = 'bold 12px Segoe UI, sans-serif';
+    ctx.fillText(Math.round(d.value)+' kcal', leftPad+barW+8, y+barH/2+4);
+    ctx.font = '12px Segoe UI, sans-serif';
+  });
+}
+function drawRings(totals, target){
+  const container = document.getElementById('ringsContainer');
+  container.innerHTML = '';
+  const metrics = [
+    {label:'Calories', unit:'kcal', value:totals.kcal, goal:target.kcal, color:'#ec4899'},
+    {label:'Protéines', unit:'g', value:totals.protein, goal:target.proteinG, color:'#6366f1'},
+    {label:'Lipides', unit:'g', value:totals.fat, goal:target.fatG, color:'#f59e0b'},
+    {label:'Glucides', unit:'g', value:totals.carbs, goal:target.carbsG, color:'#10b981'}
+  ];
+  metrics.forEach(m => {
+    const block = document.createElement('div');
+    block.className = 'ring-block';
+    const canvas = document.createElement('canvas');
+    canvas.width = 130; canvas.height = 130;
+    block.appendChild(canvas);
+    const lbl = document.createElement('div');
+    lbl.style.cssText = 'font-size:13px;margin-top:6px;font-weight:600;';
+    lbl.textContent = m.label;
+    block.appendChild(lbl);
+    const sub = document.createElement('div');
+    sub.style.cssText = 'font-size:12px;color:#6b7280;';
+    sub.textContent = `${Math.round(m.value)} / ${Math.round(m.goal)} ${m.unit}`;
+    block.appendChild(sub);
+    container.appendChild(block);
+
+    const ctx = canvas.getContext('2d');
+    const cx=65, cy=65, r=52, thick=14;
+    const pct = m.goal>0 ? Math.min(m.value/m.goal, 1) : 0;
+    ctx.beginPath(); ctx.arc(cx,cy,r,0,Math.PI*2);
+    ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = thick; ctx.stroke();
+    ctx.beginPath();
+    ctx.arc(cx,cy,r,-Math.PI/2, -Math.PI/2 + pct*Math.PI*2);
+    ctx.strokeStyle = m.value>m.goal ? '#dc2626' : m.color;
+    ctx.lineWidth = thick; ctx.lineCap = 'round'; ctx.stroke();
+    ctx.fillStyle = '#312e40'; ctx.textAlign = 'center'; ctx.font = 'bold 15px Segoe UI, sans-serif';
+    ctx.fillText(Math.round(pct*100)+'%', cx, cy+5);
+  });
+}
+
+/* ==================== PAGE 3 : HISTORIQUE DES PLATS ==================== */
+let dishFilter = 'tous';
+let dishSort = {field:'name', dir:1};
+function setDishFilter(f){
+  dishFilter = f;
+  document.querySelectorAll('#dishFilterToggle button').forEach(b => b.classList.toggle('active', b.dataset.filter===f));
+  renderPage3();
+}
+function sortDishes(field){
+  if(dishSort.field === field) dishSort.dir *= -1; else { dishSort.field = field; dishSort.dir = 1; }
+  renderPage3();
+}
+function renderPage3(){
+  let list = dishes.slice();
+  if(dishFilter !== 'tous') list = list.filter(d => d.category === dishFilter);
+  list.sort((a,b) => {
+    let av=a[dishSort.field], bv=b[dishSort.field];
+    if(typeof av === 'string') return av.localeCompare(bv) * dishSort.dir;
+    return ((av||0)-(bv||0)) * dishSort.dir;
+  });
+  document.getElementById('dishTableBody').innerHTML = list.map(d => `
+    <tr>
+      <td>${d.name}</td>
+      <td><span class="cat-pill cat-${d.category}">${catLabel(d.category)}</span></td>
+      <td>${d.totalGrams || '-'}</td>
+      <td>${d.kcal}</td><td>${d.protein}</td><td>${d.fat}</td><td>${d.carbs}</td>
+      <td>
+        <button onclick="quickAddFromHistory('${d.id}')">+ Suivi du jour</button>
+        <button onclick="editDish('${d.id}')">Modifier</button>
+        <button class="remove-btn" onclick="deleteDish('${d.id}')">×</button>
+      </td>
+    </tr>
+  `).join('') || '<tr><td colspan="8" style="text-align:center;color:#9ca3af;">Aucun plat enregistré</td></tr>';
+}
+function deleteDish(id){
+  if(!confirm('Supprimer ce plat de l\'historique ?')) return;
+  dishes = dishes.filter(d => d.id !== id);
+  saveJSON('nutri_dishes', dishes);
+  renderPage3();
+}
+function quickAddFromHistory(id){
+  const dish = dishes.find(d => d.id === id);
+  if(!dish) return;
+  showPage(2);
+  document.getElementById('addFoodForm').style.display = 'block';
+  setAddMode('existing');
+  document.getElementById('existingDishInput').value = dish.name;
+  document.getElementById('existingGrams').value = dish.totalGrams || '';
+}
+
+/* ==================== INIT ==================== */
+loadProfileInputs();
+compute();
+renderWeightChart();
+document.getElementById('logDate').value = todayStr();
+['age','poids','taille','activite','poidsVise'].forEach(id => {
+  document.getElementById(id).addEventListener('input', compute);
+  document.getElementById(id).addEventListener('change', compute);
+});
+</script>
+</body>
+</html>

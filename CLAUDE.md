@@ -5,9 +5,10 @@
 - **Formation :** Ingénieur Telecom Saint-Etienne (prépa intégrée + DUT GEII)
 - **Expérience :** 3 ans d'alternance en data engineering chez Sanofi
 - **Domaine de confort :** SQL (bon niveau, manque de pratique récente), Power BI, Tableau, manipulation/transformation/visualisation de données
-- **Python :** Intermédiaire — maîtrise les bases (fonctions, boucles, dicts, f-strings, while, input) ; **premières bases d'OOP** (classe, `__init__`, `self`, méthodes qui `return`) depuis S3. try/except acquis (FileNotFoundError, ValueError, KeyError) ; lecture de CSV avec le module `csv`. **Pandas en pratique** (depuis S2) : Series/DataFrame, `read_csv`, inspection (`head`/`info`/`describe`), `loc`/`iloc`, filtrage booléen, tri, colonnes calculées, et `value_counts`/`isin`/`between`/`nlargest`/accesseur `.str` + chaînage d'opérations ; puis (S3) `groupby`/agg et gestion des NaN (`dropna(subset=)`, `fillna`).
-- **Java :** Débutant total — notions vues en cours mais jamais pratiqué sérieusement
-- **SQL :** Bon niveau théorique, manque de pratique récente
+- **Python :** Intermédiaire — bases solides + **OOP** de base (classe, `__init__`, `self`, méthodes qui `return`), try/except, lecture CSV/JSON. **Pandas complet en pratique** : Series/DataFrame, `read_csv`, inspection, `loc`/`iloc`, filtrage, tri, colonnes calculées, `value_counts`/`isin`/`between`/`nlargest`/`.str`, chaînage, `groupby`/agg + gestion des NaN, `merge`/`concat`, `pivot_table`, `apply`/`lambda`, et **API→pandas** (`requests` + `pd.json_normalize`).
+- **Data engineering :** a construit **1 pipeline ETL complet** (`projet-01-etl`, sur GitHub) : extract CSV+JSON → transform pandas → load PostgreSQL via **SQLAlchemy**, code en fonctions, `logging`, gestion d'erreurs, secrets dans `.env`. **Concepts** maîtrisés (culture d'entretien) : ETL vs ELT, batch vs streaming, data warehouse vs data lake, **idempotence**, **modélisation en étoile** (faits/dimensions/grain), **Airflow** (DAG, dépendances, scheduling).
+- **Java :** Débutant total — notions vues en cours mais jamais pratiqué sérieusement (démarre en S7).
+- **SQL :** Bon niveau, **en pratique** : SELECT/WHERE/GROUP BY/HAVING, JOINs multiples, sous-requêtes (scalaire, IN/NOT IN, table dérivée), **window functions** (RANK/ROW_NUMBER, LAG/LEAD, agrégat fenêtré, cumul), **CTE** (`WITH`).
 
 ## Mes objectifs
 - Décrocher un poste **data engineer** avant septembre 2026
@@ -51,9 +52,11 @@
 - Vise l'objectif : vérifie que tu as atteint le but avant de t'arrêter.
 
 ## Organisation du dossier `Claude`
-- `Projets/01 Parcours Data Engineer/` : apprentissage data engineer (dépôt git). Règles détaillées dans son `CLAUDE.md` secondaire (format des cours, arborescence, fichiers de suivi).
-- `Projets/02 Recherche Emploi Data Engineer/` : CV, lettres, offres, suivi des candidatures, préparation entretiens. Règles détaillées dans son `CLAUDE.md` secondaire.
-- `Template externe YouTube/` : template externe (vidéo YouTube de Yass), non utilisé dans mes projets — référence uniquement.
+- `Projets/01 Parcours Data Engineer/` : apprentissage data engineer (dépôt git). Son `CLAUDE.md` = **Bloc A** méthode d'apprentissage générique + **Bloc B** spécifique data engineer.
+- `Projets/02 Recherche Emploi Data Engineer/` : CV, lettres de motivation, offres, suivi des candidatures, préparation entretiens, réseau. Règles dans son `CLAUDE.md`.
+- `Projets/04 Formation Machine Learning/` : apprentissage du ML (orienté data engineer). Son `CLAUDE.md` = Bloc A méthode générique + Bloc B spécifique ML ; feuille de route dans `Programme_ML.md`.
+- `Projets/_MODELE_CLAUDE_apprentissage.md` : **modèle** à copier comme `CLAUDE.md` pour tout **nouveau sujet d'apprentissage** (cours+exercice). Contient la méthode générique (Bloc A) + un squelette de spécifique (Bloc B) à remplir. **Utilisé pour créer le projet 04 ML.**
+- `Template externe YouTube/` : template externe (vidéo YouTube de Yass), non utilisé — référence uniquement.
 
-> Chaque projet a son propre `CLAUDE.md` secondaire qui se charge en plus de ce principal quand on y travaille.
-> Le principal = profil + pilotage général ; les secondaires = règles propres à chaque projet.
+> **Comment les CLAUDE.md se chargent :** seuls le principal (racine) **et** celui du dossier de projet où l'on travaille sont chargés de façon fiable. Un CLAUDE.md placé plus profond ne se charge que si on travaille dans son sous-dossier → on garde donc les règles importantes dans ces deux niveaux, courts et bien rangés.
+> Le **principal** = profil + préférences + pilotage global (vaut partout) ; le **secondaire de projet** = règles propres au projet.

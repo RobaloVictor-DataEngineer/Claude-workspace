@@ -1,0 +1,51 @@
+NOMS DE FICHIERS POUR LES GIFS DU GLOSSAIRE
+==========================================
+
+Depose un GIF nomme EXACTEMENT comme indique a gauche dans ce dossier img/.
+Il remplacera automatiquement le schema dans Glossaire_exercices.html (rouvre la page).
+Format accepte : .gif
+
+corde-a-sauter.gif    <=    Corde à sauter
+box-jumps-sauts-sur-boite.gif    <=    Box jumps (sauts sur boîte)
+saut-en-longueur-broad-jump.gif    <=    Saut en longueur (broad jump)
+kettlebell-swing.gif    <=    Kettlebell swing
+squat-barre-ou-hack-squat.gif    <=    Squat barre (ou hack squat)
+presse-a-cuisses-hack-squat.gif    <=    Presse à cuisses / hack squat
+souleve-de-terre-conventionnel-trap-bar.gif    <=    Soulevé de terre (conventionnel / trap-bar)
+souleve-de-terre-roumain-rdl.gif    <=    Soulevé de terre roumain (RDL)
+hip-thrust-poussee-de-hanche.gif    <=    Hip thrust (poussée de hanche)
+fentes-marchees.gif    <=    Fentes marchées
+squat-bulgare-split-squat.gif    <=    Squat bulgare (split squat)
+leg-curl-ischios.gif    <=    Leg curl (ischios)
+leg-extension-quadriceps.gif    <=    Leg extension (quadriceps)
+mollets-debout.gif    <=    Mollets debout
+mollets-assis.gif    <=    Mollets assis
+pompes-explosives-med-ball-chest-pass.gif    <=    Pompes explosives / med-ball chest pass
+developpe-couche-halteres-ou-barre.gif    <=    Développé couché haltères (ou barre)
+developpe-incline-halteres.gif    <=    Développé incliné haltères
+developpe-militaire-overhead-press.gif    <=    Développé militaire (overhead press)
+developpe-epaules-halteres-assis-ou-arnold.gif    <=    Développé épaules haltères assis (ou Arnold)
+dips-lestes.gif    <=    Dips lestés
+ecartes-poulie-pec-deck.gif    <=    Écartés poulie / pec deck
+elevations-laterales.gif    <=    Élévations latérales
+elevations-laterales-penche-rear-delt.gif    <=    Élévations latérales penché (rear delt)
+face-pull.gif    <=    Face pull
+extension-triceps-poulie-corde.gif    <=    Extension triceps poulie corde
+extension-triceps-au-dessus-de-la-tete.gif    <=    Extension triceps au-dessus de la tête
+traction-lestee-pronation.gif    <=    Traction lestée (pronation)
+tirage-vertical-poulie-lat-pulldown.gif    <=    Tirage vertical poulie (lat pulldown)
+tirage-horizontal-rowing.gif    <=    Tirage horizontal (rowing)
+rowing-haltere-unilateral.gif    <=    Rowing haltère unilatéral
+high-pull-med-ball-slam.gif    <=    High pull / med-ball slam
+lancer-med-ball-rotationnel.gif    <=    Lancer med-ball rotationnel
+curl-barre-prise-pronation.gif    <=    Curl barre prise pronation
+curl-marteau.gif    <=    Curl marteau
+superset-curl-extension-triceps.gif    <=    Superset curl + extension triceps
+farmer-carry-marche-lestee.gif    <=    Farmer carry (marche lestée)
+suspension-a-la-barre-dead-hang.gif    <=    Suspension à la barre (dead hang)
+pince-a-disques-pinch.gif    <=    Pince à disques (pinch)
+crunch-poulie-leste.gif    <=    Crunch poulie LESTÉ
+sit-up-decline-leste.gif    <=    Sit-up décliné lesté
+releves-de-jambes-suspendu.gif    <=    Relevés de jambes suspendu
+pallof-press-anti-rotation.gif    <=    Pallof press (anti-rotation)
+planche-laterale.gif    <=    Planche latérale
