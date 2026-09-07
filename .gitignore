@@ -1,0 +1,4 @@
+# Fichiers temporaires LibreOffice/Office (verrous et sauvegardes auto)
+.~lock.*#
+*.tmp
+~$*
