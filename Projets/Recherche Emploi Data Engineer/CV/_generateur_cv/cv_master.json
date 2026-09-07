@@ -1,0 +1,70 @@
+{
+  "_note": "Contenu FIGÉ et véridique de Victor. On n'invente jamais. Par offre, seuls 'role', 'presentation' et l'ordre de 'competences' peuvent être ajustés (voir offre_defaut et GUIDE_CV.md).",
+
+  "name": "Victor Robalo",
+  "initials": "VR",
+  "photo": "",
+
+  "phone": "+33 7 68 73 97 74",
+  "email": "victor.robalo@yahoo.fr",
+  "linkedin": "linkedin.com/in/victor-robalo-96761a1ba",
+  "permis": "Permis B + voiture",
+
+  "role": "Data Engineer",
+
+  "presentation": "Ingénieur en Data Engineering diplômé de Télécom Saint-Étienne, fort de 3 ans d'apprentissage chez Sanofi (pharma) et d'un stage de fin d'études à l'international. Je conçois et industrialise des pipelines de données (SQL, Python, ETL cloud) et je transforme le besoin métier en solutions data exploitables. Basé à Boulogne-Billancourt, mobile en Île-de-France, je recherche un poste de data engineer pour relever des défis concrets de valorisation de la donnée.",
+
+  "experiences": [
+    {
+      "title": "Ingénieur Data — stage de fin d'études",
+      "place": "La Royale Gaming Investment (Lisbonne)",
+      "date": "Juin 2025 – Décembre 2025",
+      "bullets": [
+        "Définition de la stratégie data (stack, modélisation, projets) pour les besoins opérationnels de casinos en ligne.",
+        "Construction et maintenance de requêtes et jobs dbt / Dataform sur BigQuery.",
+        "Suivi et optimisation des coûts ETL BigQuery : −15 à −20 %.",
+        "Conception de dashboards Power BI pour les clients et les équipes métier.",
+        "Pilotage de demandes clients portant sur des transactions jusqu'à 3 M€."
+      ]
+    },
+    {
+      "title": "Apprenti Ingénieur Data Engineering",
+      "place": "Sanofi — Val-de-Reuil (site de 2 400 personnes)",
+      "date": "Septembre 2022 – Septembre 2025",
+      "bullets": [
+        "Gestion de projets data en environnement industriel/pharma complexe (Production, Assurance Qualité, équipes techniques).",
+        "Regroupement d'une centaine de KPI pour le bâtiment de Production du vaccin contre la grippe → +10 % de gains de cycles.",
+        "Analyse, transformation et exploitation de données pour le calcul de KPI et l'aide à la décision (Comité de Direction, managers terrain).",
+        "Conception de dashboards Power BI (suivi de formation de 900 personnes, performance qualité) → décision optimisée de 50 %."
+      ]
+    }
+  ],
+
+  "competences": [
+    { "id": "prog",   "label": "Programmation",       "value": "Python, SQL, Java, C++, NoSQL, DAX" },
+    { "id": "etl",    "label": "Data / ETL & bases",  "value": "dbt, Dataform, BigQuery, Snowflake, SQL Server, PostgreSQL, SQLAlchemy" },
+    { "id": "bi",     "label": "Data viz & BI",       "value": "Power BI, Tableau" },
+    { "id": "ml",     "label": "Machine learning & IA","value": "scikit-learn, Keras (TensorFlow)" }
+  ],
+
+  "etudes": [
+    { "period": "2022 – 2025", "diploma": "Diplôme d'ingénieur en Data Engineering", "school": "Télécom Saint-Étienne" },
+    { "period": "2019 – 2022", "diploma": "Prépa intégrée + DUT GEII (Génie Électrique et Informatique Industrielle)", "school": "Télécom Saint-Étienne" }
+  ],
+
+  "langues": "<b>Français</b> (maternelle) &nbsp;·&nbsp; <b>Anglais</b> C1 (TOEIC 820) &nbsp;·&nbsp; <b>Espagnol</b> B2",
+
+  "passions": [
+    { "title": "Sport",       "desc": "Tennis, football, natation, musculation" },
+    { "title": "Voyage",      "desc": "Espagne, USA, Canada, Italie…" },
+    { "title": "Jeux",        "desc": "Stratégie, gestion, jeux vidéo" }
+  ],
+
+  "footer": "",
+
+  "offre_defaut": {
+    "_note": "Valeurs par défaut quand aucune offre n'est fournie. Un fichier d'offre peut surcharger: role, presentation, ordre_competences (liste d'id), footer.",
+    "role": "Data Engineer",
+    "ordre_competences": ["prog", "etl", "bi", "ml"]
+  }
+}

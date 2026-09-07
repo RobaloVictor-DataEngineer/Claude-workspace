@@ -11,7 +11,7 @@
 - **SQL :** Bon niveau, **en pratique** : SELECT/WHERE/GROUP BY/HAVING, JOINs multiples, sous-requêtes (scalaire, IN/NOT IN, table dérivée), **window functions** (RANK/ROW_NUMBER, LAG/LEAD, agrégat fenêtré, cumul), **CTE** (`WITH`).
 
 ## Mes objectifs
-- Décrocher un poste **data engineer** avant septembre 2026
+- Décrocher un poste **data engineer** avant fin 2026 (échéance initiale de septembre 2026 dépassée, recherche toujours active)
 - Zone géographique : Rouen ou Île-de-France
 - Salaire cible : 40 000 – 50 000 €
 - Secteur préféré : pharma/santé (expérience Sanofi), mais ouvert
@@ -52,11 +52,15 @@
 - Vise l'objectif : vérifie que tu as atteint le but avant de t'arrêter.
 
 ## Organisation du dossier `Claude`
-- `Projets/01 Parcours Data Engineer/` : apprentissage data engineer (dépôt git). Son `CLAUDE.md` = **Bloc A** méthode d'apprentissage générique + **Bloc B** spécifique data engineer.
-- `Projets/02 Recherche Emploi Data Engineer/` : CV, lettres de motivation, offres, suivi des candidatures, préparation entretiens, réseau. Règles dans son `CLAUDE.md`.
-- `Projets/04 Formation Machine Learning/` : apprentissage du ML (orienté data engineer). Son `CLAUDE.md` = Bloc A méthode générique + Bloc B spécifique ML ; feuille de route dans `Programme_ML.md`.
-- `Projets/_MODELE_CLAUDE_apprentissage.md` : **modèle** à copier comme `CLAUDE.md` pour tout **nouveau sujet d'apprentissage** (cours+exercice). Contient la méthode générique (Bloc A) + un squelette de spécifique (Bloc B) à remplir. **Utilisé pour créer le projet 04 ML.**
-- `Template externe YouTube/` : template externe (vidéo YouTube de Yass), non utilisé — référence uniquement.
+- `Projets/Parcours Data Engineer/` : apprentissage data engineer (dépôt git). Son `CLAUDE.md` = **Bloc A** méthode d'apprentissage générique + **Bloc B** spécifique data engineer.
+- `Projets/Recherche Emploi Data Engineer/` : CV, lettres de motivation, offres, suivi des candidatures, préparation entretiens, réseau. Règles dans son `CLAUDE.md`.
+- `Projets/Entraînement Musculation/` : deux sous-dossiers indépendants — `Victor/` (perf sportive, sport de combat) et `Anachou/` (prise de poids) — chacun avec son `CLAUDE.md` propre. Site `Suivi_nutrition.html` commun aux deux, rangé à ce niveau.
+- `Projets/Formation Machine Learning/` : apprentissage du ML (orienté data engineer). Son `CLAUDE.md` = Bloc A méthode générique + Bloc B spécifique ML ; feuille de route dans `Programme_ML.md`.
+- `Projets/Investissement/` : suivi de l'épargne placée (Livret, ETF/PEA, SCPI, crypto...). Échelle de sécurité et rappel "pas conseiller financier" dans son `CLAUDE.md`.
+- `Projets/Recherche Logement Lille/` : recherche d'appartement pour le déménagement Rouen → Lille. Critères et suivi des annonces dans son `CLAUDE.md`.
+- `Projets/Mini business/` : petits projets vidéo faceless (montage + IA, pas besoin d'apparaître) pour générer un revenu d'appoint — format pas figé, on suit les tendances virales du moment (clips de podcast, "Reddit stories" en voix IA, citations/motivation...) et on réévalue régulièrement ce qui marche. Critères et suivi dans son `CLAUDE.md`.
+- `Projets/_MODELE_CLAUDE_apprentissage.md` : **modèle** à copier comme `CLAUDE.md` pour tout **nouveau sujet d'apprentissage** (cours+exercice). Contient la méthode générique (Bloc A) + un squelette de spécifique (Bloc B) à remplir.
 
 > **Comment les CLAUDE.md se chargent :** seuls le principal (racine) **et** celui du dossier de projet où l'on travaille sont chargés de façon fiable. Un CLAUDE.md placé plus profond ne se charge que si on travaille dans son sous-dossier → on garde donc les règles importantes dans ces deux niveaux, courts et bien rangés.
 > Le **principal** = profil + préférences + pilotage global (vaut partout) ; le **secondaire de projet** = règles propres au projet.
+> **Sans numéros, l'ordre des dossiers n'a pas d'importance — cette liste est la vraie table des matières.**
