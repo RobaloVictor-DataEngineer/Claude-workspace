@@ -55,7 +55,7 @@
 - `Projets/Parcours Data Engineer/` : apprentissage data engineer (dépôt git). Son `CLAUDE.md` = **Bloc A** méthode d'apprentissage générique + **Bloc B** spécifique data engineer.
 - `Projets/Recherche Emploi Data Engineer/` : CV, lettres de motivation, offres, suivi des candidatures, préparation entretiens, réseau. Règles dans son `CLAUDE.md`.
 - `Projets/Entraînement Musculation/` : deux sous-dossiers indépendants — `Victor/` (perf sportive, sport de combat) et `Anachou/` (prise de poids) — chacun avec son `CLAUDE.md` propre. Site `Suivi_nutrition.html` commun aux deux, rangé à ce niveau.
-- `Projets/Formation Machine Learning/` : apprentissage du ML (orienté data engineer). Son `CLAUDE.md` = Bloc A méthode générique + Bloc B spécifique ML ; feuille de route dans `Programme_ML.md`.
+- `Projets/Formation Machine Learning/` : apprentissage du ML (orienté data engineer) — **en pause**, priorité à S7 du parcours DE + recherche d'emploi. Son `CLAUDE.md` = Bloc A méthode générique + Bloc B spécifique ML ; feuille de route dans `Programme_ML.md`.
 - `Projets/Investissement/` : suivi de l'épargne placée (Livret, ETF/PEA, SCPI, crypto...). Échelle de sécurité et rappel "pas conseiller financier" dans son `CLAUDE.md`.
 - `Projets/Recherche Logement Lille/` : recherche d'appartement pour le déménagement Rouen → Lille. Critères et suivi des annonces dans son `CLAUDE.md`.
 - `Projets/Mini business/` : petits projets vidéo faceless (montage + IA, pas besoin d'apparaître) pour générer un revenu d'appoint — format pas figé, on suit les tendances virales du moment (clips de podcast, "Reddit stories" en voix IA, citations/motivation...) et on réévalue régulièrement ce qui marche. Critères et suivi dans son `CLAUDE.md`.

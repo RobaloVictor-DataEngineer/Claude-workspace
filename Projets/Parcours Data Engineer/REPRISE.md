@@ -187,7 +187,7 @@ lecture CSV avec le module `csv` (`DictReader`), fonctions, comprehensions.
   `merge`/`concat`, `pivot_table`, `apply`, API/JSON + **OOP** de base), **1 pipeline ETL** construit
   (extract/transform/load, SQLAlchemy, logging, `.env`), **concepts DE** (ETL/ELT, batch/streaming,
   warehouse/lake, idempotence, modélisation en étoile, Airflow). Java : débutant total (démarre en S7).
-- **Objectif :** poste data engineer avant septembre 2026 (Rouen / Île-de-France, 40-50k EUR, pharma de préférence).
+- **Objectif :** poste data engineer avant fin 2026 (échéance initiale de septembre 2026 dépassée, recherche toujours active ; Rouen / Île-de-France, 40-50k EUR, pharma de préférence).
 
 ---
 
