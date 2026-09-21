@@ -1,4 +1,4 @@
-# CLAUDE — Projet 01 Parcours Data Engineer
+# CLAUDE — Projet Parcours Data Engineer
 
 > Complète le `CLAUDE.md` **principal** (racine : profil, ton, préférences, pilotage).
 > Deux blocs ci-dessous :
@@ -43,6 +43,19 @@ Apprendre pour **comprendre et retenir** (réutiliser en entretien et en poste),
 ## Objectif
 Apprendre le métier de **data engineer** (ingénieur de la donnée : construire les pipelines qui collectent, transforment et stockent les données). Dépôt git : **commit chaque vendredi** + mise à jour du tracker Excel.
 
+## Où j'en suis (MAJ 21/09/2026)
+- **S1 → S7 : cours terminés**, et **remise à niveau post-vacances (août) bouclée** — pandas, SQL (jointures, window functions, CTE, cumul), concepts DE (ETL/ELT, batch/streaming, DWH/lake, idempotence, étoile, Airflow), Java (survol), Spark (survol + **1re pratique PySpark**).
+- **Phase actuelle : entraînement entretien technique** (drills de code, difficulté croissante) ; à venir le **2e projet portfolio** (`projet-02-portfolio`, S8) ; **candidatures en parallèle** (ne pas attendre d'être « parfait »).
+- **Point faible travaillé : l'écriture de code** sous conditions d'entretien — en net progrès : j'écris seul window functions, CTE, top-par-groupe, 1re chaîne PySpark.
+
+## Outils d'apprentissage & workflow de pratique (à utiliser)
+- **Bac à sable** : `exercices/python/bac_a_sable_entretien.ipynb`. 3 zones : **SETUP** (données réutilisables pandas + miroir SQL via `q("...")`), **ZONE VIDE** (j'écris ici), **ARCHIVES** (exos réussis, regroupés par **THÈME — DATE** + « À re-tester le +7 j »).
+  - Workflow : énoncés en commentaire dans la ZONE VIDE → je code → correction jusqu'à ce que ce soit bon → on **vide** la ZONE VIDE → **archiver mon code (inchangé, commenté)** sous un titre THÈME — DATE.
+  - **Anti-conflit d'éditeur** : quand Claude doit écrire dans le notebook, je le **ferme d'abord** ; quand c'est moi qui code, je le garde ouvert.
+- **Carnet de recettes** : `fiches-revision/Carnet_de_recettes.md` — le noyau de motifs pandas / SQL / PySpark (consultation autorisée, puis sevrage).
+- **Journal de quiz** : `fiches-revision/quiz_journal.md` — mes points faibles + **calendrier de répétition espacée** (re-tests datés). À alimenter à chaque erreur.
+- **Reprise & routine** : `fiches-revision/Programme_remise_a_niveau.md` (routine quotidienne « échauffement » + checklist de maîtrise) et `fiches-revision/Reprise_2jours_S1-S7.md` (méthode mémoire + banque de questions).
+
 ## Rythme
 - Alternance **Python le matin / SQL l'après-midi**. Java : bases seulement, plus tard.
 
@@ -67,3 +80,7 @@ Apprendre le métier de **data engineer** (ingénieur de la donnée : construire
 
 ## Suivi de ma progression
 Si mon niveau monte (nouvel outil en pratique, notion acquise…), le **signaler** et proposer d'actualiser la section « Qui je suis » du `CLAUDE.md` principal **et** `REPRISE.md`.
+
+## Mise à jour régulière de ces fichiers (règle)
+- **Chaque vendredi (jour de revue)** : actualiser ce `CLAUDE.md` (section « Où j'en suis »), le `CLAUDE.md` **principal** et `REPRISE.md` selon la semaine écoulée (progrès, phase, points faibles du `quiz_journal.md`). Dater la mise à jour.
+- Une **tâche programmée hebdomadaire** (`maj-claude-md-hebdo`) le prépare/rappelle automatiquement.

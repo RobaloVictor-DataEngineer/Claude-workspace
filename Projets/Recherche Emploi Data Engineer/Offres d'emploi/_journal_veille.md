@@ -66,3 +66,22 @@
 - Data Engineer H/F (CDI) — Seenovate (Lille)
 - Data Engineer Python - Pyspark (CDI) — Groupe Trèfle (Paris)
 - Data Engineer Python Dagster & Snowflake (CDI) — Bluethink (Paris)
+
+### 11/09/2026
+- Data Engineer – Run DataOps (CDI) — codoc (Paris, santé/données médicales)
+- Data Engineer H/F (CDI) — Mondial Relay by InPost (Villeneuve-d'Ascq, agglo Lille)
+
+### 14/09/2026
+- Data Engineer Databricks/Azure (CDI) — Groupement Mousquetaires/Intermarché (Châtillon, IDF)
+- Data Engineer Big Data (CDI) — Natixis (Île-de-France)
+- Data Engineer (CDI) — HelloFresh (Paris)
+
+### 18/09/2026
+- Data Engineer H/F (CDI) — Ramsay Santé (Paris, santé)
+- Ingénieur de Données / Data Engineer H/F (CDI) — B-Human pour client (Lille)
+
+### 21/09/2026
+- Data Engineer Junior H/F (CDI) — Generali France (Saint-Denis, IDF)
+- Data Engineer H/F (CDI) — La Mutuelle Générale (Paris, santé)
+- Data Engineer H/F (CDI) — CNP Assurances Protection Sociale (Paris, santé/protection sociale)
+- Data Engineer DBT F/H (CDI — consulting, exception) — CGI (Lille)

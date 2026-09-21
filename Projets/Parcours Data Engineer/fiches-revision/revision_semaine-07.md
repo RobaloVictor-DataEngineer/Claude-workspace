@@ -140,4 +140,36 @@ s = {1, 2, 2}               # {1, 2} — doublons supprimés
 
 ---
 
-*Statut : Semaine 7 en pause (Java + intro Spark faits avant la coupure). Semaine du 01-07/09 = remise à niveau S1-S7 post-vacances (voir `quiz_journal.md` et `Programme_remise_a_niveau.md`) ; 2 points encore fragiles ci-dessus, à re-tester le 11/09. Prochaine étape : boucler ces 2 points, puis relancer S7 (mini-projet + candidatures).*
+## Semaine du 07-08/09 — pratique code + oral (remise à niveau S1-S7 BOUCLÉE 🎉)
+
+> Deux séances de pratique (écriture de code) + une séance orale sur les concepts S5-S7. Bilan global positif : plus de blanc, il produit les motifs seul. Points neufs ci-dessous, à re-tester le 14-15/09.
+
+### Pandas — le bon élément par groupe (piège du 07/09)
+**Idée :** pour le **meilleur élément de chaque groupe** (ex. produit le plus vendu par catégorie), `nlargest()` seul ne suffit pas : il ne rend qu'un classement **global**, pas **par groupe**.
+**Syntaxe :**
+```python
+df.sort_values("CA", ascending=False).groupby("categorie").head(1)   # 1 ligne par groupe, la meilleure
+```
+**Piège :** confondu avec `df.nlargest(1, "CA")` qui renvoie **une seule** ligne au total (le max toutes catégories confondues). Même motif que `ROW_NUMBER() OVER (PARTITION BY ... ORDER BY ...) = 1` en SQL — le repère à garder pour ne plus l'oublier.
+
+### PySpark — écrire une vraie chaîne de transformations (1re fois, 08/09)
+**Idée :** `agg()` attend une **fonction d'agrégation** (`F.sum`, `F.count`...), pas une simple colonne ; et une chaîne de transformations sur plusieurs lignes doit être **entièrement entre parenthèses** pour rester une seule instruction Python valide.
+**Syntaxe :**
+```python
+resultat = (df
+    .filter(F.col("quantite") >= 2)               # filtre les LIGNES, avant le groupBy
+    .groupBy("ville")
+    .agg(F.sum("CA").alias("CA_total"))            # F.sum(...), jamais F.col(...) dans un agg
+    .orderBy(F.col("CA_total").desc()))
+resultat.show()                                    # l'action, avec les parenthèses
+```
+**Piège :** deux erreurs répétées ce jour-là : mettre `F.col("CA")` au lieu de `F.sum("CA")` dans `agg()` ; oublier les `( )` autour de la chaîne multi-lignes (erreur de syntaxe Python, pas une erreur Spark).
+
+### Modélisation en étoile — grain + faits vs dimensions (sauté à l'oral le 08/09, à re-tester le 15/09)
+**Idée :** le **grain** d'une table de faits = ce que représente **une seule ligne** (ex. "1 ligne = 1 vente", pas "1 ligne = 1 jour"). **Faits** = les mesures numériques + les clés vers les dimensions ; **dimensions** = les attributs de contexte qui décrivent ces mesures.
+**Syntaxe :** pas de code — repère à réciter : faits = *combien/quoi mesurer* (montant, quantité), dimensions = *qui/quoi/où/quand* (client, produit, ville, date).
+**Piège :** raccourci faux donné à l'oral : « faits = chiffres, dimensions = texte ». Faux — le grain et la distinction mesure/contexte comptent, pas le type de donnée.
+
+---
+
+*Statut (mis à jour 14/09) : remise à niveau S1-S7 post-vacances **bouclée** (08/09) — voir `quiz_journal.md`. Restent à re-tester : cumul SQL double `SUM`, CTE sans `GROUP BY`, mutabilité liste/tuple/set, grain + faits/dimensions, pièges PySpark (`agg`, chaînage). Prochaine étape : boucler ces retests, puis relancer S7 pour de bon (mini-projet cumulatif + premières candidatures).*

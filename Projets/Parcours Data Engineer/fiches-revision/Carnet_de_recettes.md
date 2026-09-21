@@ -194,3 +194,49 @@ SELECT * FROM ca_client WHERE ca > (SELECT AVG(ca) FROM ca_client);
 - **Schéma en étoile** : table de **faits** (mesures : montant, quantité) + tables de **dimensions** (attributs : ville, produit) ; **grain** = ce que représente une ligne de faits.
 - **Airflow / DAG** : *Directed Acyclic Graph*, le plan orienté (E→T→L) et sans retour ; `>>` = ordre des tâches ; `retries` + idempotence vont ensemble.
 - **Spark** : calcul **distribué** (cluster) pour gros volumes ; *lazy* → **transformations** (empilées : filter, groupBy) vs **actions** (déclenchent : show, count, collect).
+
+---
+
+## D. PySpark (niveau survol — lire du code + répondre en entretien, pas maîtriser)
+
+> PySpark = l'interface Python de Spark. Un **DataFrame Spark** ressemble à un DataFrame pandas, mais **distribué** et **paresseux** (rien ne s'exécute avant une **action**).
+
+**0. Démarrer**
+```python
+from pyspark.sql import SparkSession, functions as F
+spark = SparkSession.builder.getOrCreate()
+df = spark.read.csv("f.csv", header=True, inferSchema=True)   # attention : read.csv (avec un POINT)
+```
+
+**Le pont pandas → PySpark** (les gestes que tu connais, version Spark) :
+
+| Geste | pandas | PySpark |
+|---|---|---|
+| filtrer | `df[df["m"]>100]` | `df.filter(F.col("m") > 100)` |
+| choisir des colonnes | `df[["a","b"]]` | `df.select("a", "b")` |
+| colonne calculée | `df["CA"]=df.q*df.p` | `df.withColumn("CA", F.col("q")*F.col("p"))` |
+| grouper + agréger | `df.groupby("v")["m"].sum()` | `df.groupBy("v").agg(F.sum("m").alias("total"))` |
+| trier | `df.sort_values("m", ascending=False)` | `df.orderBy(F.col("m").desc())` |
+| joindre | `df.merge(a, on="k")` | `df.join(a, on="k", how="inner")` |
+| afficher (ACTION) | `df.head()` | `df.show()` |
+| compter (ACTION) | `len(df)` | `df.count()` |
+
+**1. Chaîner sur plusieurs lignes → TOUT entre parenthèses** (sinon erreur de syntaxe Python) :
+```python
+resultat = (df
+    .filter(F.col("quantite") >= 2)
+    .withColumn("CA", F.col("quantite") * F.col("prix_unitaire"))
+    .groupBy("ville")
+    .agg(F.sum("CA").alias("CA_total"))
+    .orderBy(F.col("CA_total").desc()))
+resultat.show()     # l'action, sur le RÉSULTAT
+```
+
+**2. Transformations (lazy) vs Actions**
+- **Transformations** (empilées dans un plan, ne calculent rien) : `filter`, `select`, `withColumn`, `groupBy`, `join`, `orderBy`.
+- **Actions** (déclenchent le calcul) : `show`, `count`, `collect`, `write`.
+- Réflexe : « ça me rend un résultat concret (lignes, nombre, fichier) ? » → **action** ; sinon → **transformation**.
+
+**3. pandas ou Spark ?** pandas si ça tient sur une machine (≤ quelques Go) ; Spark au-delà (données distribuées sur un cluster).
+
+**Pièges qui coûtent des points** : `spark.read.csv` (un **point**, pas `read_csv`) · `groupBy` (**B** majuscule) · `agg` prend une **fonction** `F.sum("CA")` (pas `F.col`) · `.show()` **avec les parenthèses**.

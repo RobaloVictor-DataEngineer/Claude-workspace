@@ -107,3 +107,18 @@ Lot écrit de zéro : pandas (pivot_table, apply/lambda, panier moyen par segmen
 - **[Priorité]** SQL cumul avec GROUP BY : oubliait le **double SUM** `SUM(SUM(...)) OVER (ORDER BY ...)` → cumul faux sur dates en double. Concept ré-expliqué (2 étages : SUM interne = total du jour, SUM OVER externe = cumul). À re-tester le 11/09.
 - **[Priorité]** CTE : oubliait le `GROUP BY` dans la CTE (sans lui, SUM agrège tout en 1 ligne → résultat vide). À re-tester le 11/09.
 - Progrès net côté **écriture de code** (son point faible auto-identifié) : il produit les motifs seul, ne blanchit plus.
+
+### 07/09/2026 — Séance 4 (pratique code)
+Lot : SQL (HAVING, ROW_NUMBER top-1 par groupe) + pandas (top produit par catégorie, json_normalize).
+- **Bons du 1er coup** : HAVING, ROW_NUMBER (CTE + PARTITION BY + WHERE rang=1), json_normalize. Solide.
+- **[À revoir]** pandas « meilleur par groupe » : avait mis `nlargest(1)` (= 1 seule ligne globale) au lieu de `sort_values(desc).groupby(groupe).head(1)`. Déclic donné : c'est le **même motif que ROW_NUMBER()=1** en SQL. À re-tester le 14/09.
+- Réflexe à garder : **ne pas faire confiance au code généré (Gemini) sans vérifier le résultat** — sa version triait par nom, donc fausse.
+
+### 08/09/2026 — Séance 5 (oral, concepts S5-S7) — REMISE À NIVEAU S1→S7 BOUCLÉE 🎉
+- Solides : ETL/ELT, batch/streaming, DWH/lake, idempotence (mécanique), DAG (`>>`), typage Java, `new`, Spark distribué.
+- **[À re-tester le 15/09]** Le **grain** d'une table de faits (sauté à l'oral) + définition précise **faits vs dimensions** (avait le raccourci "chiffres vs texte" au lieu de mesures+clés vs attributs de contexte).
+- [Résolu] Spark **lazy evaluation** : blanchi, puis ré-expliqué + ancré (a classé filter/withColumn = transformation, count/show = action, 4/4).
+- Nuances rappelées : batch/streaming = **temporalité** (pas le volume) ; ELT possible **dans un warehouse** (pas que lake).
+- **PySpark hands-on** (au-delà du conceptuel S7) : a écrit sa 1re vraie chaîne (filter + withColumn + groupBy + agg(F.sum) + orderBy + show), exécutée en vrai Spark. Concept acquis : **chaîner** les transformations (ne pas repartir de la table à chaque ligne). Piège récurrent à surveiller : **chaîne multi-lignes → tout entre `( … )`** ; et `agg` prend une **fonction** (`F.sum`) pas `F.col`.
+- **PySpark (1re écriture de code Spark)** : a assemblé une chaîne `filter → withColumn → groupBy → agg → orderBy → show`. **[À graver, 14/09]** deux erreurs répétées : (1) dans `agg` il faut une **fonction** `F.sum("CA")`, pas `F.col("CA")` ; (2) **enchaîner** les opérations (chaque op renvoie un nouveau DF ; ne pas repartir de `ventes` à chaque ligne) + envelopper la chaîne dans `( )`. Spark non exécutable en local (Java 17 / py3.14) → objectif = savoir l'ÉCRIRE juste, pas le faire tourner.
+- **PySpark (1re fois qu'il en écrit)** : chaînage acquis (transformations enchaînées, pas 4 lignes qui repartent de `ventes`). Pièges à re-tester le 15/09 : dans `agg` mettre `F.sum(...)` pas `F.col(...)` ; filtre lignes (`quantite>=2`) AVANT `groupBy`, filtre agrégat APRÈS ; `.show()` avec parenthèses.
