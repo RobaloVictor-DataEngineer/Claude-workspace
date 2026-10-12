@@ -43,10 +43,11 @@ Apprendre pour **comprendre et retenir** (réutiliser en entretien et en poste),
 ## Objectif
 Apprendre le métier de **data engineer** (ingénieur de la donnée : construire les pipelines qui collectent, transforment et stockent les données). Dépôt git : **commit chaque vendredi** + mise à jour du tracker Excel.
 
-## Où j'en suis (MAJ 21/09/2026)
+## Où j'en suis (MAJ 09/10/2026)
 - **S1 → S7 : cours terminés**, et **remise à niveau post-vacances (août) bouclée** — pandas, SQL (jointures, window functions, CTE, cumul), concepts DE (ETL/ELT, batch/streaming, DWH/lake, idempotence, étoile, Airflow), Java (survol), Spark (survol + **1re pratique PySpark**).
 - **Phase actuelle : entraînement entretien technique** (drills de code, difficulté croissante) ; à venir le **2e projet portfolio** (`projet-02-portfolio`, S8) ; **candidatures en parallèle** (ne pas attendre d'être « parfait »).
 - **Point faible travaillé : l'écriture de code** sous conditions d'entretien — en net progrès : j'écris seul window functions, CTE, top-par-groupe, 1re chaîne PySpark.
+- **Rien de neuf depuis la dernière MAJ** : aucune nouvelle entrée dans `quiz_journal.md` ni archive dans le notebook bac à sable depuis le 08/09/2026, et aucun commit sur ce projet depuis le 22/09/2026 (dernier commit lié à un autre projet — Fabric/Azure). Pas de nouveau point faible ni de progrès à consigner cette semaine.
 
 ## Outils d'apprentissage & workflow de pratique (à utiliser)
 - **Bac à sable** : `exercices/python/bac_a_sable_entretien.ipynb`. 3 zones : **SETUP** (données réutilisables pandas + miroir SQL via `q("...")`), **ZONE VIDE** (j'écris ici), **ARCHIVES** (exos réussis, regroupés par **THÈME — DATE** + « À re-tester le +7 j »).

@@ -1,8 +1,10 @@
 # REPRISE — Où j'en suis dans mon parcours Data Engineer
 
 > Fichier à relire pour reprendre le fil depuis n'importe quel PC (même sans historique Cowork).
-> **Dernière mise à jour : 01/09/2026.**
+> **Dernière mise à jour : 09/10/2026.**
 > Au démarrage d'une nouvelle session : faire lire au modèle ce fichier + `CLAUDE.md` (racine) + `CLAUDE.md` (ce projet).
+
+> **Point d'étape (09/10/2026) :** rien de neuf sur ce projet depuis début septembre — pas de nouvelle entrée `quiz_journal.md` ni d'archive notebook depuis le 08/09/2026, pas de commit sur ce dossier depuis le 22/09/2026. Statut inchangé : voir « Point d'étape rapide » et « Prochaine étape — Semaine 7 » ci-dessous. Prochaine étape toujours : reprendre S7 (Java/Spark) puis relancer le mini-projet cumulatif.
 
 ---
 

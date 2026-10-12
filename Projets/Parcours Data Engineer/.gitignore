@@ -17,3 +17,5 @@ Thumbs.db
 
 # Sessions DBeaver / SQL temporaires
 *.session.sql
+# Config locale avec identifiants (mot de passe SQLTools) - ne jamais versionner
+.vscode/settings.json
